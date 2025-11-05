@@ -1,1611 +1,613 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DEINCOTEC · Consultoría Tecnológica e Innovación</title>
-<meta name="description" content="Consultoría tecnológica especializada en competitividad empresarial, financiación de la I+D+i (CDTI, deducciones fiscales), patentes y eficiencia energética." />
-<meta name="theme-color" content="#111827" />
-<meta property="og:title" content="DEINCOTEC · Consultoría Tecnológica e Innovación" />
-<meta property="og:description" content="Acompañamos todo el camino de la innovación: consultoría tecnológica, financiación I+D+i, patentes, eficiencia energética y explotación de resultados." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://deincotec.es" />
-<meta property="og:image" content="https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9" />
-<link rel="icon" href="/favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DEINCOTEC · Consultoría Tecnológica e Innovación</title>
+  <meta name="description" content="Consultoría tecnológica especializada en competitividad empresarial, financiación de la I+D+i (CDTI, deducciones fiscales), patentes y eficiencia energética." />
+  <meta name="theme-color" content="#111827" />
+  <meta property="og:title" content="DEINCOTEC · Consultoría Tecnológica e Innovación" />
+  <meta property="og:description" content="Acompañamos todo el camino de la innovación: consultoría tecnológica, financiación I+D+i, patentes, eficiencia energética y explotación de resultados." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://deincotec.es" />
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9" />
+  <!-- CAMBIO: Ruta absoluta al favicon -->
+  <link rel="icon" href="/favicon.ico" />
 
-<!-- TailwindCSS via CDN --><script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: { 50: '#f2f7ff', 100: '#e5efff', 200: '#c7dbff', 300: '#9bbcff', 400: '#6e9cff', 500: '#3f7cff', 600: '#1e5fe6', 700: '#134ab4', 800: '#0c3580', 900: '#0a2a66' },
-        },
-      }
-    },
-  }
-</script>
+  <!-- TailwindCSS via CDN --><script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#f2f7ff', 100: '#e5efff', 200: '#c7dbff', 300: '#9bbcff', 400: '#6e9cff', 500: '#3f7cff', 600: '#1e5fe6', 700: '#134ab4', 800: '#0c3580', 900: '#0a2a66' },
+          },
+        }
+      },
+    }
+  </script>
 
-<!-- Fuente Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
-  .container-narrow { max-width: 1100px; }
-  /* Estilos para el carrusel */
-  .carousel-slide {
-    min-height: 500px;
-  }
-  @media (min-width: 768px) {
-    .carousel-slide {
-      height: 650px;
+  <!-- Fuente Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
+    .container-narrow { max-width: 1100px; }
+    .carousel-slide { min-height: 500px; }
+    @media (min-width: 768px) { .carousel-slide { height: 650px; } }
+    #submitBtn:disabled { opacity: 0.7; cursor: not-allowed; }
+  </style>
+
+  <!-- JSON‑LD básico (organización) --><script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"DEINCOTEC S.L.",
+    "url":"https://deincotec.es",
+    "logo":"https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9",
+    "sameAs":["https://es.linkedin.com/company/deincotec-s-l-"],
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Sevilla",
+      "addressCountry":"ES"
     }
   }
-  /* Estilo para el botón de formulario mientras carga */
-  #submitBtn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-</style>
-
-<!-- JSON‑LD básico (organización) --><script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"DEINCOTEC S.L.",
-  "url":"https://deincotec.es",
-  "logo":"https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9",
-  "sameAs":["https://es.linkedin.com/company/deincotec-s-l-"],
-  "address":{
-    "@type":"PostalAddress",
-    "addressLocality":"Sevilla",
-    "addressCountry":"ES"
-  }
-}
-</script>
+  </script>
 </head>
 <body class="bg-white text-slate-800">
 
-<!-- === Header === --><header id="inicio-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
-  <div class="mx-auto container-narrow px-4 py-3 flex items-center justify-between">
-    <!-- CAMBIO: Añadido data-anchor al logo -->
-    <a href="#" data-page="page-inicio" data-anchor="#inicio-header" class="flex items-center gap-3 nav-link">
-      <img src="https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9" alt="DEINCOTEC" class="h-12 w-auto" onerror="this.src='https://placehold.co/160x50/f0f0f0/333?text=Logo'; this.onerror=null;" />
-      <span class="sr-only">DEINCOTEC · Inicio</span>
-    </a>
-    
-    <!-- Navegación Desktop --><nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-      <a href="#" data-page="page-inicio" data-anchor="#inicio-header" class="text-slate-700 hover:text-brand-700 transition nav-link">Inicio</a>
-      <a href="#" data-page="page-quienes-somos" class="text-slate-700 hover:text-brand-700 transition nav-link">Quiénes Somos</a>
+  <!-- 1. Contenedor para el Header -->
+  <div id="header-placeholder"></div>
 
-      <!-- Desplegable Servicios (Desktop) --><div class="relative group">
-        <button data-page="page-inicio" data-anchor="#servicios" class="flex items-center gap-1 text-slate-700 hover:text-brand-700 transition nav-link">
-          Servicios
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+  <!-- 2. Contenido Principal -->
+  <main>
+    <div id="page-inicio">
+      <!-- === Sección Hero (Carrusel) === -->
+      <section id="hero-carousel" class="relative bg-brand-900 text-white overflow-hidden">
+        <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out">
+          
+          <!-- Slide 1: Innovación -->
+          <div class="carousel-slide relative w-full flex-shrink-0">
+            <img src="https://placehold.co/1400x700/0c3580/c7dbff?text=Innovación" alt="Innovación y Competitividad Empresarial" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/0c3580/c7dbff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <div class="absolute inset-0 bg-brand-900/70"></div>
+            <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
+              <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Impulsamos la <span class="text-brand-300">Innovación</span><br> y Competitividad Empresarial
+              </h1>
+              <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
+                Le acompañamos en todo el ciclo de la I+D+i: desde la idea hasta la financiación, protección y explotación de resultados.
+              </p>
+              <div class="flex gap-4 justify-center">
+                <a href="#servicios" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow">
+                  Nuestros Servicios
+                </a>
+                <a href="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition">
+                  Contactar
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 2: Financiación -->
+          <div class="carousel-slide relative w-full flex-shrink-0">
+            <img src="https://placehold.co/1400x700/134ab4/e5efff?text=Financiación" alt="Financiación I+D+i" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/134ab4/e5efff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <div class="absolute inset-0 bg-brand-900/70"></div>
+            <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
+              <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Maximizamos su <span class="text-brand-300">Financiación</span><br> para Proyectos de I+D+i
+              </h1>
+              <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
+                Expertos en la gestión de ayudas públicas (CDTI, ENISA) y programas europeos. Aseguramos el éxito de su solicitud.
+              </p>
+              <div class="flex gap-4 justify-center">
+                <!-- CAMBIO: Ruta absoluta -->
+                <a href="/servicios/financiacion.html" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow">
+                  Ver Financiación
+                </a>
+                <a href="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition">
+                  Contactar
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 3: Deducciones Fiscales -->
+          <div class="carousel-slide relative w-full flex-shrink-0">
+            <img src="https://placehold.co/1400x700/0a2a66/c7dbff?text=Ahorro+Fiscal" alt="Deducciones Fiscales" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/0a2a66/c7dbff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <div class="absolute inset-0 bg-brand-900/70"></div>
+            <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
+              <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Optimice su <span class="text-brand-300">Fiscalidad</span><br> con Deducciones por I+D+i
+              </h1>
+              <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
+                Convertimos su innovación en ahorro fiscal. Realizamos Informes Motivados y gestionamos el 'Patent Box'.
+              </p>
+              <div class="flex gap-4 justify-center">
+                <!-- CAMBIO: Ruta absoluta -->
+                <a href="/servicios/deducciones.html" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow">
+                  Ver Deducciones
+                </a>
+                <a href="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition">
+                  Contactar
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 4: Patentes -->
+          <div class="carousel-slide relative w-full flex-shrink-0">
+            <img src="https://placehold.co/1400x700/1e5fe6/f2f7ff?text=Patentes+y+Marcas" alt="Patentes y Propiedad Industrial" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/1e5fe6/f2f7ff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <div class="absolute inset-0 bg-brand-900/70"></div>
+            <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
+              <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Proteja sus <span class="text-brand-300">Activos Intangibles</span><br> con Estrategia
+              </h1>
+              <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
+                Gestionamos sus patentes, marcas y propiedad industrial para blindar su competitividad en el mercado.
+              </p>
+              <div class="flex gap-4 justify-center">
+                <!-- CAMBIO: Ruta absoluta -->
+                <a href="/servicios/patentes.html" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow">
+                  Ver Patentes
+                </a>
+                <a href="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition">
+                  Contactar
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 5: Consultoría -->
+          <div class="carousel-slide relative w-full flex-shrink-0">
+            <img src="https://placehold.co/1400x700/0c3580/9bbcff?text=Estrategia" alt="Consultoría Estratégica" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/0c3580/9bbcff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <div class="absolute inset-0 bg-brand-900/70"></div>
+            <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
+              <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <span class="text-brand-300">Consultoría Estratégica</span><br> para un Crecimiento Sostenible
+              </h1>
+              <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
+                Definimos su hoja de ruta tecnológica y planes de innovación alineados con sus objetivos de negocio.
+              </p>
+              <div class="flex gap-4 justify-center">
+                <!-- CAMBIO: Ruta absoluta -->
+                <a href="/servicios/consultoria.html" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow">
+                  Ver Consultoría
+                </a>
+                <a href="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition">
+                  Contactar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Controles: Flechas -->
+        <button id="prev-slide" aria-label="Anterior" class="absolute z-20 top-1/2 -translate-y-1/2 left-2 md:left-4 bg-white/10 p-2 rounded-full text-white hover:bg-white/30 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
         </button>
-        <div class="absolute left-0 pt-2 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-          <div class="bg-white rounded-lg shadow-xl w-60 border border-slate-200 py-2">
-            <a href="#" data-page="page-servicio-consultoria" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link">Consultoría y Estrategia</a>
-            <a href="#" data-page="page-servicio-financiacion" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link">Financiación I+D+i</a>
-            <a href="#" data-page="page-servicio-inversiones" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link">Inversiones Productivas</a>
-            <a href="#" data-page="page-servicio-deducciones" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link">Deducciones Fiscales</a>
-            <a href="#" data-page="page-servicio-patentes" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link">Patentes y Prop. Industrial</a>
-          </div>
-        </div>
-      </div>
-      <!-- Fin Desplegable --><a href="#" data-page="page-inicio" data-anchor="#noticias" class="text-slate-700 hover:text-brand-700 transition nav-link">Noticias</a>
-      <a href="#" data-page="page-inicio" data-anchor="#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-4 py-2 text-white hover:bg-brand-800 transition shadow-sm nav-link">
-        Contacto<span aria-hidden="true">→</span>
-      </a>
-    </nav>
-
-    <!-- Botón móvil --><button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-full p-2 border border-slate-300" aria-label="Abrir menú">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-  </div>
-
-  <!-- Menú móvil --><div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
-    <div class="mx-auto container-narrow px-4 py-4 grid gap-3 text-base">
-      <a href="#" data-page="page-inicio" data-anchor="#inicio-header" class="py-2 hover:text-brand-700 mobile-link nav-link">Inicio</a>
-      <a href="#" data-page="page-quienes-somos" class="py-2 hover:text-brand-700 mobile-link nav-link">Quiénes Somos</a>
-      
-      <!-- Desplegable Servicios (Móvil) --><div>
-        <button id="mobileServicesBtn" data-page="page-inicio" data-anchor="#servicios" class="py-2 w-full flex justify-between items-center hover:text-brand-700 nav-link">
-          Servicios
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pointer-events-none" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+        <button id="next-slide" aria-label="Siguiente" class="absolute z-20 top-1/2 -translate-y-1/2 right-2 md:right-4 bg-white/10 p-2 rounded-full text-white hover:bg-white/30 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
         </button>
-        <div id="mobileServicesMenu" class="hidden pl-4 pt-2 grid gap-2">
-          <a href="#" data-page="page-servicio-consultoria" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link nav-link">Consultoría y Estrategia</a>
-          <a href="#" data-page="page-servicio-financiacion" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link nav-link">Financiación I+D+i</a>
-          <a href="#" data-page="page-servicio-inversiones" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link nav-link">Inversiones Productivas</a>
-          <a href="#" data-page="page-servicio-deducciones" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link nav-link">Deducciones Fiscales</a>
-          <a href="#" data-page="page-servicio-patentes" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link nav-link">Patentes y Prop. Industrial</a>
-        </div>
-      </div>
-      <!-- Fin Desplegable Móvil --><a href="#" data-page="page-inicio" data-anchor="#noticias" class="py-2 hover:text-brand-700 mobile-link nav-link">Noticias</a>
-      <a href="#" data-page="page-inicio" data-anchor="#contacto" class="py-2 hover:text-brand-700 mobile-link nav-link">Contacto</a>
-    </div>
-  </div>
-</header>
-
-<!-- === Contenido Principal === --><main>
-
-  <!-- PÁGINA DE INICIO -->
-  <div id="page-inicio" class="page-section">
-
-    <!-- === Sección Hero (Carrusel) === -->
-    <section id="hero-carousel" class="relative bg-brand-900 text-white overflow-hidden">
-      <!-- Track del Carrusel -->
-      <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out">
         
-        <!-- Slide 1: Innovación -->
-        <div class="carousel-slide relative w-full flex-shrink-0">
-          <img src="https://placehold.co/1400x700/0c3580/c7dbff?text=Innovación" 
-               alt="Innovación y Competitividad Empresarial" 
-               class="absolute inset-0 w-full h-full object-cover -z-10"
-               onerror="this.src='https://placehold.co/1400x700/0c3580/c7dbff?text=Error+Cargando+Imagen'; this.onerror=null;" />
-          <div class="absolute inset-0 bg-brand-900/70"></div>
-          <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-              Impulsamos la <span class="text-brand-300">Innovación</span><br> y Competitividad Empresarial
-            </h1>
-            <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
-              Le acompañamos en todo el ciclo de la I+D+i: desde la idea hasta la financiación, protección y explotación de resultados.
-            </p>
-            <div class="flex gap-4 justify-center">
-              <a href="#" data-page="page-inicio" data-anchor="#servicios" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow nav-link">
-                Nuestros Servicios
-              </a>
-              <a href="#" data-page="page-inicio" data-anchor="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition nav-link">
-                Contactar
-              </a>
-            </div>
-          </div>
+        <!-- Controles: Puntos -->
+        <div id="carousel-dots" class="absolute z-20 bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+          <!-- Los puntos se generarán con JS -->
         </div>
-        
-        <!-- Slide 2: Financiación -->
-        <div class="carousel-slide relative w-full flex-shrink-0">
-          <img src="https://placehold.co/1400x700/134ab4/e5efff?text=Financiación" 
-               alt="Financiación I+D+i" 
-               class="absolute inset-0 w-full h-full object-cover -z-10"
-               onerror="this.src='https://placehold.co/1400x700/134ab4/e5efff?text=Error+Cargando+Imagen'; this.onerror=null;" />
-          <div class="absolute inset-0 bg-brand-900/70"></div>
-          <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-              Maximizamos su <span class="text-brand-300">Financiación</span><br> para Proyectos de I+D+i
-            </h1>
-            <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
-              Expertos en la gestión de ayudas públicas (CDTI, ENISA) y programas europeos. Aseguramos el éxito de su solicitud.
-            </p>
-            <div class="flex gap-4 justify-center">
-              <a href="#" data-page="page-servicio-financiacion" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow nav-link">
-                Ver Financiación
-              </a>
-              <a href="#" data-page="page-inicio" data-anchor="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition nav-link">
-                Contactar
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Slide 3: Deducciones Fiscales -->
-        <div class="carousel-slide relative w-full flex-shrink-0">
-          <img src="https://placehold.co/1400x700/0a2a66/c7dbff?text=Ahorro+Fiscal" 
-               alt="Deducciones Fiscales" 
-               class="absolute inset-0 w-full h-full object-cover -z-10"
-               onerror="this.src='https://placehold.co/1400x700/0a2a66/c7dbff?text=Error+Cargando+Imagen'; this.onerror=null;" />
-          <div class="absolute inset-0 bg-brand-900/70"></div>
-          <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-              Optimice su <span class="text-brand-300">Fiscalidad</span><br> con Deducciones por I+D+i
-            </h1>
-            <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
-              Convertimos su innovación en ahorro fiscal. Realizamos Informes Motivados y gestionamos el 'Patent Box'.
-            </p>
-            <div class="flex gap-4 justify-center">
-              <a href="#" data-page="page-servicio-deducciones" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow nav-link">
-                Ver Deducciones
-              </a>
-              <a href="#" data-page="page-inicio" data-anchor="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition nav-link">
-                Contactar
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Slide 4: Patentes -->
-        <div class="carousel-slide relative w-full flex-shrink-0">
-          <img src="https://placehold.co/1400x700/1e5fe6/f2f7ff?text=Patentes+y+Marcas" 
-               alt="Patentes y Propiedad Industrial" 
-               class="absolute inset-0 w-full h-full object-cover -z-10"
-               onerror="this.src='https://placehold.co/1400x700/1e5fe6/f2f7ff?text=Error+Cargando+Imagen'; this.onerror=null;" />
-          <div class="absolute inset-0 bg-brand-900/70"></div>
-          <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-              Proteja sus <span class="text-brand-300">Activos Intangibles</span><br> con Estrategia
-            </h1>
-            <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
-              Gestionamos sus patentes, marcas y propiedad industrial para blindar su competitividad en el mercado.
-            </p>
-            <div class="flex gap-4 justify-center">
-              <a href="#" data-page="page-servicio-patentes" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow nav-link">
-                Ver Patentes
-              </a>
-              <a href="#" data-page="page-inicio" data-anchor="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition nav-link">
-                Contactar
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Slide 5: Consultoría -->
-        <div class="carousel-slide relative w-full flex-shrink-0">
-          <img src="https://placehold.co/1400x700/0c3580/9bbcff?text=Estrategia" 
-               alt="Consultoría Estratégica" 
-               class="absolute inset-0 w-full h-full object-cover -z-10"
-               onerror="this.src='https://placehold.co/1400x700/0c3580/9bbcff?text=Error+Cargando+Imagen'; this.onerror=null;" />
-          <div class="absolute inset-0 bg-brand-900/70"></div>
-          <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-              <span class="text-brand-300">Consultoría Estratégica</span><br> para un Crecimiento Sostenible
-            </h1>
-            <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
-              Definimos su hoja de ruta tecnológica y planes de innovación alineados con sus objetivos de negocio.
-            </p>
-            <div class="flex gap-4 justify-center">
-              <a href="#" data-page="page-servicio-consultoria" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow nav-link">
-                Ver Consultoría
-              </a>
-              <a href="#" data-page="page-inicio" data-anchor="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition nav-link">
-                Contactar
-              </a>
-            </div>
-          </div>
-        </div>
-        
-      </div>
+      </section>
       
-      <!-- Controles: Flechas -->
-      <button id="prev-slide" aria-label="Anterior" class="absolute z-20 top-1/2 -translate-y-1/2 left-2 md:left-4 bg-white/10 p-2 rounded-full text-white hover:bg-white/30 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button id="next-slide" aria-label="Siguiente" class="absolute z-20 top-1/2 -translate-y-1/2 right-2 md:right-4 bg-white/10 p-2 rounded-full text-white hover:bg-white/30 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
       
-      <!-- Controles: Puntos -->
-      <div id="carousel-dots" class="absolute z-20 bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-        <!-- Los puntos se generarán con JS -->
-      </div>
-    </section>
-    
-    
-    <!-- === Sección Servicios (Resumen en Inicio) === -->
-    <section id="servicios" class="bg-slate-50">
-      <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-        <div class="text-center max-w-2xl mx-auto">
-          <span class="text-sm font-semibold text-brand-700 uppercase tracking-wider">Servicios</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">Un socio integral para su I+D+i</h2>
-          <p class="text-lg text-slate-600">
-            Optimizamos sus recursos y maximizamos el retorno de su inversión en innovación.
-          </p>
-        </div>
-        
-        <!-- Grid de Servicios (Reordenado) --><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+      <!-- === Sección Servicios (Resumen en Inicio) === -->
+      <section id="servicios" class="bg-slate-50">
+        <div class="mx-auto container-narrow px-4 py-16 md:py-24">
+          <div class="text-center max-w-2xl mx-auto">
+            <span class="text-sm font-semibold text-brand-700 uppercase tracking-wider">Servicios</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">Un socio integral para su I+D+i</h2>
+            <p class="text-lg text-slate-600">
+              Optimizamos sus recursos y maximizamos el retorno de su inversión en innovación.
+            </p>
+          </div>
           
-          <!-- 1. Consultoría y Estrategia -->
-          <a href="#" data-page="page-servicio-consultoria" id="servicio-consultoria" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300 nav-link">
-            <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">Consultoría y Estrategia</h3>
-            <p class="text-slate-600">Definición de planes estratégicos de I+D+i y hojas de ruta tecnológicas.</p>
-          </a>
-          
-          <!-- 2. Financiación I+D+i -->
-          <a href="#" data-page="page-servicio-financiacion" id="servicio-financiacion" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300 nav-link">
-            <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">Financiación I+D+i</h3>
-            <p class="text-slate-600">Gestión de ayudas públicas (CDTI, ENISA, MINECO) y programas europeos.</p>
-          </a>
-    
-          <!-- 3. Inversiones Productivas -->
-          <a href="#" data-page="page-servicio-inversiones" id="servicio-inversiones" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300 nav-link">
-            <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">Inversiones Productivas</h3>
-            <p class="text-slate-600">Asesoramiento en proyectos de inversión empresarial y optimización de activos.</p>
-          </a>
-    
-          <!-- 4. Deducciones Fiscales -->
-          <a href="#" data-page="page-servicio-deducciones" id="servicio-deducciones" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300 nav-link">
-            <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
-                <path d="M5 6v4c0 1.38 3.134 2.5 7 2.5s7-1.12 7-2.5V6"></path>
-                <ellipse cx="12" cy="12" rx="7" ry="2.5"></ellipse>
-                <path d="M5 12v4c0 1.38 3.134 2.5 7 2.5s7-1.12 7-2.5v-4"></path>
-                <ellipse cx="12" cy="18" rx="7" ry="2.5"></ellipse>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">Deducciones Fiscales</h3>
-            <p class="text-slate-600">Maximización del ahorro fiscal por I+D+i (Informes Motivados) y Patent Box.</p>
-          </a>
-          
-          <!-- 5. Patentes y Prop. Industrial -->
-          <a href="#" data-page="page-servicio-patentes" id="servicio-patentes" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300 nav-link">
-            <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">Patentes y Prop. Industrial</h3>
-            <p class="text-slate-600">Protección de activos intangibles: patentes, marcas y propiedad intelectual.</p>
-          </a>
-    
-          <!-- 6. Eficiencia Energética -->
-          <a href="#" data-page="page-servicio-eficiencia" id="servicio-eficiencia" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300 nav-link">
-            <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12,2C12,2,4,9,4,13c0,4.4,3.6,8,8,8s8-3.6,8-8C20,9,12,2,12,2z"></path>
-                <path d="M12,21L12,7"></path>
-                <path d="M12,12L9,15"></path>
-                <path d="M12,12L15,15"></path>
-                <path d="M12,17L9,20"></path>
-                <path d="M12,17L15,20"></path>
-                <path d="M12,7L9,10"></path>
-                <path d="M12,7L15,10"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 mb-2">Eficiencia Energética</h3>
-            <p class="text-slate-600">Auditorías energéticas, optimización de consumos y gestión de ayudas.</p>
-          </a>
-    
+          <!-- Grid de Servicios (Reordenado) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+            
+            <!-- 1. Consultoría y Estrategia -->
+            <a href="/servicios/consultoria.html" id="servicio-consultoria" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
+              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-2">Consultoría y Estrategia</h3>
+              <p class="text-slate-600">Definición de planes estratégicos de I+D+i y hojas de ruta tecnológicas.</p>
+            </a>
+            
+            <!-- 2. Financiación I+D+i -->
+            <a href="/servicios/financiacion.html" id="servicio-financiacion" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
+              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-2">Financiación I+D+i</h3>
+              <p class="text-slate-600">Gestión de ayudas públicas (CDTI, ENISA, MINECO) y programas europeos.</p>
+            </a>
+      
+            <!-- 3. Inversiones Productivas -->
+            <a href="/servicios/inversiones.html" id="servicio-inversiones" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
+              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-2">Inversiones Productivas</h3>
+              <p class="text-slate-600">Asesoramiento en proyectos de inversión empresarial y optimización de activos.</p>
+            </a>
+      
+            <!-- 4. Deducciones Fiscales -->
+            <a href="/servicios/deducciones.html" id="servicio-deducciones" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
+              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
+                  <path d="M5 6v4c0 1.38 3.134 2.5 7 2.5s7-1.12 7-2.5V6"></path>
+                  <ellipse cx="12" cy="12" rx="7" ry="2.5"></ellipse>
+                  <path d="M5 12v4c0 1.38 3.134 2.5 7 2.5s7-1.12 7-2.5v-4"></path>
+                  <ellipse cx="12" cy="18" rx="7" ry="2.5"></ellipse>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-2">Deducciones Fiscales</h3>
+              <p class="text-slate-600">Maximización del ahorro fiscal por I+D+i (Informes Motivados) y Patent Box.</p>
+            </a>
+            
+            <!-- 5. Patentes y Prop. Industrial -->
+            <a href="/servicios/patentes.html" id="servicio-patentes" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
+              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-2">Patentes y Prop. Industrial</h3>
+              <p class="text-slate-600">Protección de activos intangibles: patentes, marcas y propiedad intelectual.</p>
+            </a>
+      
+            <!-- 6. Eficiencia Energética -->
+            <a href="/servicios/eficiencia.html" id="servicio-eficiencia" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
+              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12,2C12,2,4,9,4,13c0,4.4,3.6,8,8,8s8-3.6,8-8C20,9,12,2,12,2z"></path>
+                  <path d="M12,21L12,7"></path>
+                  <path d="M12,12L9,15"></path>
+                  <path d="M12,12L15,15"></path>
+                  <path d="M12,17L9,20"></path>
+                  <path d="M12,17L15,20"></path>
+                  <path d="M12,7L9,10"></path>
+                  <path d="M12,7L15,10"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-2">Eficiencia Energética</h3>
+              <p class="text-slate-600">Auditorías energéticas, optimización de consumos y gestión de ayudas.</p>
+            </a>
+      
+          </div>
         </div>
-      </div>
-    </section>
-    
-    <!-- === Sección Noticias (Placeholder) === -->
-    <section id="noticias" class="bg-white">
-      <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-        <div class="text-center max-w-2xl mx-auto">
-          <span class="text-sm font-semibold text-brand-700 uppercase tracking-wider">Actualidad</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">Últimas noticias y convocatorias</h2>
-          <p class="text-lg text-slate-600">
-            Manténgase informado sobre las últimas ayudas, novedades fiscales y casos de éxito relevantes para su empresa.
-          </p>
-        </div>
-        
-        <!-- CAMBIO: Nuevo grid de noticias con texto superpuesto -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          
-          <!-- Noticia 1 -->
-          <a href="#" data-page="page-noticia-1" class="nav-link group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
-            <!-- Imagen de fondo -->
-            <img src="https://placehold.co/600x400/134ab4/134ab4" 
-                 alt="Imagen de noticia" 
-                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
-                 onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
-            <!-- Contenido de texto (centrado) -->
-            <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
-              <span class="text-sm font-medium uppercase tracking-wider opacity-80">15 Oct, 2025 · Financiación</span>
-              <h3 class="text-xl font-semibold mt-1">
-                Abierta la convocatoria CDTI para Proyectos de I+D
-              </h3>
-            </div>
-          </a>
-
-          <!-- Noticia 2 -->
-          <a href="#" data-page="page-noticia-2" class="nav-link group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
-            <!-- Imagen de fondo -->
-            <img src="https://placehold.co/600x400/134ab4/134ab4" 
-                 alt="Imagen de noticia" 
-                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
-                 onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
-            <!-- Contenido de texto (centrado) -->
-            <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
-              <span class="text-sm font-medium uppercase tracking-wider opacity-80">10 Oct, 2025 · Fiscalidad</span>
-              <h3 class="text-xl font-semibold mt-1">
-                Novedades en Deducciones Fiscales por Innovación
-              </h3>
-            </div>
-          </a>
-
-          <!-- Noticia 3 -->
-          <a href="#" data-page="page-noticia-3" class="nav-link group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
-            <!-- Imagen de fondo -->
-            <img src="https://placehold.co/600x400/134ab4/134ab4" 
-                 alt="Imagen de noticia" 
-                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
-                 onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
-            <!-- Contenido de texto (centrado) -->
-            <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
-              <span class="text-sm font-medium uppercase tracking-wider opacity-80">05 Oct, 2025 · Patentes</span>
-              <h3 class="text-xl font-semibold mt-1">
-                La importancia de proteger la propiedad industrial
-              </h3>
-            </div>
-          </a>
-
-        </div>
-        <!-- FIN CAMBIO -->
-      </div>
-    </section>
-    
-    <!-- === Sección Contacto === -->
-    <section id="contacto" class="bg-slate-50">
-      <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-        <div class="grid md:grid-cols-2 gap-12">
-          <!-- Info Contacto --><div>
-            <span class="text-sm font-semibold text-brand-700 uppercase tracking-wider mb-2 block">Contacto</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Hablemos de su proyecto</h2>
-            <p class="text-lg text-slate-700 mb-8">
-              Rellene el formulario o contáctenos directamente. Analizaremos sus necesidades sin compromiso y le propondremos la mejor estrategia para impulsar su innovación.
+      </section>
+      
+      <!-- === Sección Noticias (Placeholder) === -->
+      <section id="noticias" class="bg-white">
+        <div class="mx-auto container-narrow px-4 py-16 md:py-24">
+          <div class="text-center max-w-2xl mx-auto">
+            <span class="text-sm font-semibold text-brand-700 uppercase tracking-wider">Actualidad</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-6">Últimas noticias y convocatorias</h2>
+            <p class="text-lg text-slate-600">
+              Manténgase informado sobre las últimas ayudas, novedades fiscales y casos de éxito relevantes para su empresa.
             </p>
-            <div class="space-y-4">
-              <a href="mailto:info@deincotec.com" class="flex items-center gap-3 group">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 11.884l7.997-6M2 18h16V6l-8 5-8-5v12z"/></svg>
-                <span class="text-slate-800 text-lg group-hover:text-brand-700">info@deincotec.com</span>
-              </a>
-              <div class="flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
-                <span class="text-slate-800 text-lg">Sevilla, España</span>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            
+            <!-- Noticia 1 -->
+            <!-- CAMBIO: Ruta absoluta -->
+            <a href="/noticias/noticia-1.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+              <img src="https://placehold.co/600x400/134ab4/134ab4" alt="Imagen de noticia" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+              <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
+                <span class="text-sm font-medium uppercase tracking-wider opacity-80">15 Oct, 2025 · Financiación</span>
+                <h3 class="text-xl font-semibold mt-1">
+                  Abierta la convocatoria CDTI para Proyectos de I+D
+                </h3>
               </div>
-              <a href="https://es.linkedin.com/company/deincotec-s-l-" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                <span class="text-slate-800 text-lg group-hover:text-brand-700">LinkedIn</span>
-              </a>
+            </a>
+
+            <!-- Noticia 2 -->
+            <!-- CAMBIO: Ruta absoluta -->
+            <a href="/noticias/noticia-2.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+              <img src="https://placehold.co/600x400/134ab4/134ab4" alt="Imagen de noticia" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+              <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
+                <span class="text-sm font-medium uppercase tracking-wider opacity-80">10 Oct, 2025 · Fiscalidad</span>
+                <h3 class="text-xl font-semibold mt-1">
+                  Novedades en Deducciones Fiscales por Innovación
+                </h3>
+              </div>
+            </a>
+
+            <!-- Noticia 3 -->
+            <!-- CAMBIO: Ruta absoluta -->
+            <a href="/noticias/noticia-3.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+              <img src="https://placehold.co/600x400/134ab4/134ab4" alt="Imagen de noticia" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+              <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
+                <span class="text-sm font-medium uppercase tracking-wider opacity-80">05 Oct, 2025 · Patentes</span>
+                <h3 class="text-xl font-semibold mt-1">
+                  La importancia de proteger la propiedad industrial
+                </h3>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+      
+      <!-- === Sección Contacto === -->
+      <section id="contacto" class="bg-slate-50">
+        <div class="mx-auto container-narrow px-4 py-16 md:py-24">
+          <div class="grid md:grid-cols-2 gap-12">
+            <!-- Info Contacto -->
+            <div>
+              <span class="text-sm font-semibold text-brand-700 uppercase tracking-wider mb-2 block">Contacto</span>
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Hablemos de su proyecto</h2>
+              <p class="text-lg text-slate-700 mb-8">
+                Rellene el formulario o contáctenos directamente. Analizaremos sus necesidades sin compromiso y le propondremos la mejor estrategia para impulsar su innovación.
+              </p>
+              <div class="space-y-4">
+                <a href="mailto:info@deincotec.com" class="flex items-center gap-3 group">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 11.884l7.997-6M2 18h16V6l-8 5-8-5v12z"/></svg>
+                  <span class="text-slate-800 text-lg group-hover:text-brand-700">info@deincotec.com</span>
+                </a>
+                <div class="flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+                  <span class="text-slate-800 text-lg">Sevilla, España</span>
+                </div>
+                <a href="https://es.linkedin.com/company/deincotec-s-l-" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.T5 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  <span class="text-slate-800 text-lg group-hover:text-brand-700">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+      
+            <!-- Formulario -->
+            <div>
+              <form id="contactForm" class="bg-white p-8 rounded-lg shadow-xl border border-slate-200 grid gap-5">
+                
+                <div id="form-status" class="hidden p-4 rounded-md text-sm" role="alert"></div>
+
+                <div>
+                  <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nombre</label>
+                  <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500">
+                  <p id="name-error" class="text-red-600 text-sm mt-1 hidden"></p>
+                </div>
+                <div>
+                  <label for="empresa" class="block text-sm font-medium text-slate-700 mb-1">Empresa</label>
+                  <input type="text" id="empresa" name="empresa" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500">
+                  <p id="empresa-error" class="text-red-600 text-sm mt-1 hidden"></p>
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                  <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500">
+                  <p id="email-error" class="text-red-600 text-sm mt-1 hidden"></p>
+                </div>
+                <div>
+                  <label for="mensaje" class="block text-sm font-medium text-slate-700 mb-1">Mensaje</label>
+                  <textarea id="mensaje" name="mensaje" rows="4" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500"></textarea>
+                  <p id="mensaje-error" class="text-red-600 text-sm mt-1 hidden"></p>
+                </div>
+                <div>
+                  <button type="submit" id="submitBtn" class="w-full inline-flex justify-center items-center gap-2 rounded-full bg-brand-700 px-6 py-3 text-white font-medium hover:bg-brand-800 transition shadow-sm">
+                    Enviar Mensaje
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
-    
-          <!-- Formulario --><div>
-            <form id="contactForm" class="bg-white p-8 rounded-lg shadow-xl border border-slate-200 grid gap-5">
-              
-              <div id="form-status" class="hidden p-4 rounded-md text-sm" role="alert"></div>
-
-              <div>
-                <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nombre</label>
-                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500">
-                <p id="name-error" class="text-red-600 text-sm mt-1 hidden"></p>
-              </div>
-              <div>
-                <label for="empresa" class="block text-sm font-medium text-slate-700 mb-1">Empresa</label>
-                <input type="text" id="empresa" name="empresa" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500">
-                <p id="empresa-error" class="text-red-600 text-sm mt-1 hidden"></p>
-              </div>
-              <div>
-                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500">
-                <p id="email-error" class="text-red-600 text-sm mt-1 hidden"></p>
-              </div>
-              <div>
-                <label for="mensaje" class="block text-sm font-medium text-slate-700 mb-1">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="4" required class="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-brand-500 focus:border-brand-500"></textarea>
-                <p id="mensaje-error" class="text-red-600 text-sm mt-1 hidden"></p>
-              </div>
-              <div>
-                <button type="submit" id="submitBtn" class="w-full inline-flex justify-center items-center gap-2 rounded-full bg-brand-700 px-6 py-3 text-white font-medium hover:bg-brand-800 transition shadow-sm">
-                  Enviar Mensaje
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
-      </div>
-    </section>
-    
-  </div> <!-- Fin 'page-inicio' -->
-
-  <!-- PÁGINA "QUIÉNES SOMOS" -->
-  <section id="page-quienes-somos" class="page-section hidden bg-white">
-    <!-- Encabezado de la página "Quiénes Somos" -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Quiénes Somos</h1>
-        <p class="mt-4 text-xl text-slate-600">Expertos en la gestión integral de la Innovación</p>
-      </div>
+      </section>
     </div>
-    
-    <!-- Contenido de Quiénes Somos -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        
-        <!-- Columna de Texto -->
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">Nuestra Misión: Impulsar su Competitividad</h2>
-          <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-            <p>En DEINCOTEC creemos en el poder transformador de la I+D+i como motor de competitividad. Nuestro objetivo es convertir las ideas innovadoras de las empresas en proyectos de éxito.</p>
-            <p>Con más de una década de experiencia, hemos ayudado a cientos de organizaciones a maximizar su potencial, optimizando sus inversiones y asegurando el máximo retorno a través de financiación pública, incentivos fiscales y una sólida protección de sus activos intangibles.</p>
-            <p>Somos un equipo multidisciplinar de ingenieros, economistas y expertos en propiedad industrial, listos para ser su socio estratégico en el camino de la innovación.</p>
-          </div>
+  </main>
 
-          <!-- Sección de Estadísticas/Valores Clave -->
-          <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-slate-200">
-            <div class="text-center sm:text-left">
-              <span class="block text-4xl font-bold text-brand-700">+10</span>
-              <p class="mt-1 text-base text-slate-600">Años de experiencia en gestión de I+D+i</p>
-            </div>
-            <div class="text-center sm:text-left">
-              <span class="block text-4xl font-bold text-brand-700">+95%</span>
-              <p class="mt-1 text-base text-slate-600">Tasa de éxito en financiación (CDTI, ENISA)</p>
-            </div>
-            <div class="text-center sm:text-left">
-              <span class="block text-4xl font-bold text-brand-700">+200</span>
-              <p class="mt-1 text-base text-slate-600">Empresas han confiado en nosotros</p>
-            </div>
-          </div>
+  <!-- 3. Contenedor para el Footer -->
+  <div id="footer-placeholder"></div>
 
-        </div>
-        
-        <!-- Columna de Imagen -->
-        <div>
-          <img src="https://lh3.googleusercontent.com/d/1P4OOSv3K0f604Y5Tx3TAcxlx33VvWmkr" alt="Equipo de DEINCOTEC en una reunión estratégica" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/e2e8f0/334155?text=Error+Img'; this.onerror=null;">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "CONSULTORÍA Y ESTRATEGIA" -->
-  <section id="page-servicio-consultoria" class="page-section hidden bg-white">
-    <!-- Encabezado de la página -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Consultoría y Estrategia</h1>
-        <p class="mt-4 text-xl text-slate-600">Alineamos su innovación con sus objetivos de negocio.</p>
-      </div>
-    </div>
-    
-    <!-- Contenido de la página -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-stretch">
-        
-        <!-- Columna de Texto -->
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">De la Idea al Mercado, con un Plan Sólido</h2>
-          <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-            <p>La innovación no es solo tener una buena idea, es saber cómo desarrollarla, protegerla y monetizarla. Nuestro servicio de consultoría estratégica está diseñado para acompañarle en todo ese ciclo de vida.</p>
-            <p>Analizamos su situación actual, el mercado y la tecnología disponible para diseñar un <strong>Plan Estratégico de I+D+i</strong> y una <strong>Hoja de Ruta Tecnológica</strong> que le permita tomar las decisiones correctas, optimizar sus recursos y minimizar riesgos.</p>
-          </div>
-
-          <!-- Sección de Actividades Clave -->
-          <div class="mt-12 pt-8 border-t border-slate-200">
-            <h3 class="text-2xl font-semibold text-slate-900 mb-5">Actividades Clave</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Diagnóstico de la Innovación:</strong> Análisis del potencial innovador de su empresa.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Vigilancia Tecnológica:</strong> Identificación de tendencias, competidores y oportunidades de mercado.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Definición de Hoja de Ruta:</strong> Planificación de proyectos, hitos e inversiones a corto, medio y largo plazo.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Planes de Explotación:</strong> Estrategias para la comercialización y monetización de resultados.</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        
-        <!-- Columna de Imagen -->
-        <div class="flex flex-col h-full">
-          <img src="https://lh3.googleusercontent.com/d/1jkt_hqVWgSy8yv8qlth0-t43hxTrK-AK" alt="Consultoría y Estrategia de Innovación" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/c7dbff/0c3580?text=Error+Img'; this.onerror=null;">
-          <div class="mt-auto bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg mt-8">
-            <h4 class="text-xl font-semibold mb-3">¿Tiene un proyecto en mente?</h4>
-            <p class="mb-4">Permítanos ayudarle a definir la mejor estrategia para asegurar su éxito y financiación.</p>
-            <a href="#" data-page="page-inicio" data-anchor="#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2 text-white font-medium hover:bg-brand-800 transition shadow-sm nav-link">
-              Contactar ahora
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "FINANCIACIÓN I+D+i" -->
-  <section id="page-servicio-financiacion" class="page-section hidden bg-white">
-    <!-- Encabezado de la página -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Financiación I+D+i</h1>
-        <p class="mt-4 text-xl text-slate-600">Convertimos sus proyectos innovadores en realidades financiadas.</p>
-      </div>
-    </div>
-    
-    <!-- Contenido de la página -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-stretch">
-        
-        <!-- Columna de Texto -->
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">Expertos en Ayudas Públicas y Programas Europeos</h2>
-          <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-            <p>Navegar el complejo mapa de la financiación pública requiere experiencia y dedicación. En DEINCOTEC, somos especialistas en identificar la mejor vía de financiación para su proyecto, ya sea a nivel regional, nacional o europeo.</p>
-            <p>CCon una tasa de éxito superior al 95%, gestionamos todo el proceso: desde el encaje de la idea en la convocatoria más adecuada hasta la preparación de memorias técnico-económicas de alto impacto y la posterior justificación.</p>
-          </div>
-
-          <!-- Sección de Actividades Clave -->
-          <div class="mt-12 pt-8 border-t border-slate-200">
-            <h3 class="text-2xl font-semibold text-slate-900 mb-5">Nuestro Proceso de Éxito</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Diagnóstico de Elegibilidad:</strong> Analizamos su proyecto y recomendamos las ayudas más adecuadas.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Preparación de Propuestas:</strong> Redacción de memorias técnicas y planes económicos solventes.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Gestión y Seguimiento:</strong> Nos encargamos de la presentación y comunicación con los organismos.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Justificación Técnica y Económica:</strong> Aseguramos el cobro de la ayuda mediante una justificación impecable.</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        
-        <!-- Columna de Imagen -->
-        <div class="flex flex-col h-full">
-          <img src="https://lh3.googleusercontent.com/d/1oplvkBod_-nWqWgZF1XPVUa2yDMEPBB0" alt="Gestión de Financiación I+D+i" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/134ab4/e5efff?text=Error+Img'; this.onerror=null;">
-          <div class="mt-auto bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg mt-8">
-            <h4 class="text-xl font-semibold mb-3">¿Busca financiación?</h4>
-            <p class="mb-4">No deje que su proyecto se quede sin fondos. Hablemos sobre cómo podemos conseguir la financiación que necesita.</p>
-            <a href="#" data-page="page-inicio" data-anchor="#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2 text-white font-medium hover:bg-brand-800 transition shadow-sm nav-link">
-              Contactar ahora
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "INVERSIONES PRODUCTIVAS" -->
-  <section id="page-servicio-inversiones" class="page-section hidden bg-white">
-    <!-- Encabezado de la página -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Inversiones Productivas</h1>
-        <p class="mt-4 text-xl text-slate-600">Asesoramiento integral para sus proyectos de inversión empresarial.</p>
-      </div>
-    </div>
-    
-    <!-- Contenido de la página -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-stretch">
-        
-        <!-- Columna de Texto -->
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">Optimice sus Activos y Proyectos de Crecimiento</h2>
-          <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-            <p>Un proyecto de inversión va más allá de la I+D+i. Le ayudamos a estructurar sus planes de crecimiento, modernización y adquisición de activos, asegurando su viabilidad y buscando las mejores fuentes de financiación.</p>
-            <p>Realizamos <strong>planes de viabilidad</strong> técnico-económicos, analizamos la optimización de sus activos y gestionamos <strong>subvenciones y préstamos bonificados</strong> para inversiones productivas, digitalización o internacionalización.</p>
-          </div>
-
-          <!-- Sección de Actividades Clave -->
-          <div class="mt-12 pt-8 border-t border-slate-200">
-            <h3 class="text-2xl font-semibold text-slate-900 mb-5">Áreas de Actuación</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Planes de Viabilidad y Negocio:</strong> Estructuración de proyectos de inversión.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Gestión de Subvenciones:</strong> Ayudas a la inversión productiva, modernización y digitalización.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Optimización de Activos:</strong> Análisis y mejora del rendimiento de sus inversiones.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Búsqueda de Inversores:</strong> Conexión con 'Business Angels' y capital riesgo.</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        
-        <!-- Columna de Imagen -->
-        <div class="flex flex-col h-full">
-          <img src="https://lh3.googleusercontent.com/d/1brG7q3S9We37XAzoqXFxKMUqO5eahlSa" alt="Asesoramiento en Inversiones Empresariales" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/6e9cff/0c3580?text=Error+Img'; this.onerror=null;">
-          <div class="mt-auto bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg mt-8">
-            <h4 class="text-xl font-semibold mb-3">¿Planificando su crecimiento?</h4>
-            <p class="mb-4">Le ayudamos a estructurar su plan de inversión y a encontrar la financiación necesaria para hacerlo realidad.</p>
-            <a href="#" data-page="page-inicio" data-anchor="#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2 text-white font-medium hover:bg-brand-800 transition shadow-sm nav-link">
-              Contactar ahora
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "DEDUCCIONES FISCALES" -->
-  <section id="page-servicio-deducciones" class="page-section hidden bg-white">
-    <!-- Encabezado de la página -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Deducciones Fiscales por I+D+i</h1>
-        <p class="mt-4 text-xl text-slate-600">Convierta su innovación en el máximo ahorro fiscal con total seguridad.</p>
-      </div>
-    </div>
-    
-    <!-- Contenido de la página -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-stretch">
-        
-        <!-- Columna de Texto -->
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">Maximice su Ahorro Fiscal por Innovar</h2>
-          <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-            <p>El sistema fiscal español ofrece potentes incentivos para las empresas que realizan actividades de I+D+i, permitiendo deducir un porcentaje significativo de los gastos incurridos en el Impuesto de Sociedades.</p>
-            <p>Somos expertos en la <strong>gestión de Informes Motivados Vinculantes (IMV)</strong>, la herramienta que aporta máxima seguridad jurídica a sus deducciones. Además, gestionamos el incentivo <strong>'Patent Box'</strong>, que permite una reducción en la tributación de las rentas procedentes de la cesión de activos intangibles.</p>
-          </div>
-
-          <!-- Sección de Actividades Clave -->
-          <div class="mt-12 pt-8 border-t border-slate-200">
-            <h3 class="text-2xl font-semibold text-slate-900 mb-5">Nuestros Servicios Fiscales</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Diagnóstico Fiscal-Técnico:</strong> Identificación de proyectos y gastos susceptibles de deducción.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Elaboración de Informes Motivados:</strong> Preparación de memorias técnico-económicas y defensa ante ENAC/Ministerio.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Gestión de 'Patent Box':</strong> Estrategia y tramitación para la exención de rentas de intangibles.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Monetización y Seguridad:</strong> Asesoramiento en la aplicación y monetización (crédito fiscal) de las deducciones.</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        
-        <!-- Columna de Imagen -->
-        <div class="flex flex-col h-full">
-          <img src="https://lh3.googleusercontent.com/d/1xwZTx6lN4n-Gyi_ajGM-wSkdjnIg763f" alt="Deducciones Fiscales e Informes Motivados" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/0a2a66/c7dbff?text=Error+Img'; this.onerror=null;">
-          <div class="mt-auto bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg mt-8">
-            <h4 class="text-xl font-semibold mb-3">¿Sabe si su empresa puede deducirse?</h4>
-            <p class="mb-4">Muchas empresas innovan sin saber que pueden obtener un gran retorno fiscal por ello. Analizamos su caso sin compromiso.</p>
-            <a href="#" data-page="page-inicio" data-anchor="#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2 text-white font-medium hover:bg-brand-800 transition shadow-sm nav-link">
-              Contactar ahora
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "PATENTES" -->
-  <section id="page-servicio-patentes" class="page-section hidden bg-white">
-    <!-- Encabezado de la página -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Patentes y Propiedad Industrial</h1>
-        <p class="mt-4 text-xl text-slate-600">Proteja, gestione y explote sus activos intangibles más valiosos.</p>
-      </div>
-    </div>
-    
-    <!-- Contenido de la página -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-stretch">
-        
-        <!-- Columna de Texto -->
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">Blindamos su Innovación frente al Mercado</h2>
-          <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-            <p>En un mercado competitivo, su invención, su marca o su diseño industrial son activos estratégicos. Una protección adecuada es fundamental para garantizar su exclusividad y rentabilizar su esfuerzo innovador.</p>
-            <p>Ofrecemos un servicio integral que abarca desde los <strong>estudios previos de patentabilidad</strong> y viabilidad hasta la <strong>redacción y registro de patentes</strong>, marcas y diseños a nivel nacional, europeo e internacional (PCT).</p>
-          </div>
-
-          <!-- Sección de Actividades Clave -->
-          <div class="mt-12 pt-8 border-t border-slate-200">
-            <h3 class="text-2xl font-semibold text-slate-900 mb-5">Gestión de Activos Intangibles</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Estudios de Patentabilidad:</strong> Analizamos el estado de la técnica para asegurar la novedad de su invención.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Redacción y Registro de Patentes:</strong> Preparamos memorias técnicas robustas y gestionamos todo el proceso de registro.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Marcas y Diseño Industrial:</strong> Protegemos la identidad visual y comercial de sus productos.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Planes de Explotación:</strong> Asesoramiento en la licencia y comercialización de sus patentes.</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        
-        <!-- Columna de Imagen -->
-        <div class="flex flex-col h-full">
-          <img src="https://lh3.googleusercontent.com/d/1-fLLlW2AB101y9SheDmh3nqzu9BrZYVR" alt="Registro de Patentes y Propiedad Industrial" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/1e5fe6/f2f7ff?text=Error+Img'; this.onerror=null;">
-          <div class="mt-auto bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg mt-8">
-            <h4 class="text-xl font-semibold mb-3">¿Ha creado algo nuevo?</h4>
-            <p class="mb-4">No espere a que sea demasiado tarde. Proteja su invención o su marca antes de lanzarla al mercado.</p>
-            <a href="#" data-page="page-inicio" data-anchor="#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2 text-white font-medium hover:bg-brand-800 transition shadow-sm nav-link">
-              Contactar ahora
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "EFICIENCIA ENERGÉTICA" -->
-  <section id="page-servicio-eficiencia" class="page-section hidden bg-white">
-    <!-- Encabezado de la página -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Eficiencia Energética</h1>
-        <p class="mt-4 text-xl text-slate-600">Optimice su consumo, reduzca costes y gestione ayudas para la sostenibilidad.</p>
-      </div>
-    </div>
-    
-    <!-- Contenido de la página -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 items-stretch">
-        
-        <!-- Columna de Texto -->
-        <div>
-          <h2 class="text-3xl font-bold text-slate-900 mb-6">Sostenibilidad como Ventaja Competitiva</h2>
-          <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-            <p>La reducción del consumo energético no es solo una responsabilidad medioambiental, sino una palanca clave para la reducción de costes y la mejora de la competitividad. La innovación también reside en cómo gestionamos nuestros recursos.</p>
-            <p>Realizamos <strong>Auditorías Energéticas</strong> conforme a la norma UNE-EN 16247, identificando puntos de mejora y diseñando planes de optimización. Además, gestionamos las <strong>ayudas y subvenciones (ej. IDAE)</strong> destinadas a la implantación de energías renovables o la mejora de la eficiencia en procesos industriales.</p>
-          </div>
-
-          <!-- Sección de Actividades Clave -->
-          <div class="mt-12 pt-8 border-t border-slate-200">
-            <h3 class="text-2xl font-semibold text-slate-900 mb-5">Servicios de Sostenibilidad</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Auditorías Energéticas (UNE-EN 16247):</strong> Diagnóstico detallado de consumos.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Gestión de Ayudas (IDAE, Fondos EU):</strong> Financiación para proyectos de ahorro energético.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Planes de Optimización de Consumo:</strong> Medidas de ahorro y monitorización de resultados.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-700 flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span class="text-slate-700 text-lg text-justify"><strong>Implantación ISO 50001:</strong> Certificación de su Sistema de Gestión Energética.</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-        
-        <!-- Columna de Imagen -->
-        <div class="flex flex-col h-full">
-          <img src="https://placehold.co/600x450/9bbcff/0c3580?text=Eficiencia+Energética" alt="Auditoría de eficiencia energética" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/9bbcff/0c3580?text=Error+Img'; this.onerror=null;">
-          <div class="mt-auto bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg mt-8">
-            <h4 class="text-xl font-semibold mb-3">¿Quiere reducir su factura energética?</h4>
-            <p class="mb-4">Analizamos sus procesos e instalaciones para encontrar puntos de ahorro y le ayudamos a financiar las mejoras.</p>
-            <a href="#" data-page="page-inicio" data-anchor="#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2 text-white font-medium hover:bg-brand-800 transition shadow-sm nav-link">
-              Contactar ahora
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- 4. Scripts -->
   
-  <!-- CAMBIO: PÁGINAS DE NOTICIAS INDIVIDUALES -->
+  <!-- CAMBIO CLAVE: Script simplificado. Carga main.js desde la raíz. -->
+  <script src="/main.js" defer></script>
   
-  <!-- PÁGINA "NOTICIA 1" -->
-  <section id="page-noticia-1" class="page-section hidden bg-white">
-    <!-- Encabezado de la noticia -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <span class="text-sm font-semibold text-brand-700 uppercase">Financiación</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">Abierta la convocatoria CDTI para Proyectos de I+D</h1>
-        <p class="mt-4 text-xl text-slate-600">15 Oct, 2025</p>
-      </div>
-    </div>
-    <!-- Contenido de la noticia -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="max-w-3xl mx-auto">
-        <!-- CAMBIO: Imagen eliminada de la página de la noticia -->
-        <!-- Usamos clases de Tailwind para emular 'prose' -->
-        <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-          <p>El Centro para el Desarrollo Tecnológico Industrial (CDTI) ha anunciado la apertura de su principal línea de financiación para Proyectos de Investigación y Desarrollo (I+D).</p>
-          <p>Esta convocatoria está destinada a empresas de cualquier tamaño que busquen desarrollar nuevos productos, procesos o servicios innovadores. La financiación combina tramos no reembolsables (subvenciones) con préstamos a bajo interés.</p>
-          <p>En DEINCOTEC, como expertos en la gestión de ayudas del CDTI, recomendamos a todas las empresas con proyectos innovadores en cartera que analicen su elegibilidad. Nuestro equipo ya está trabajando en la preparación de las primeras solicitudes, asegurando memorias técnicas y económicas de alta calidad para maximizar las posibilidades de éxito.</p>
-          <p>Los plazos de presentación suelen ser muy competitivos, por lo que una preparación temprana es clave. Contacte con nosotros para un diagnóstico gratuito de su proyecto.</p>
-        </div>
-        <!-- Botón Volver -->
-        <div class="mt-12 pt-8 border-t border-slate-200">
-          <a href="#" data-page="page-inicio" data-anchor="#noticias" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-800 transition nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-            Volver a Noticias
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "NOTICIA 2" -->
-  <section id="page-noticia-2" class="page-section hidden bg-white">
-    <!-- Encabezado de la noticia -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <span class="text-sm font-semibold text-brand-700 uppercase">Fiscalidad</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">Novedades en Deducciones Fiscales por Innovación</h1>
-        <p class="mt-4 text-xl text-slate-600">10 Oct, 2025</p>
-      </div>
-    </div>
-    <!-- Contenido de la noticia -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="max-w-3xl mx-auto">
-        <!-- CAMBIO: Imagen eliminada de la página de la noticia -->
-        <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-          <p>Se han aprobado nuevas mejoras en los incentivos fiscales para el desarrollo de software y la innovación tecnológica (IT). Estas medidas amplían el concepto de "innovación tecnológica" para incluir proyectos de digitalización avanzada, ciberseguridad y desarrollo de aplicaciones móviles, que anteriormente se encontraban en una zona gris.</p>
-          <p>Esta es una excelente noticia para el sector TIC, ya que permite monetizar una mayor parte de sus gastos de personal técnico como deducción en el Impuesto de Sociedades.</p>
-          <p>La clave para aplicar estas deducciones con seguridad jurídica sigue siendo el Informe Motivado Vinculante. Nuestro departamento fiscal y técnico está especializado en la elaboración de estas memorias, identificando todos los gastos elegibles y defendiendo el carácter innovador del proyecto ante las entidades certificadoras (ENAC) y el Ministerio.</p>
-        </div>
-        <!-- Botón Volver -->
-        <div class="mt-12 pt-8 border-t border-slate-200">
-          <a href="#" data-page="page-inicio" data-anchor="#noticias" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-800 transition nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-            Volver a Noticias
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "NOTICIA 3" -->
-  <section id="page-noticia-3" class="page-section hidden bg-white">
-    <!-- Encabezado de la noticia -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <span class="text-sm font-semibold text-brand-700 uppercase">Patentes</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">La importancia de proteger la propiedad industrial</h1>
-        <p class="mt-4 text-xl text-slate-600">05 Oct, 2025</p>
-      </div>
-    </div>
-    <!-- Contenido de la noticia -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="max-w-3xl mx-auto">
-        <!-- CAMBIO: Imagen eliminada de la página de la noticia -->
-        <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
-          <p>Analizamos por qué el registro de marcas y patentes es vital para la competitividad en el mercado actual. Muchas startups y pymes cometen el error de lanzar sus productos sin una estrategia de protección de propiedad industrial, dejando la puerta abierta a competidores.</p>
-          <p>Una patente no solo protege una invención, sino que se convierte en un activo intangible que puede ser licenciado, vendido o utilizado para atraer inversión. Del mismo modo, una marca registrada es la única garantía legal sobre el nombre comercial de la empresa.</p>
-          <p>Además, la existencia de patentes es un requisito fundamental para aplicar al incentivo fiscal 'Patent Box', que permite una reducción de hasta el 60% en la tributación de las rentas (royalties, licencias) generadas por dichos activos intangibles. Proteger no es un gasto, es una inversión estratégica.</p>
-        </div>
-        <!-- Botón Volver -->
-        <div class="mt-12 pt-8 border-t border-slate-200">
-          <a href="#" data-page="page-inicio" data-anchor="#noticias" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-800 transition nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-            Volver a Noticias
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FIN PÁGINAS DE NOTICIAS -->
-  
-  <!-- INICIO PÁGINAS LEGALES -->
-
-  <!-- PÁGINA "AVISO LEGAL" -->
-  <section id="page-legal-aviso" class="page-section hidden bg-white">
-    <!-- Encabezado -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Aviso Legal</h1>
-        <p class="mt-4 text-xl text-slate-600">Condiciones de uso del sitio web deincotec.es</p>
-      </div>
-    </div>
-    <!-- Contenido -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="max-w-3xl mx-auto">
-        <div class="legal-text space-y-6 text-slate-700 text-lg leading-relaxed text-justify">
-          <p class="text-sm text-slate-500">Última actualización: 5 de noviembre de 2025</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">1. Datos Identificativos</h2>
-          <p>En cumplimiento del deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se reflejan los siguientes datos:</p>
-          <ul class="list-disc list-outside pl-6 space-y-2">
-            <li><strong>Titular:</strong> DEINCOTEC S.L.</li>
-            <li><strong>NIF:</strong> B901022740 </li>
-            <li><strong>Domicilio Social:</strong> Eduardo Dato 39, Sevilla, España </li>
-            <li><strong>Correo Electrónico:</strong> info@deincotec.com</li>
-            <li><strong>Datos Registrales:</strong> Inscrita en el Registro Mercantil de Sevilla</li>
-          </ul>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">2. Objeto y Ámbito de Aplicación</h2>
-          <p>El presente Aviso Legal regula el acceso, navegación y uso del sitio web https://deincotec.es (en adelante, el "Sitio Web"), así como las responsabilidades derivadas de la utilización de sus contenidos (textos, gráficos, dibujos, diseños, códigos, software, fotografías, música, vídeos, sonidos, bases de datos, imágenes, expresiones e informaciones, etc.).</p>
-          <p>El acceso y/o uso de este Sitio Web atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">3. Condiciones de Acceso y Uso</h2>
-          <p>El USUARIO se compromete a hacer un uso adecuado de los contenidos y servicios que DEINCOTEC S.L. ofrece a través de su Sitio Web y con carácter enunciativo pero no limitativo, a no emplearlos para (i) incurrir en actividades ilícitas, ilegales o contrarias a la buena fe y al orden público; (ii) difundir contenidos o propaganda de carácter racista, xenófobo, pornográfico-ilegal, de apología del terrorismo o atentatorio contra los derechos humanos.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">4. Propiedad Intelectual e Industrial</h2>
-          <p>DEINCOTEC S.L., por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial de su Sitio Web, así como de los elementos contenidos en el mismo (a título enunciativo, imágenes, sonido, audio, vídeo, software o textos; marcas o logotipos, combinaciones de colores, estructura y diseño, selección de materiales usados, programas de ordenador necesarios para su funcionamiento, acceso y uso, etc.).</p>
-          <p>Todos los derechos reservados. En virtud de lo dispuesto en los artículos 8 y 17, párrafo segundo, de la Ley de Propiedad Intelectual, quedan expresamente prohibidas la reproducción, la distribución y la comunicación pública, incluida su modalidad de puesta a disposición, de la totalidad o parte de los contenidos de este Sitio Web, con fines comerciales, en cualquier soporte y por cualquier medio técnico, sin la autorización de DEINCOTEC S.L.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">5. Exclusión de Garantías y Responsabilidad</h2>
-          <p>DEINCOTEC S.L. no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos o lesivos en los contenidos, a pesar de haber adoptado todas las medidas tecnológicas necesarias para evitarlo.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">6. Modificaciones</h2>
-          <p>DEINCOTEC S.L. se reserva el derecho de efectuar sin previo aviso las modificaciones que considere oportunas en su Sitio Web, pudiendo cambiar, suprimir o añadir tanto los contenidos y servicios que se presten a través de la misma como la forma en la que éstos aparezcan presentados o localizados.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">7. Legislación Aplicable y Jurisdicción</h2>
-          <p>La relación entre DEINCOTEC S.L. y el USUARIO se regirá por la normativa española vigente y cualquier controversia se someterá a los Juzgados y tribunales de la ciudad de Sevilla, salvo que la Ley aplicable disponga otra cosa.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "POLÍTICA DE PRIVACIDAD" -->
-  <section id="page-legal-privacidad" class="page-section hidden bg-white">
-    <!-- Encabezado -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Política de Privacidad</h1>
-        <p class="mt-4 text-xl text-slate-600">Protección de sus datos personales.</p>
-      </div>
-    </div>
-    <!-- Contenido -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="max-w-3xl mx-auto">
-        <div class="legal-text space-y-6 text-slate-700 text-lg leading-relaxed text-justify">
-          <p class="text-sm text-slate-500">Última actualización: 5 de noviembre de 2025</p>
-          <p>De conformidad con lo dispuesto en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016 (RGPD), y la Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD), le informamos sobre el tratamiento de sus datos personales.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">1. Responsable del Tratamiento</h2>
-          <ul class="list-disc list-outside pl-6 space-y-2">
-            <li><strong>Titular:</strong> DEINCOTEC S.L.</li>
-            <li><strong>NIF:</strong> B901202740 </li>
-            <li><strong>Domicilio Social:</strong> Eduardo Dato 39, Sevilla, España </li>
-            <li><strong>Correo Electrónico:</strong> info@deincotec.com</li>
-          </ul>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">2. Finalidad del Tratamiento</h2>
-          <p>Los datos que nos proporciona a través del formulario de contacto del Sitio Web serán tratados con la única finalidad de atender su solicitud de información, consulta o propuesta.</p>
-          <p>Los datos recabados son: nombre, empresa, email y el mensaje que nos envíe. Estos datos son los mínimos necesarios para gestionar su consulta.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">3. Legitimación</h2>
-          <p>La base legal para el tratamiento de sus datos es el consentimiento expreso que usted nos otorga al enviar el formulario de contacto, así como el interés legítimo en atender su petición.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">4. Plazo de Conservación</h2>
-          <p>Sus datos personales serán conservados durante el tiempo estrictamente necesario para cumplir con la finalidad para la que fueron recabados y, posteriormente, durante los plazos legalmente exigidos para la atención de posibles responsabilidades.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">5. Cesión de Datos</h2>
-          <p>DEINCOTEC S.L. no cederá sus datos personales a terceros, salvo obligación legal expresa. Sus datos son tratados por Formspree, Inc., (proveedor del formulario de contacto) actuando como Encargado del Tratamiento bajo el acuerdo de procesamiento de datos correspondiente, garantizando el cumplimiento del RGPD.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">6. Derechos del Interesado</h2>
-          <p>Usted tiene derecho a ejercer sus derechos de acceso, rectificación, supresión (olvido), limitación del tratamiento, portabilidad de los datos y oposición.</p>
-          <p>Puede ejercer estos derechos enviando una comunicación por escrito al domicilio social de DEINCOTEC S.L. o a través del correo electrónico info@deincotec.com, adjuntando una copia de su DNI o documento identificativo equivalente e indicando el derecho que desea ejercer. También tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es) si considera que sus derechos han sido vulnerados.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">7. Medidas de Seguridad</h2>
-          <p>DEINCOTEC S.L. ha adoptado las medidas de índole técnica y organizativa necesarias para garantizar la seguridad de sus datos y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÁGINA "POLÍTICA DE COOKIES" -->
-  <section id="page-legal-cookies" class="page-section hidden bg-white">
-    <!-- Encabezado -->
-    <div class="bg-slate-50 border-b border-slate-200">
-      <div class="mx-auto container-narrow px-4 py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Política de Cookies</h1>
-        <p class="mt-4 text-xl text-slate-600">Información sobre el uso de cookies en deincotec.es</p>
-      </div>
-    </div>
-    <!-- Contenido -->
-    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
-      <div class="max-w-3xl mx-auto">
-        <div class="legal-text space-y-6 text-slate-700 text-lg leading-relaxed text-justify">
-          <p class="text-sm text-slate-500">Última actualización: 5 de noviembre de 2025</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">1. ¿Qué son las Cookies?</h2>
-          <p>Una cookie es un pequeño fichero de texto que un sitio web almacena en el navegador del usuario. Las cookies facilitan el uso y la navegación por una página web y son esenciales para el funcionamiento de internet, aportando innumerables ventajas en la prestación de servicios interactivos.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">2. ¿Qué Cookies utilizamos?</h2>
-          <p>Este Sitio Web utiliza los siguientes tipos de cookies:</p>
-          <ul class="list-disc list-outside pl-6 space-y-2">
-            <li><strong>Cookies técnicas o funcionales:</strong> Son aquellas estrictamente necesarias para el correcto funcionamiento del Sitio Web. En nuestro caso, se utilizan para gestionar la navegación entre páginas (SPA - Single Page Application) y mantener la sesión del usuario. No requieren el consentimiento informado del usuario.</li>
-            <li><strong>Cookies de análisis (Google Analytics):</strong> [PENDIENTE DE IMPLEMENTAR] Actualmente, este sitio web NO utiliza cookies de análisis o medición. En el futuro, si se implementaran servicios como Google Analytics para entender cómo interactúan los usuarios con el sitio, se solicitará el consentimiento explícito del usuario a través de un banner de cookies.</li>
-            <li><strong>Cookies de terceros (Formspree):</strong> El servicio de formulario de contacto (Formspree) puede utilizar cookies técnicas (ej. `fs-cc`, `_formspree_session`) para la prevención de spam y el correcto funcionamiento del formulario. Estas cookies se consideran necesarias para la prestación del servicio solicitado (enviar un mensaje).</li>
-          </ul>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">3. Consentimiento</h2>
-          <p>Dado que este Sitio Web actualmente solo utiliza cookies técnicas esenciales para su funcionamiento, no se requiere un banner de consentimiento explícito para cookies de análisis o marketing, ya que estas no están en uso.</p>
-  
-          <h2 class="text-2xl font-bold text-slate-900 pt-6">4. Cómo gestionar y deshabilitar las Cookies</h2>
-          <p>El usuario puede configurar su navegador para que le notifique la recepción de cookies y para, si lo desea, impedir su instalación en su equipo. A continuación, le proporcionamos enlaces a las instrucciones de los navegadores más habituales:</p>
-          <ul class="list-disc list-outside pl-6 space-y-2">
-            <li><a href="https://support.google.com/chrome/answer/95647?hl=en" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">Google Chrome</a></li>
-            <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">Mozilla Firefox</a></li>
-            <li><a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-las-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">Microsoft Edge</a></li>
-            <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:underline">Safari (Apple)</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FIN PÁGINAS LEGALES -->
-
-</main>
-
-<!-- === Footer === --><footer class="bg-slate-900 text-slate-400">
-  <div class="mx-auto container-narrow px-4 py-12">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-      <div>
-        <a href="#" data-page="page-inicio" class="flex items-center gap-3 mb-4 nav-link">
-          <img src="https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9" alt="DEINCOTEC" class="h-12 w-auto bg-white p-1 rounded-md" onerror="this.src='https://placehold.co/160x50/f0f0f0/333?text=Logo'; this.onerror=null;" />
-        </a>
-        <p class="text-sm max-w-sm">
-          Impulsamos la Innovación y Competitividad Empresarial.<br>
-          Expertos en financiación y gestión de la I+D+i.
-        </p>
-      </div>
-      <nav class="flex flex-col md:flex-row gap-4 md:gap-6 text-sm">
-        <a href="#" data-page="page-inicio" data-anchor="#inicio-header" class="hover:text-white transition nav-link">Inicio</a>
-        <a href="#" data-page="page-quienes-somos" class="hover:text-white transition nav-link">Quiénes Somos</a>
-        <a href="#" data-page="page-inicio" data-anchor="#servicios" class="hover:text-white transition nav-link">Servicios</a>
-        <a href="#" data-page="page-inicio" data-anchor="#noticias" class="hover:text-white transition nav-link">Noticias</a>
-        <a href="#" data-page="page-inicio" data-anchor="#contacto" class="hover:text-white transition nav-link">Contacto</a>
-      </nav>
-    </div>
-    <div class="mt-8 pt-8 border-t border-slate-700/50 text-center md:text-left">
-      <p class="text-xs">
-        &copy; 2025 DEINCOTEC S.L. · Todos los derechos reservados · 
-        <!-- CAMBIO: Enlaces actualizados con data-page y añadido Política de Cookies -->
-        <a href="#" data-page="page-legal-privacidad" class="hover:text-white nav-link">Política de Privacidad</a> · 
-        <a href="#" data-page="page-legal-cookies" class="hover:text-white nav-link">Política de Cookies</a> · 
-        <a href="#" data-page="page-legal-aviso" class="hover:text-white nav-link">Aviso Legal</a>
-      </p>
-    </div>
-  </div>
-</footer>
-
-<!-- === Scripts === --><script>
-document.addEventListener('DOMContentLoaded', function() {
-
-  // --- ¡¡IMPORTANTE!! ---
-  // 1. Ve a https://formspree.io/ y crea un formulario para 'info@deincotec.com'.
-  // 2. Pega tu URL única (endpoint) aquí abajo, reemplazando el texto.
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xyzbqvvv";
-  // --- FIN DE LA INSTRUCCIÓN ---
-
-  
-  // --- Lógica del Menú Móvil ---
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileServicesBtn = document.getElementById('mobileServicesBtn');
-  const mobileServicesMenu = document.getElementById('mobileServicesMenu');
-
-  if (menuBtn) {
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      if (mobileMenu.classList.contains('hidden')) {
-        mobileServicesMenu.classList.add('hidden');
-      }
-    });
-  }
-
-  // --- Lógica del Carrusel ---
-  const carousel = document.getElementById('hero-carousel');
-  const track = document.getElementById('carousel-track');
-  const dotsContainer = document.getElementById('carousel-dots');
-  const prevBtn = document.getElementById('prev-slide');
-  const nextBtn = document.getElementById('next-slide');
-
-  if (carousel && track && dotsContainer && prevBtn && nextBtn) {
-    const slides = Array.from(track.children);
-    const slideCount = slides.length;
-    let currentSlide = 0;
-    let autoPlayInterval;
-
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.setAttribute('aria-label', `Ir a diapositiva ${i + 1}`);
-      dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-colors');
-      dot.addEventListener('click', () => {
-        goToSlide(i);
-        resetAutoPlay();
-      });
-      dotsContainer.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsContainer.children);
-
-    function goToSlide(slideIndex) {
-      if (slideIndex < 0) slideIndex = slideCount - 1;
-      else if (slideIndex >= slideCount) slideIndex = 0;
+  <!-- Scripts Específicos (Carrusel y Formulario solo para esta página) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Ve a https://formspree.io/ y crea un formulario para 'info@deincotec.com'.
+      // 2. Pega tu URL única (endpoint) aquí abajo, reemplazando el texto.
+      const FORMSPREE_ENDPOINT = "https://formspree.io/f/xyzbqvvv"; // Pega tu URL de Formspree aquí
       
-      track.style.transform = `translateX(-${slideIndex * 100}%)`;
-      currentSlide = slideIndex;
-      updateDots();
-    }
+      // Lógica del Carrusel (Solo para index.html)
+      const carousel = document.getElementById('hero-carousel');
+      const track = document.getElementById('carousel-track');
+      const dotsContainer = document.getElementById('carousel-dots');
+      const prevBtn = document.getElementById('prev-slide');
+      const nextBtn = document.getElementById('next-slide');
 
-    function updateDots() {
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('bg-white', i === currentSlide);
-        dot.classList.toggle('bg-white/50', i !== currentSlide);
-      });
-    }
+      if (carousel && track && dotsContainer && prevBtn && nextBtn) {
+        const slides = Array.from(track.children);
+        const slideCount = slides.length;
+        let currentSlide = 0;
+        let autoPlayInterval;
 
-    function nextSlide() { goToSlide(currentSlide + 1); }
-    function prevSlide() { goToSlide(currentSlide - 1); }
-
-    nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
-    prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
-
-    function startAutoPlay() {
-      autoPlayInterval = setInterval(nextSlide, 5000);
-    }
-    function resetAutoPlay() {
-      clearInterval(autoPlayInterval);
-      startAutoPlay();
-    }
-
-    carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-    carousel.addEventListener('mouseleave', () => startAutoPlay());
-
-    goToSlide(0);
-    startAutoPlay();
-  }
-
-  // --- Lógica de NAVEGACIÓN DE PÁGINAS ---
-  const pageSections = document.querySelectorAll('.page-section');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const mainNavLinks = document.querySelectorAll('header nav.hidden a[data-page], header nav.hidden button[data-page]');
-  
-  // Función para obtener el estado actual del hash
-  function getStateFromHash() {
-    const hash = window.location.hash.slice(1); // Quita el #
-    if (hash) {
-      const [pageId, anchor] = hash.split('&anchor=');
-      return { pageId: pageId || 'page-inicio', anchor: anchor ? '#' + anchor : null };
-    }
-    return { pageId: 'page-inicio', anchor: null };
-  }
-
-  function showPage(pageId, anchor, isPopState = false) {
-    
-    // CAMBIO: Scroll al inicio
-    if (anchor === '#inicio-header') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    
-    pageSections.forEach(section => section.classList.add('hidden'));
-
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-      targetPage.classList.remove('hidden');
-      if (anchor && anchor !== '#inicio-header') { // No hacer scroll si es #inicio-header
-        const anchorElement = document.querySelector(anchor);
-        if (anchorElement) {
-          setTimeout(() => anchorElement.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-        }
-      } else if (!anchor) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    } else {
-      document.getElementById('page-inicio').classList.remove('hidden');
-      if (!isPopState) window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Actualizar URL (solo si no venimos de un popstate)
-    if (!isPopState) {
-      let newHash = pageId;
-      if (anchor) {
-        newHash += `&anchor=${anchor.slice(1)}`;
-      }
-      // Evitar hashes duplicados
-      if (window.location.hash !== `#${newHash}`) {
-        history.pushState({ pageId, anchor }, '', `#${newHash}`);
-      }
-    }
-
-    // Actualizar estado del menú
-    mainNavLinks.forEach(navLink => {
-      navLink.classList.remove('text-brand-700');
-      navLink.classList.add('text-slate-700');
-    });
-
-    let activePageId = pageId;
-    // Si es una subpágina de servicio, noticia o legal, marcar el enlace principal
-    if (pageId.startsWith('page-servicio-')) {
-      activePageId = 'page-inicio';
-      const servicesButton = document.querySelector('header nav.hidden button[data-anchor="#servicios"]');
-      if (servicesButton) {
-        servicesButton.classList.add('text-brand-700');
-        servicesButton.classList.remove('text-slate-700');
-      }
-    } else if (pageId.startsWith('page-noticia-')) {
-        activePageId = 'page-inicio';
-        const newsButton = document.querySelector('header nav.hidden a[data-anchor="#noticias"]');
-        if (newsButton) {
-          newsButton.classList.add('text-brand-700');
-          newsButton.classList.remove('text-slate-700');
-        }
-    } else if (pageId.startsWith('page-legal-')) {
-        // No marcar ningún enlace principal como activo para las páginas legales
-        activePageId = null; 
-    }
-    
-    const targetLink = document.querySelector(`header nav.hidden a[data-page="${activePageId}"], header nav.hidden button[data-page="${activePageId}"]`);
-    
-    if (activePageId === 'page-inicio' && !pageId.startsWith('page-servicio-') && !pageId.startsWith('page-noticia-')) {
-        let targetAnchorLink;
-        if (anchor === '#noticias') targetAnchorLink = document.querySelector(`header nav.hidden a[data-anchor="#noticias"]`);
-        else if (anchor === '#servicios') targetAnchorLink = document.querySelector(`header nav.hidden button[data-anchor="#servicios"]`);
-        else if (anchor !== '#contacto') targetAnchorLink = document.querySelector(`header nav.hidden a[data-anchor="#inicio-header"]`);
-        
-        if (targetAnchorLink) {
-            targetAnchorLink.classList.add('text-brand-700');
-            targetAnchorLink.classList.remove('text-slate-700');
-        }
-    } else if (targetLink) {
-        targetLink.classList.add('text-brand-700');
-        targetLink.classList.remove('text-slate-700');
-    }
-  }
-
-  // Event Listeners para todos los enlaces
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const pageId = this.dataset.page;
-      const anchor = this.dataset.anchor || null;
-      
-      if (this.id === 'mobileServicesBtn') {
-        if (e.target.tagName.toLowerCase() === 'svg') {
-          mobileServicesMenu.classList.toggle('hidden');
-          return;
-        }
-        if (pageId) showPage(pageId, anchor);
-        mobileMenu.classList.add('hidden');
-        mobileServicesMenu.classList.add('hidden');
-        return;
-      }
-
-      if (pageId) showPage(pageId, anchor);
-
-      if (this.closest('#mobileMenu')) {
-          mobileMenu.classList.add('hidden');
-          mobileServicesMenu.classList.add('hidden');
-      }
-    });
-  });
-  
-  // Escuchar el botón "Atrás/Adelante" del navegador
-  window.addEventListener('popstate', (event) => {
-    if (event.state) {
-      showPage(event.state.pageId, event.state.anchor, true);
-    } else {
-      // Estado inicial (hash vacío)
-      showPage('page-inicio', null, true);
-    }
-  });
-
-  // Cargar la página correcta al inicio
-  const initialState = getStateFromHash();
-  showPage(initialState.pageId, initialState.anchor, true); // true para no sobreescribir el historial al cargar
-  // Guardar el estado inicial en el historial
-  history.replaceState({ pageId: initialState.pageId, anchor: initialState.anchor }, '', window.location.hash || '#page-inicio');
-
-
-  // --- Lógica del FORMULARIO DE CONTACTO (con FORMSPREE) ---
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('form-status');
-  const submitBtn = document.getElementById('submitBtn');
-  
-  // Campos
-  const nombre = document.getElementById('name');
-  const empresa = document.getElementById('empresa');
-  const email = document.getElementById('email');
-  const mensaje = document.getElementById('mensaje');
-  
-  
-  // Campos de Error
-  const nombreError = document.getElementById('name-error');
-  const empresaError = document.getElementById('empresa-error');
-  const emailError = document.getElementById('email-error');
-  const mensajeError = document.getElementById('mensaje-error');
-
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  }
-
-  function clearErrors() {
-    formStatus.classList.add('hidden');
-    nombreError.classList.add('hidden');
-    empresaError.classList.add('hidden');
-    emailError.classList.add('hidden');
-    mensajeError.classList.add('hidden');
-    
-    nombreError.textContent = '';
-    empresaError.textContent = '';
-    emailError.textContent = '';
-    mensajeError.textContent = '';
-  }
-
-  function showStatus(message, isError = true) {
-    formStatus.textContent = message;
-    formStatus.classList.remove('hidden');
-    formStatus.classList.toggle('bg-red-100', isError);
-    formStatus.classList.toggle('text-red-700', isError);
-    formStatus.classList.toggle('bg-green-100', !isError);
-    formStatus.classList.toggle('text-green-700', !isError);
-  }
-
-  if (contactForm && submitBtn) {
-    contactForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      clearErrors();
-      let isValid = true;
-
-      const nombreValue = nombre.value.trim();
-      const empresaValue = empresa.value.trim();
-      const emailValue = email.value.trim();
-      const mensajeValue = mensaje.value.trim();
-
-      // Validar Nombre
-      if (nombreValue === '') {
-        nombreError.textContent = 'Es necesario rellenar el campo Nombre.';
-        nombreError.classList.remove('hidden');
-        isValid = false;
-      }
-
-      // Validar Empresa
-      if (empresaValue === '') {
-        empresaError.textContent = 'Es necesario rellenar el campo Empresa.';
-        empresaError.classList.remove('hidden');
-        isValid = false;
-      }
-
-      // Validar Email
-      if (emailValue === '') {
-        emailError.textContent = 'Es necesario rellenar el campo Email.';
-        emailError.classList.remove('hidden');
-        isValid = false;
-      } else if (!validateEmail(emailValue)) {
-        emailError.textContent = 'El formato del email no es válido.';
-        emailError.classList.remove('hidden');
-        isValid = false;
-      }
-
-      // Validar Mensaje
-      if (mensajeValue === '') {
-        mensajeError.textContent = 'Es necesario rellenar el campo Mensaje.';
-        mensajeError.classList.remove('hidden');
-        isValid = false;
-      }
-      
-      // Validar URL de Formspree
-      if (FORMSPREE_ENDPOINT === "TU_URL_DE_FORMSPREE_AQUI") {
-          showStatus('Error: El formulario no está configurado. (Falta URL de Formspree)');
-          console.error("Error: FORMSPREE_ENDPOINT no está configurado en el script.");
-          isValid = false;
-      }
-
-      // Si no es válido, detener
-      if (!isValid) {
-        showStatus('Por favor, corrige los errores en el formulario.');
-        return;
-      }
-
-      // --- CAMBIO: Lógica de envío a Formspree ---
-      
-      // Deshabilitar botón para evitar envíos múltiples
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
-
-      const formData = new FormData(contactForm);
-
-      try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
+        slides.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.setAttribute('aria-label', `Ir a diapositiva ${i + 1}`);
+          dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-colors');
+          dot.addEventListener('click', () => {
+            goToSlide(i);
+            resetAutoPlay();
+          });
+          dotsContainer.appendChild(dot);
         });
 
-        if (response.ok) {
-          showStatus('¡Mensaje enviado con éxito! Gracias por contactar.', false);
-          contactForm.reset();
-        } else {
-          // Obtener error de Formspree si lo hay
-          const data = await response.json();
-          if (Object.hasOwn(data, 'errors')) {
-            showStatus(`Error: ${data.errors.map(error => error.message).join(', ')}`);
-          } else {
-            showStatus('Error al enviar el mensaje. Inténtalo más tarde.');
-          }
+        const dots = Array.from(dotsContainer.children);
+
+        function goToSlide(slideIndex) {
+          if (slideIndex < 0) slideIndex = slideCount - 1;
+          else if (slideIndex >= slideCount) slideIndex = 0;
+          track.style.transform = `translateX(-${slideIndex * 100}%)`;
+          currentSlide = slideIndex;
+          updateDots();
         }
-      } catch (error) {
-        console.error('Error en el envío del formulario:', error);
-        showStatus('Error de red. Por favor, comprueba tu conexión.');
-      } finally {
-        // Volver a habilitar el botón
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Enviar Mensaje';
+
+        function updateDots() {
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('bg-white', i === currentSlide);
+            dot.classList.toggle('bg-white/50', i !== currentSlide);
+          });
+        }
+
+        function nextSlide() { goToSlide(currentSlide + 1); }
+        function prevSlide() { goToSlide(currentSlide - 1); }
+
+        nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+        prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+
+        function startAutoPlay() {
+          autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+        function resetAutoPlay() {
+          clearInterval(autoPlayInterval);
+          startAutoPlay();
+        }
+
+        carousel.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+        carousel.addEventListener('mouseleave', () => startAutoPlay());
+
+        goToSlide(0);
+        startAutoPlay();
       }
-      // --- FIN DEL CAMBIO ---
+
+      // Lógica del Formulario (Solo para index.html)
+      const contactForm = document.getElementById('contactForm');
+      const formStatus = document.getElementById('form-status');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      const nombre = document.getElementById('name');
+      const empresa = document.getElementById('empresa');
+      const email = document.getElementById('email');
+      const mensaje = document.getElementById('mensaje');
+      
+      const nombreError = document.getElementById('name-error');
+      const empresaError = document.getElementById('empresa-error');
+      const emailError = document.getElementById('email-error');
+      const mensajeError = document.getElementById('mensaje-error');
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+      }
+
+      function clearErrors() {
+        formStatus.classList.add('hidden');
+        nombreError.classList.add('hidden');
+        empresaError.classList.add('hidden');
+        emailError.classList.add('hidden');
+        mensajeError.classList.add('hidden');
+        nombreError.textContent = '';
+        empresaError.textContent = '';
+        emailError.textContent = '';
+        mensajeError.textContent = '';
+      }
+
+      function showStatus(message, isError = true) {
+        formStatus.textContent = message;
+        formStatus.classList.remove('hidden');
+        formStatus.classList.toggle('bg-red-100', isError);
+        formStatus.classList.toggle('text-red-700', isError);
+        formStatus.classList.toggle('bg-green-100', !isError);
+        formStatus.classList.toggle('text-green-700', !isError);
+      }
+
+      if (contactForm && submitBtn) {
+        contactForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          clearErrors();
+          let isValid = true;
+
+          const nombreValue = nombre.value.trim();
+          const empresaValue = empresa.value.trim();
+          const emailValue = email.value.trim();
+          const mensajeValue = mensaje.value.trim();
+
+          if (nombreValue === '') {
+            nombreError.textContent = 'Es necesario rellenar el campo Nombre.';
+            nombreError.classList.remove('hidden');
+            isValid = false;
+          }
+          if (empresaValue === '') {
+            empresaError.textContent = 'Es necesario rellenar el campo Empresa.';
+            empresaError.classList.remove('hidden');
+            isValid = false;
+          }
+          if (emailValue === '') {
+            emailError.textContent = 'Es necesario rellenar el campo Email.';
+            emailError.classList.remove('hidden');
+            isValid = false;
+          } else if (!validateEmail(emailValue)) {
+            emailError.textContent = 'El formato del email no es válido.';
+            emailError.classList.remove('hidden');
+            isValid = false;
+          }
+          if (mensajeValue === '') {
+            mensajeError.textContent = 'Es necesario rellenar el campo Mensaje.';
+            mensajeError.classList.remove('hidden');
+            isValid = false;
+          }
+          
+          if (FORMSPREE_ENDPOINT === "TU_URL_DE_FORMSPREE_AQUI" || FORMSPREE_ENDPOINT === "https://formspree.io/f/xyzbqvvv") {
+              showStatus('Error: El formulario no está configurado. (Falta URL de Formspree)');
+              console.error("Error: FORMSPREE_ENDPOINT no está configurado en el script.");
+              isValid = false;
+          }
+
+          if (!isValid) {
+            showStatus('Por favor, corrige los errores en el formulario.');
+            return;
+          }
+
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Enviando...';
+          const formData = new FormData(contactForm);
+
+          try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+
+            if (response.ok) {
+              showStatus('¡Mensaje enviado con éxito! Gracias por contactar.', false);
+              contactForm.reset();
+            } else {
+              const data = await response.json();
+              if (Object.hasOwn(data, 'errors')) {
+                showStatus(`Error: ${data.errors.map(error => error.message).join(', ')}`);
+              } else {
+                showStatus('Error al enviar el mensaje. Inténtalo más tarde.');
+              }
+            }
+          } catch (error) {
+            console.error('Error en el envío del formulario:', error);
+            showStatus('Error de red. Por favor, comprueba tu conexión.');
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Mensaje';
+          }
+        });
+      }
     });
-  }
-
-
-  // Fallback para imágenes rotas
-  document.addEventListener('error', (e) => {
-    const target = e.target;
-    if (target.tagName.toLowerCase() === 'img') {
-        if (target.src.includes('placehold.co')) {
-            target.onerror = null;
-            return;
-        }
-        
-        if (target.src.includes('googleusercontent.com')) {
-            console.warn(`Error al cargar la imagen de Google Drive: ${target.src}. Asegúrate de que el enlace sea público.`);
-            const width = target.naturalWidth || target.width || 300;
-            const height = target.naturalHeight || target.height || 200;
-            const altText = encodeURIComponent(target.alt || 'Error de permisos');
-            target.src = `https://placehold.co/${width}x${height}/fca5a5/991b1b?text=${altText}`;
-            target.onerror = null;
-            return;
-        }
-
-        const width = target.naturalWidth || target.width || 300;
-        const height = target.naturalHeight || target.height || 200;
-        const altText = encodeURIComponent(target.alt || 'Imagen no disponible');
-        
-        console.warn(`Imagen no encontrada: ${target.src}. Reemplazando con placeholder.`);
-        target.src = `https://placehold.co/${width}x${height}/f1f5f9/94a3b8?text=${altText}`;
-        target.onerror = null;
-    }
-  }, true); // Usar captura
-
-});
-</script>
+  </script>
 
 </body>
 </html>
