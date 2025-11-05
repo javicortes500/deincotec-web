@@ -1,43 +1,79 @@
 /*
-  main.js (Versión más estable y limpia)
-  Este script gestiona:
-  1. Carga de componentes (_header.html, _footer.html) usando rutas RELATIVAS.
-  2. Lógica del menú móvil (hamburguesa).
-  3. Resaltado del enlace activo en el menú de navegación.
+  main.js (Versión robusta: BASE + reescritura de enlaces)
+  Funcionalidad:
+  1) Carga de componentes (header.html, footer.html) con base dinámica (dominio propio / GitHub Pages).
+  2) Reescritura de enlaces del header/footer para evitar rutas relativas rotas en subcarpetas.
+  3) Lógica del menú móvil.
+  4) Resaltado del enlace activo en el menú.
 */
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- BASE dinámica: dominio propio vs GitHub Pages (project page) ---
+  const getBasePath = () => {
+    // Si NO es *.github.io -> dominio propio (ej. deincotec.es)
+    if (!location.hostname.endsWith('github.io')) return '/';
+    // En GitHub Pages, la 1ª carpeta del path suele ser el repo: /mi-repo/...
+    const parts = location.pathname.split('/').filter(Boolean);
+    return parts.length > 0 ? `/${parts[0]}/` : '/';
+  };
+
+  const BASE = getBasePath();
+
+  // --- Utilidades para normalizar enlaces de los fragmentos cargados ---
+  const shouldRewrite = (href) => {
+    if (!href) return false;
+    return !/^https?:\/\//i.test(href)       // externos
+        && !href.startsWith('#')             // anclas
+        && !href.startsWith('mailto:')
+        && !href.startsWith('tel:')
+        && !href.startsWith('javascript:');
+  };
+
+  const absolutizeLinks = (rootEl) => {
+    if (!rootEl) return;
+    const anchors = rootEl.querySelectorAll('a[href]');
+    anchors.forEach(a => {
+      const raw = a.getAttribute('href'); // valor tal cual en el HTML
+      if (!shouldRewrite(raw)) return;
+      // Si empieza por "/", quitamos la barra inicial y anteponemos BASE.
+      // Si es relativo ("servicios/deducciones.html"), también anteponemos BASE.
+      const normalized = raw.startsWith('/') ? raw.replace(/^\//, '') : raw;
+      a.setAttribute('href', `${BASE}${normalized}`);
+    });
+  };
+
   // --- 1. CARGADOR DE COMPONENTES (HEADER Y FOOTER) ---
-  
   const loadComponent = async (id, fileName) => {
     const element = document.getElementById(id);
-    if (element) {
-      try {
-        // CAMBIO CLAVE: Usamos el nombre del archivo directamente (ruta relativa: _header.html)
-        const response = await fetch(fileName);
-        if (response.ok) {
-          const text = await response.text();
-          element.innerHTML = text;
-          // Si el header se carga correctamente, inicializamos la lógica
-          if (id === 'header-placeholder') {
-            initMobileMenu();
-            highlightActiveLink();
-          }
-        } else {
-          element.innerHTML = `<p class="text-red-500 text-center p-4">Error: No se pudo cargar ${id}. (Ruta: ${fileName})</p>`;
-          console.error(`Error loading ${id}: ${response.status} ${response.statusText}`);
-        }
-      } catch (error) {
-        // En un hosting real, este error no debería pasar si la ruta es correcta
-        element.innerHTML = `<p class="text-red-500 text-center p-4">Error: Fallo de red al cargar ${id}. (Ruta: ${fileName})</p>`;
-        console.error(`Fetch error for ${id}:`, error);
+    if (!element) return;
+
+    try {
+      const url = `${BASE}${fileName}`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        element.innerHTML = `<p class="text-red-500 text-center p-4">Error: No se pudo cargar ${id}. (Ruta: ${url})</p>`;
+        console.error(`Error loading ${id}: ${response.status} ${response.statusText}`);
+        return;
       }
+      const text = await response.text();
+      element.innerHTML = text;
+
+      // Reescribir enlaces del fragmento cargado para que apunten a BASE
+      absolutizeLinks(element);
+
+      // Si se cargó el header, inicializamos su lógica
+      if (id === 'header-placeholder') {
+        initMobileMenu();
+        highlightActiveLink();
+      }
+    } catch (error) {
+      element.innerHTML = `<p class="text-red-500 text-center p-4">Error: Fallo de red al cargar ${id}. (Ruta: ${BASE}${fileName})</p>`;
+      console.error(`Fetch error for ${id}:`, error);
     }
   };
 
   // --- 2. LÓGICA DE MENÚ MÓVIL ---
-  
   const initMobileMenu = () => {
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -56,14 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileServicesBtn && mobileServicesMenu) {
       mobileServicesBtn.addEventListener('click', (e) => {
-        // Evitar que el clic en el botón active el enlace ancla
-        e.preventDefault(); 
+        e.preventDefault();
         mobileServicesMenu.classList.toggle('hidden');
       });
     }
-    
-    // Cerrar el menú principal al hacer clic en un enlace (para SPA)
-    if(mobileLinks.length > 0 && mobileMenu) {
+
+    if (mobileLinks.length > 0 && mobileMenu) {
       mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
@@ -74,79 +108,65 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // --- 3. RESALTADO DE ENLACE ACTIVO ---
-  
   const highlightActiveLink = () => {
-    // Obtener la ruta de la página actual, quitando la / del principio.
-    // ej: /servicios/consultoria.html -> servicios/consultoria.html
+    // Ruta actual sin "/" inicial
     let currentPath = window.location.pathname.substring(1);
-    if (currentPath === '') {
-      currentPath = 'index.html'; // Tratar la raíz como index.html
-    }
-    // Si la ruta incluye el nombre del repositorio, se limpia (solo en GitHub Pages)
-    // Esto es para que funcione en repositorios que no son la página principal de usuario.
+    if (currentPath === '') currentPath = 'index.html';
+
+    // Si la ruta incluye nombre de repo y NO estamos en *.github.io, limpiamos (seguridad extra)
     const repoNameMatch = window.location.pathname.match(/^\/([^\/]+)\//);
     if (repoNameMatch && !window.location.host.endsWith('github.io')) {
-        currentPath = window.location.pathname.replace(repoNameMatch[0], '');
+      currentPath = window.location.pathname.replace(repoNameMatch[0], '');
     }
 
-
-    // Seleccionar todos los enlaces del header que tienen 'data-page'
     const navLinks = document.querySelectorAll('header .nav-link-header');
 
-    // Desactivar todos los enlaces y luego activar el correcto
+    // Reset estilos
     navLinks.forEach(link => {
       link.classList.remove('text-brand-700', 'font-semibold');
       link.classList.add('text-slate-700');
     });
 
-
-    // Lógica de activación
+    // Activación según coincidencia
     navLinks.forEach(link => {
       const linkPage = link.dataset.page;
       if (!linkPage) return;
 
-      // Simplificamos la lógica de activación
-      let targetPath = linkPage.endsWith('.html') ? linkPage : linkPage + '.html';
-      
-      // 1. Coincidencia de página (ej: 'quienes-somos.html')
+      let targetPath = linkPage.endsWith('.html') ? linkPage : `${linkPage}.html`;
+
+      // 1) Coincidencia directa de página
       if (currentPath.endsWith(targetPath)) {
         link.classList.add('text-brand-700', 'font-semibold');
         link.classList.remove('text-slate-700');
-      } 
-      // 2. Coincidencia de sub-sección (Servicios o Noticias en index.html)
-      else if (currentPath === 'index.html' || currentPath === '') {
-        const hash = window.location.hash.substring(1); // ej: 'servicios' o 'contacto'
-        
-        if (hash === linkPage || (linkPage === 'index.html' && hash === '')) {
-             link.classList.add('text-brand-700', 'font-semibold');
-             link.classList.remove('text-slate-700');
-        }
-        
       }
-      // 3. Coincidencia de sección padre (marcar "Servicios" cuando estoy en /servicios/consultoria.html)
+      // 2) Sub-secciones en index.html (hash)
+      else if (currentPath === 'index.html' || currentPath === '') {
+        const hash = window.location.hash.substring(1);
+        if (hash === linkPage || (linkPage === 'index.html' && hash === '')) {
+          link.classList.add('text-brand-700', 'font-semibold');
+          link.classList.remove('text-slate-700');
+        }
+      }
+      // 3) Sección padre
       else if (linkPage === 'servicios' && currentPath.startsWith('servicios/')) {
         link.classList.add('text-brand-700', 'font-semibold');
         link.classList.remove('text-slate-700');
-        // Aquí no rompemos el bucle para que si el enlace específico del desplegable también coincide, se marque.
       }
       else if (linkPage === 'noticias' && currentPath.startsWith('noticias/')) {
         link.classList.add('text-brand-700', 'font-semibold');
         link.classList.remove('text-slate-700');
       }
-      
     });
   };
 
-  // --- EJECUCIÓN ---
-  
-  // No usamos Promise.all ya que la inicialización debe esperar solo al header
+  // --- 4. EJECUCIÓN ---
+  // Ajusta los nombres si usas una carpeta, p. ej.: 'partials/header.html'
   loadComponent('header-placeholder', 'header.html')
     .then(() => {
-      // El footer no necesita esperar
       loadComponent('footer-placeholder', 'footer.html');
     })
     .catch(error => {
-      console.error("Error fatal al cargar header:", error);
+      console.error('Error fatal al cargar header:', error);
     });
 
-}); // Fin del DOMContentLoaded
+}); // Fin DOMContentLoaded
