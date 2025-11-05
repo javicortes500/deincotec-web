@@ -68,7 +68,8 @@
 
 <!-- === Header === --><header id="inicio-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
   <div class="mx-auto container-narrow px-4 py-3 flex items-center justify-between">
-    <a href="#" data-page="page-inicio" class="flex items-center gap-3 nav-link">
+    <!-- CAMBIO: Añadido data-anchor al logo -->
+    <a href="#" data-page="page-inicio" data-anchor="#inicio-header" class="flex items-center gap-3 nav-link">
       <img src="https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9" alt="DEINCOTEC" class="h-12 w-auto" onerror="this.src='https://placehold.co/160x50/f0f0f0/333?text=Logo'; this.onerror=null;" />
       <span class="sr-only">DEINCOTEC · Inicio</span>
     </a>
@@ -382,32 +383,59 @@
           </p>
         </div>
         
+        <!-- CAMBIO: Nuevo grid de noticias con texto superpuesto -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          <!-- Noticia 1 --><article class="flex flex-col">
-            <img src="https://placehold.co/600x400/c7dbff/0c3580?text=Noticia+1" alt="Imagen de noticia" class="rounded-lg shadow-md object-cover w-full h-48 mb-4" onerror="this.src='https://placehold.co/600x400/c7dbff/0c3580?text=Error+Img'; this.onerror=null;">
-            <span class="text-sm text-slate-500 mb-1">15 Oct, 2025 · Financiación</span>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 hover:text-brand-700">
-              <a href="#">Abierta la convocatoria CDTI para Proyectos de I+D</a>
-            </h3>
-            <p class="text-slate-600 text-sm">El Centro para el Desarrollo Tecnológico Industrial abre su principal línea de financiación...</p>
-          </article>
-          <!-- Noticia 2 --><article class="flex flex-col">
-            <img src="https://placehold.co/600x400/c7dbff/0c3580?text=Noticia+2" alt="Imagen de noticia" class="rounded-lg shadow-md object-cover w-full h-48 mb-4" onerror="this.src='https://placehold.co/600x400/c7dbff/0c3580?text=Error+Img'; this.onerror=null;">
-            <span class="text-sm text-slate-500 mb-1">10 Oct, 2025 · Fiscalidad</span>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 hover:text-brand-700">
-              <a href="#">Novedades en Deducciones Fiscales por Innovación</a>
-            </h3>
-            <p class="text-slate-600 text-sm">Se aprueban nuevas mejoras en los incentivos fiscales para el desarrollo de software...</p>
-          </article>
-          <!-- Noticia 3 --><article class="flex flex-col">
-            <img src="https://placehold.co/600x400/c7dbff/0c3580?text=Noticia+3" alt="Imagen de noticia" class="rounded-lg shadow-md object-cover w-full h-48 mb-4" onerror="this.src='https://placehold.co/600x400/c7dbff/0c3580?text=Error+Img'; this.onerror=null;">
-            <span class="text-sm text-slate-500 mb-1">05 Oct, 2025 · Patentes</span>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2 hover:text-brand-700">
-              <a href="#">La importancia de proteger la propiedad industrial</a>
-            </h3>
-            <p class="text-slate-600 text-sm">Analizamos por qué el registro de marcas y patentes es vital para la competitividad...</p>
-          </article>
+          
+          <!-- Noticia 1 -->
+          <a href="#" data-page="page-noticia-1" class="nav-link group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+            <!-- Imagen de fondo -->
+            <img src="https://placehold.co/600x400/134ab4/134ab4" 
+                 alt="Imagen de noticia" 
+                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+                 onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+            <!-- Contenido de texto (centrado) -->
+            <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
+              <span class="text-sm font-medium uppercase tracking-wider opacity-80">15 Oct, 2025 · Financiación</span>
+              <h3 class="text-xl font-semibold mt-1">
+                Abierta la convocatoria CDTI para Proyectos de I+D
+              </h3>
+            </div>
+          </a>
+
+          <!-- Noticia 2 -->
+          <a href="#" data-page="page-noticia-2" class="nav-link group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+            <!-- Imagen de fondo -->
+            <img src="https://placehold.co/600x400/134ab4/134ab4" 
+                 alt="Imagen de noticia" 
+                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+                 onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+            <!-- Contenido de texto (centrado) -->
+            <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
+              <span class="text-sm font-medium uppercase tracking-wider opacity-80">10 Oct, 2025 · Fiscalidad</span>
+              <h3 class="text-xl font-semibold mt-1">
+                Novedades en Deducciones Fiscales por Innovación
+              </h3>
+            </div>
+          </a>
+
+          <!-- Noticia 3 -->
+          <a href="#" data-page="page-noticia-3" class="nav-link group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+            <!-- Imagen de fondo -->
+            <img src="https://placehold.co/600x400/134ab4/134ab4" 
+                 alt="Imagen de noticia" 
+                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+                 onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+            <!-- Contenido de texto (centrado) -->
+            <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
+              <span class="text-sm font-medium uppercase tracking-wider opacity-80">05 Oct, 2025 · Patentes</span>
+              <h3 class="text-xl font-semibold mt-1">
+                La importancia de proteger la propiedad industrial
+              </h3>
+            </div>
+          </a>
+
         </div>
+        <!-- FIN CAMBIO -->
       </div>
     </section>
     
@@ -422,9 +450,9 @@
               Rellene el formulario o contáctenos directamente. Analizaremos sus necesidades sin compromiso y le propondremos la mejor estrategia para impulsar su innovación.
             </p>
             <div class="space-y-4">
-              <a href="mailto:info@deincotec.es" class="flex items-center gap-3 group">
+              <a href="mailto:info@deincotec.com" class="flex items-center gap-3 group">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 11.884l7.997-6M2 18h16V6l-8 5-8-5v12z"/></svg>
-                <span class="text-slate-800 text-lg group-hover:text-brand-700">info@deincotec.es</span>
+                <span class="text-slate-800 text-lg group-hover:text-brand-700">info@deincotec.com</span>
               </a>
               <div class="flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-700" viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
@@ -438,8 +466,6 @@
           </div>
     
           <!-- Formulario --><div>
-            <!-- CAMBIO: Eliminado 'novalidate' para usar validación nativa junto con JS -->
-            <!-- CAMBIO: Eliminado 'method="POST"' ya que se gestiona con JS -->
             <form id="contactForm" class="bg-white p-8 rounded-lg shadow-xl border border-slate-200 grid gap-5">
               
               <div id="form-status" class="hidden p-4 rounded-md text-sm" role="alert"></div>
@@ -904,6 +930,102 @@
     </div>
   </section>
   
+  <!-- CAMBIO: PÁGINAS DE NOTICIAS INDIVIDUALES -->
+  
+  <!-- PÁGINA "NOTICIA 1" -->
+  <section id="page-noticia-1" class="page-section hidden bg-white">
+    <!-- Encabezado de la noticia -->
+    <div class="bg-slate-50 border-b border-slate-200">
+      <div class="mx-auto container-narrow px-4 py-12">
+        <span class="text-sm font-semibold text-brand-700 uppercase">Financiación</span>
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">Abierta la convocatoria CDTI para Proyectos de I+D</h1>
+        <p class="mt-4 text-xl text-slate-600">15 Oct, 2025</p>
+      </div>
+    </div>
+    <!-- Contenido de la noticia -->
+    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
+      <div class="max-w-3xl mx-auto">
+        <!-- CAMBIO: Imagen eliminada de la página de la noticia -->
+        <!-- Usamos clases de Tailwind para emular 'prose' -->
+        <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
+          <p>El Centro para el Desarrollo Tecnológico Industrial (CDTI) ha anunciado la apertura de su principal línea de financiación para Proyectos de Investigación y Desarrollo (I+D).</p>
+          <p>Esta convocatoria está destinada a empresas de cualquier tamaño que busquen desarrollar nuevos productos, procesos o servicios innovadores. La financiación combina tramos no reembolsables (subvenciones) con préstamos a bajo interés.</p>
+          <p>En DEINCOTEC, como expertos en la gestión de ayudas del CDTI, recomendamos a todas las empresas con proyectos innovadores en cartera que analicen su elegibilidad. Nuestro equipo ya está trabajando en la preparación de las primeras solicitudes, asegurando memorias técnicas y económicas de alta calidad para maximizar las posibilidades de éxito.</p>
+          <p>Los plazos de presentación suelen ser muy competitivos, por lo que una preparación temprana es clave. Contacte con nosotros para un diagnóstico gratuito de su proyecto.</p>
+        </div>
+        <!-- Botón Volver -->
+        <div class="mt-12 pt-8 border-t border-slate-200">
+          <a href="#" data-page="page-inicio" data-anchor="#noticias" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-800 transition nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            Volver a Noticias
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÁGINA "NOTICIA 2" -->
+  <section id="page-noticia-2" class="page-section hidden bg-white">
+    <!-- Encabezado de la noticia -->
+    <div class="bg-slate-50 border-b border-slate-200">
+      <div class="mx-auto container-narrow px-4 py-12">
+        <span class="text-sm font-semibold text-brand-700 uppercase">Fiscalidad</span>
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">Novedades en Deducciones Fiscales por Innovación</h1>
+        <p class="mt-4 text-xl text-slate-600">10 Oct, 2025</p>
+      </div>
+    </div>
+    <!-- Contenido de la noticia -->
+    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
+      <div class="max-w-3xl mx-auto">
+        <!-- CAMBIO: Imagen eliminada de la página de la noticia -->
+        <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
+          <p>Se han aprobado nuevas mejoras en los incentivos fiscales para el desarrollo de software y la innovación tecnológica (IT). Estas medidas amplían el concepto de "innovación tecnológica" para incluir proyectos de digitalización avanzada, ciberseguridad y desarrollo de aplicaciones móviles, que anteriormente se encontraban en una zona gris.</p>
+          <p>Esta es una excelente noticia para el sector TIC, ya que permite monetizar una mayor parte de sus gastos de personal técnico como deducción en el Impuesto de Sociedades.</p>
+          <p>La clave para aplicar estas deducciones con seguridad jurídica sigue siendo el Informe Motivado Vinculante. Nuestro departamento fiscal y técnico está especializado en la elaboración de estas memorias, identificando todos los gastos elegibles y defendiendo el carácter innovador del proyecto ante las entidades certificadoras (ENAC) y el Ministerio.</p>
+        </div>
+        <!-- Botón Volver -->
+        <div class="mt-12 pt-8 border-t border-slate-200">
+          <a href="#" data-page="page-inicio" data-anchor="#noticias" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-800 transition nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            Volver a Noticias
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÁGINA "NOTICIA 3" -->
+  <section id="page-noticia-3" class="page-section hidden bg-white">
+    <!-- Encabezado de la noticia -->
+    <div class="bg-slate-50 border-b border-slate-200">
+      <div class="mx-auto container-narrow px-4 py-12">
+        <span class="text-sm font-semibold text-brand-700 uppercase">Patentes</span>
+        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mt-2">La importancia de proteger la propiedad industrial</h1>
+        <p class="mt-4 text-xl text-slate-600">05 Oct, 2025</p>
+      </div>
+    </div>
+    <!-- Contenido de la noticia -->
+    <div class="mx-auto container-narrow px-4 py-16 md:py-24">
+      <div class="max-w-3xl mx-auto">
+        <!-- CAMBIO: Imagen eliminada de la página de la noticia -->
+        <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
+          <p>Analizamos por qué el registro de marcas y patentes es vital para la competitividad en el mercado actual. Muchas startups y pymes cometen el error de lanzar sus productos sin una estrategia de protección de propiedad industrial, dejando la puerta abierta a competidores.</p>
+          <p>Una patente no solo protege una invención, sino que se convierte en un activo intangible que puede ser licenciado, vendido o utilizado para atraer inversión. Del mismo modo, una marca registrada es la única garantía legal sobre el nombre comercial de la empresa.</p>
+          <p>Además, la existencia de patentes es un requisito fundamental para aplicar al incentivo fiscal 'Patent Box', que permite una reducción de hasta el 60% en la tributación de las rentas (royalties, licencias) generadas por dichos activos intangibles. Proteger no es un gasto, es una inversión estratégica.</p>
+        </div>
+        <!-- Botón Volver -->
+        <div class="mt-12 pt-8 border-t border-slate-200">
+          <a href="#" data-page="page-inicio" data-anchor="#noticias" class="inline-flex items-center gap-2 text-brand-700 font-medium hover:text-brand-800 transition nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            Volver a Noticias
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIN PÁGINAS DE NOTICIAS -->
+
 </main>
 
 <!-- === Footer === --><footer class="bg-slate-900 text-slate-400">
@@ -940,7 +1062,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // --- ¡¡IMPORTANTE!! ---
-  // 1. Ve a https://formspree.io/ y crea un formulario para 'info@deincotec.es'.
+  // 1. Ve a https://formspree.io/ y crea un formulario para 'info@deincotec.com'.
   // 2. Pega tu URL única (endpoint) aquí abajo, reemplazando el texto.
   const FORMSPREE_ENDPOINT = "https://formspree.io/f/xyzbqvvv";
   // --- FIN DE LA INSTRUCCIÓN ---
@@ -1028,32 +1150,62 @@ document.addEventListener('DOMContentLoaded', function() {
   const pageSections = document.querySelectorAll('.page-section');
   const navLinks = document.querySelectorAll('.nav-link');
   const mainNavLinks = document.querySelectorAll('header nav.hidden a[data-page], header nav.hidden button[data-page]');
+  
+  // Función para obtener el estado actual del hash
+  function getStateFromHash() {
+    const hash = window.location.hash.slice(1); // Quita el #
+    if (hash) {
+      const [pageId, anchor] = hash.split('&anchor=');
+      return { pageId: pageId || 'page-inicio', anchor: anchor ? '#' + anchor : null };
+    }
+    return { pageId: 'page-inicio', anchor: null };
+  }
 
-  function showPage(pageId, anchor) {
+  function showPage(pageId, anchor, isPopState = false) {
+    
+    // CAMBIO: Scroll al inicio
+    if (anchor === '#inicio-header') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
     pageSections.forEach(section => section.classList.add('hidden'));
 
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
       targetPage.classList.remove('hidden');
-      if (anchor) {
+      if (anchor && anchor !== '#inicio-header') { // No hacer scroll si es #inicio-header
         const anchorElement = document.querySelector(anchor);
         if (anchorElement) {
           setTimeout(() => anchorElement.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
         }
-      } else {
+      } else if (!anchor) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } else {
       document.getElementById('page-inicio').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!isPopState) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Actualizar URL (solo si no venimos de un popstate)
+    if (!isPopState) {
+      let newHash = pageId;
+      if (anchor) {
+        newHash += `&anchor=${anchor.slice(1)}`;
+      }
+      // Evitar hashes duplicados
+      if (window.location.hash !== `#${newHash}`) {
+        history.pushState({ pageId, anchor }, '', `#${newHash}`);
+      }
+    }
+
+    // Actualizar estado del menú
     mainNavLinks.forEach(navLink => {
       navLink.classList.remove('text-brand-700');
       navLink.classList.add('text-slate-700');
     });
 
     let activePageId = pageId;
+    // Si es una subpágina de servicio o noticia, marcar "Servicios" o "Noticias"
     if (pageId.startsWith('page-servicio-')) {
       activePageId = 'page-inicio';
       const servicesButton = document.querySelector('header nav.hidden button[data-anchor="#servicios"]');
@@ -1061,11 +1213,18 @@ document.addEventListener('DOMContentLoaded', function() {
         servicesButton.classList.add('text-brand-700');
         servicesButton.classList.remove('text-slate-700');
       }
+    } else if (pageId.startsWith('page-noticia-')) {
+        activePageId = 'page-inicio';
+        const newsButton = document.querySelector('header nav.hidden a[data-anchor="#noticias"]');
+        if (newsButton) {
+          newsButton.classList.add('text-brand-700');
+          newsButton.classList.remove('text-slate-700');
+        }
     }
     
     const targetLink = document.querySelector(`header nav.hidden a[data-page="${activePageId}"], header nav.hidden button[data-page="${activePageId}"]`);
     
-    if (activePageId === 'page-inicio') {
+    if (activePageId === 'page-inicio' && !pageId.startsWith('page-servicio-') && !pageId.startsWith('page-noticia-')) {
         let targetAnchorLink;
         if (anchor === '#noticias') targetAnchorLink = document.querySelector(`header nav.hidden a[data-anchor="#noticias"]`);
         else if (anchor === '#servicios') targetAnchorLink = document.querySelector(`header nav.hidden button[data-anchor="#servicios"]`);
@@ -1081,6 +1240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Event Listeners para todos los enlaces
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1107,7 +1267,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  showPage('page-inicio', window.location.hash || null);
+  // Escuchar el botón "Atrás/Adelante" del navegador
+  window.addEventListener('popstate', (event) => {
+    if (event.state) {
+      showPage(event.state.pageId, event.state.anchor, true);
+    } else {
+      // Estado inicial (hash vacío)
+      showPage('page-inicio', null, true);
+    }
+  });
+
+  // Cargar la página correcta al inicio
+  const initialState = getStateFromHash();
+  showPage(initialState.pageId, initialState.anchor, true); // true para no sobreescribir el historial al cargar
+  // Guardar el estado inicial en el historial
+  history.replaceState({ pageId: initialState.pageId, anchor: initialState.anchor }, '', window.location.hash || '#page-inicio');
+
 
   // --- Lógica del FORMULARIO DE CONTACTO (con FORMSPREE) ---
   const contactForm = document.getElementById('contactForm');
