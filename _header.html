@@ -1,0 +1,74 @@
+<!-- === Header === -->
+<!-- ESTE ARCHIVO ES '_header.html' -->
+<!-- CAMBIO: Todos los enlaces usan rutas absolutas (empiezan con /) -->
+<header id="inicio-header" class="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
+  <div class="mx-auto container-narrow px-4 py-3 flex items-center justify-between">
+    
+    <a href="/index.html" class="flex items-center gap-3">
+      <!-- CAMBIO: La ruta de la imagen también debe ser absoluta -->
+      <img src="https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9" alt="DEINCOTEC" class="h-12 w-auto" onerror="this.src='https://placehold.co/160x50/f0f0f0/333?text=Logo'; this.onerror=null;" />
+      <span class="sr-only">DEINCOTEC · Inicio</span>
+    </a>
+    
+    <!-- Navegación Desktop -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="/index.html" class="text-slate-700 hover:text-brand-700 transition nav-link-header" data-page="index.html">Inicio</a>
+      <a href="/quienes-somos.html" class="text-slate-700 hover:text-brand-700 transition nav-link-header" data-page="quienes-somos.html">Quiénes Somos</a>
+
+      <!-- Desplegable Servicios (Desktop) -->
+      <div class="relative group">
+        <!-- data-page="servicios" ayudará a marcarlo como activo -->
+        <a href="/index.html#servicios" class="flex items-center gap-1 text-slate-700 hover:text-brand-700 transition nav-link-header" data-page="servicios">
+          Servicios
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+        </a>
+        <div class="absolute left-0 pt-2 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+          <div class="bg-white rounded-lg shadow-xl w-60 border border-slate-200 py-2">
+            <a href="/servicios/consultoria.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header" data-page="servicios/consultoria.html">Consultoría y Estrategia</a>
+            <a href="/servicios/financiacion.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header" data-page="servicios/financiacion.html">Financiación I+D+i</a>
+            <a href="/servicios/inversiones.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header" data-page="servicios/inversiones.html">Inversiones Productivas</a>
+            <a href="/servicios/deducciones.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header" data-page="servicios/deducciones.html">Deducciones Fiscales</a>
+            <a href="/servicios/patentes.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header" data-page="servicios/patentes.html">Patentes y Prop. Industrial</a>
+          </div>
+        </div>
+      </div>
+      <!-- Fin Desplegable -->
+      <!-- data-page="noticias" ayudará a marcarlo como activo -->
+      <a href="/index.html#noticias" class="text-slate-700 hover:text-brand-700 transition nav-link-header" data-page="noticias">Noticias</a>
+      <a href="/index.html#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-4 py-2 text-white hover:bg-brand-800 transition shadow-sm nav-link-header" data-page="contacto">
+        Contacto<span aria-hidden="true">→</span>
+      </a>
+    </nav>
+
+    <!-- Botón móvil -->
+    <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-full p-2 border border-slate-300" aria-label="Abrir menú">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white">
+    <div class="mx-auto container-narrow px-4 py-4 grid gap-3 text-base">
+      <a href="/index.html" class="py-2 hover:text-brand-700 mobile-link">Inicio</a>
+      <a href="/quienes-somos.html" class="py-2 hover:text-brand-700 mobile-link">Quiénes Somos</a>
+      
+      <!-- Desplegable Servicios (Móvil) -->
+      <div>
+        <button id="mobileServicesBtn" class="py-2 w-full flex justify-between items-center hover:text-brand-700">
+          Servicios
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pointer-events-none" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+        </button>
+        <div id="mobileServicesMenu" class="hidden pl-4 pt-2 grid gap-2">
+          <a href="/servicios/consultoria.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Consultoría y Estrategia</a>
+          <a href="/servicios/financiacion.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Financiación I+D+i</a>
+          <a href="/servicios/inversiones.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Inversiones Productivas</a>
+          <a href="/servicios/deducciones.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Deducciones Fiscales</a>
+          <a href="/servicios/patentes.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Patentes y Prop. Industrial</a>
+        </div>
+      </div>
+      <!-- Fin Desplegable Móvil -->
+      <a href="/index.html#noticias" class="py-2 hover:text-brand-700 mobile-link">Noticias</a>
+      <a href="/index.html#contacto" class="py-2 hover:text-brand-700 mobile-link">Contacto</a>
+    </div>
+  </div>
+</header>
