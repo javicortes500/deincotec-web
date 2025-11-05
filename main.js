@@ -140,10 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- EJECUCIÓN ---
   
   // No usamos Promise.all ya que la inicialización debe esperar solo al header
-  loadComponent('header-placeholder', '_header.html')
+  loadComponent('header-placeholder', 'header.html')
     .then(() => {
       // El footer no necesita esperar
-      loadComponent('footer-placeholder', '_footer.html');
+      loadComponent('footer-placeholder', 'footer.html');
     })
     .catch(error => {
       console.error("Error fatal al cargar header:", error);
