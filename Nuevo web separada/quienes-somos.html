@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiénes Somos · DEINCOTEC</title>
+  <meta name="description" content="Expertos con más de 10 años de experiencia en la gestión integral de la Innovación y financiación I+D+i." />
+  
+  <meta name="theme-color" content="#111827" />
+  <meta property="og:title" content="Quiénes Somos · DEINCOTEC" />
+  <meta property="og:description" content="Expertos con más de 10 años de experiencia en la gestión integral de la Innovación y financiación I+D+i." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://deincotec.es/quienes-somos.html" />
+  <meta property="og:image" content="https://lh3.googleusercontent.com/d/1ftCiAAL61FMj74jhMIRUrsy-GbcNPlr9" />
+  <!-- CAMBIO: Ruta al favicon corregida para la raíz -->
+  <link rel="icon" href="./favicon.ico" />
+
+  <!-- TailwindCSS via CDN --><script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#f2f7ff', 100: '#e5efff', 200: '#c7dbff', 300: '#9bbcff', 400: '#6e9cff', 500: '#3f7cff', 600: '#1e5fe6', 700: '#134ab4', 800: '#0c3580', 900: '#0a2a66' },
+          },
+        }
+      },
+    }
+  </script>
+
+  <!-- Fuente Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
+    .container-narrow { max-width: 1100px; }
+  </style>
+</head>
+<body class="bg-white text-slate-800">
+
+  <!-- 1. Contenedor para el Header -->
+  <div id="header-placeholder"></div>
+
+  <!-- 2. Contenido Principal (SOLO de "Quiénes Somos") -->
+  <main>
+    <section id="page-quienes-somos" class="bg-white">
+      <!-- Encabezado de la página "Quiénes Somos" -->
+      <div class="bg-slate-50 border-b border-slate-200">
+        <div class="mx-auto container-narrow px-4 py-12">
+          <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Quiénes Somos</h1>
+          <p class="mt-4 text-xl text-slate-600">Expertos en la gestión integral de la Innovación</p>
+        </div>
+      </div>
+      
+      <!-- Contenido de Quiénes Somos -->
+      <div class="mx-auto container-narrow px-4 py-16 md:py-24">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          
+          <!-- Columna de Texto -->
+          <div>
+            <h2 class="text-3xl font-bold text-slate-900 mb-6">Nuestra Misión: Impulsar su Competitividad</h2>
+            <div class="space-y-5 text-slate-700 text-lg leading-relaxed text-justify">
+              <p>En DEINCOTEC creemos en el poder transformador de la I+D+i como motor de competitividad. Nuestro objetivo es convertir las ideas innovadoras de las empresas en proyectos de éxito.</p>
+              <p>Con más de una década de experiencia, hemos ayudado a cientos de organizaciones a maximizar su potencial, optimizando sus inversiones y asegurando el máximo retorno a través de financiación pública, incentivos fiscales y una sólida protección de sus activos intangibles.</p>
+              <p>Somos un equipo multidisciplinar de ingenieros, economistas y expertos en propiedad industrial, listos para ser su socio estratégico en el camino de la innovación.</p>
+            </div>
+
+            <!-- Sección de Estadísticas/Valores Clave -->
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-slate-200">
+              <div class="text-center sm:text-left">
+                <span class="block text-4xl font-bold text-brand-700">+10</span>
+                <p class="mt-1 text-base text-slate-600">Años de experiencia en gestión de I+D+i</p>
+              </div>
+              <div class="text-center sm:text-left">
+                <span class="block text-4xl font-bold text-brand-700">+95%</span>
+                <p class="mt-1 text-base text-slate-600">Tasa de éxito en financiación (CDTI, ENISA)</p>
+              </div>
+              <div class="text-center sm:text-left">
+                <span class="block text-4xl font-bold text-brand-700">+200</span>
+                <p class="mt-1 text-base text-slate-600">Empresas han confiado en nosotros</p>
+              </div>
+            </div>
+
+          </div>
+          
+          <!-- Columna de Imagen -->
+          <div>
+            <img src="https://lh3.googleusercontent.com/d/1P4OOSv3K0f604Y5Tx3TAcxlx33VvWmkr" alt="Equipo de DEINCOTEC en una reunión estratégica" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/e2e8f0/334155?text=Error+Img'; this.onerror=null;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 3. Contenedor para el Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- 4. Scripts -->
+  
+  <!-- CAMBIO CLAVE: Script para cargar componentes -->
+  <!-- Usa './' porque quienes-somos.html está en la raíz -->
+  <script src="./main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPage('./'); 
+    });
+  </script>
+  <!-- FIN DEL CAMBIO CLAVE -->
+
+</body>
+</html>
