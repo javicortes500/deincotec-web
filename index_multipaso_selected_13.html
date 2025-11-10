@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cuestionario · DEINCOTEC</title>
+  <meta name="description" content="Formulario multipaso con guardado automático" />
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    :root { --bg:#ffffff; --card:#f8f9fa; --text:#212529; --muted:#6c757d; --accent:#0d6efd; --border:#dee2e6; --ok:#198754; --warn:#fd7e14; --err:#dc3545; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text)}
+    .container{max-width:980px;margin:0 auto;padding:24px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+    h1{margin:0 0 12px}
+    .muted{color:var(--muted);font-size:14px}
+    .actions{display:flex;gap:12px;justify-content:space-between;margin-top:24px}
+    .btn{border:1px solid var(--border);background:#fff;padding:10px 14px;border-radius:10px;cursor:pointer}
+    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .stepper{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+    .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--border);font-size:14px;white-space:nowrap}
+    .chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    form{display:grid;gap:16px}
+    label{font-weight:600;display:block;margin-bottom:6px}
+    input,select,textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px}
+    small.autosave{color:var(--muted)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:12px}
+    .pill{font-size:12px;border:1px solid var(--border);border-radius:999px;padding:4px 8px;color:var(--muted)}
+    .pill.ok{border-color:var(--ok);color:var(--ok)}
+    .pill.warn{border-color:var(--warn);color:var(--warn)}
+    .pill.err{border-color:var(--err);color:var(--err)}
+    .resume{font-size:12px;color:var(--muted)}
+    .field-hint{font-size:12px;color:var(--muted);margin-top:4px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="topbar">
+        <div>
+          <h1>Cuestionario</h1>
+          <p class="muted">Guardado automático activado · No cierres la pestaña mientras se está guardando.</p>
+        </div>
+        <div><span id="statusPill" class="pill">Listo</span></div>
+      </div>
+
+      <div class="resume">Enlace de reanudación: <span id="resumeLink">—</span></div>
+      <div id="stepper" class="stepper"></div>
+      <h2 id="pageTitle" style="margin:8px 0 12px 0;"></h2>
+      <form id="form"></form>
+      <div class="actions">
+        <button id="prev" class="btn" type="button">← Anterior</button>
+        <div style="display:flex;gap:8px;align-items:center">
+          <small id="autosaveHint" class="autosave"> </small>
+          <button id="next" class="btn primary" type="button">Continuar →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const GAS_BASE_URL = 'PON_AQUI_TU_URL_DE_APPS_SCRIPT';
+const SCHEMA = [
+  {
+    "name": "Contactos",
+    "title": "Contactos",
+    "fields": [
+      {
+        "key": "Contactos",
+        "label": "Contactos",
+        "type": "text"
+      }
+    ]
+  },
+  {
+    "name": "Direcciones",
+    "title": "Direcciones",
+    "fields": []
+  },
+  {
+    "name": "Organización",
+    "title": "Organización",
+    "fields": []
+  },
+  {
+    "name": "Recursos",
+    "title": "Recursos",
+    "fields": []
+  },
+  {
+    "name": "I+D",
+    "title": "I+D",
+    "fields": []
+  },
+  {
+    "name": "Balanza",
+    "title": "Balanza",
+    "fields": []
+  },
+  {
+    "name": "Balance",
+    "title": "Balance",
+    "fields": []
+  },
+  {
+    "name": "Cuenta Resultados",
+    "title": "Cuenta Resultados",
+    "fields": []
+  },
+  {
+    "name": "Productos",
+    "title": "Productos",
+    "fields": []
+  },
+  {
+    "name": "Tipo Entidad",
+    "title": "Tipo Entidad",
+    "fields": []
+  },
+  {
+    "name": "Condiciones Presentación",
+    "title": "Condiciones Presentación",
+    "fields": []
+  },
+  {
+    "name": "Datos Bancarios",
+    "title": "Datos Bancarios",
+    "fields": []
+  }
+];
+
+let pageIndex = 0;
+let sessionId = null;
+let formData = {};
+let saveTimer = null;
+
+function qs(id){ return document.getElementById(id); }
+
+function setPill(state, text) {
+  const pill = qs('statusPill');
+  pill.className = 'pill ' + (state || '');
+  pill.textContent = text || 'Listo';
+}
+
+function renderStepper(){
+  const el = qs('stepper'); el.innerHTML = '';
+  SCHEMA.forEach((p, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (i===pageIndex?' active':'');
+    chip.textContent = `${i+1}. ${p.title}`;
+    chip.onclick = ()=>{ pageIndex = i; renderPage(); };
+    el.appendChild(chip);
+  });
+}
+
+function renderPage(){
+  renderStepper();
+  const page = SCHEMA[pageIndex];
+  qs('pageTitle').textContent = page.title || page.name;
+  const el = qs('form'); el.innerHTML='';
+  (page.fields||[]).forEach(f=>{
+    const wrap = document.createElement('div');
+    const lbl = document.createElement('label'); lbl.textContent = f.label || f.key; lbl.htmlFor = f.key;
+    let input;
+    if (f.type === 'textarea') {
+      input = document.createElement('textarea'); input.rows = 4;
+    } else if (f.type === 'select') {
+      input = document.createElement('select');
+    } else {
+      input = document.createElement('input'); input.type = f.type || 'text';
+    }
+    input.id = f.key; input.name = f.key; if (f.required) input.required = true;
+    input.value = (formData[page.name]?.[f.key]) || '';
+    input.addEventListener('input', onInputChangeDebounced);
+    wrap.appendChild(lbl); wrap.appendChild(input);
+    if (f.hint) { const hint = document.createElement('div'); hint.className='field-hint'; hint.textContent = f.hint; wrap.appendChild(hint); }
+    el.appendChild(wrap);
+  });
+  qs('prev').disabled = pageIndex === 0;
+  qs('next').textContent = (pageIndex < SCHEMA.length-1) ? 'Continuar →' : 'Finalizar';
+}
+
+function onInputChangeDebounced(e){
+  const page = SCHEMA[pageIndex];
+  const key = e.target.name; const value = e.target.value;
+  formData[page.name] = formData[page.name] || {};
+  formData[page.name][key] = value;
+  debounceSave();
+}
+
+function debounceSave(){
+  qs('autosaveHint').textContent = 'Guardando…';
+  setPill('warn', 'Guardando…');
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>savePage(), 600);
+}
+
+async function savePage(){
+  const page = SCHEMA[pageIndex];
+  const payload = { sessionId, pageName: page.name, data: formData[page.name] || {} };
+  try {
+    const res = await fetch(`${GAS_BASE_URL}?path=save`, { method:'POST', body: JSON.stringify(payload) });
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error||'Error en save');
+    qs('autosaveHint').textContent = 'Cambios guardados automáticamente';
+    setPill('ok', 'Guardado');
+  } catch(err){
+    console.error(err);
+    qs('autosaveHint').textContent = 'Error al guardar. Reintentando…';
+    setPill('err', 'Error al guardar');
+  }
+}
+
+async function init(){
+  const url = new URL(location.href);
+  const token = url.searchParams.get('t');
+  setPill('', 'Inicializando…');
+  try {
+    const res = await fetch(`${GAS_BASE_URL}?path=init`, { method:'POST', body: JSON.stringify({ sessionId: token }) });
+    const json = await res.json();
+    console.log('INIT response:', json);
+    if (!json.ok) { alert('Error iniciando sesión'); setPill('err','Error'); return; }
+    sessionId = json.sessionId;
+    const resume = location.origin + location.pathname + `?t=${sessionId}`;
+    qs('resumeLink').textContent = resume;
+    qs('resumeLink').style.userSelect = 'all';
+    console.log('Reanudar:', resume);
+    setPill('ok','Listo');
+    renderPage();
+  } catch (e) {
+    console.error('INIT fetch error:', e);
+    alert('No se puede conectar con el servidor.');
+    setPill('err','Sin conexión');
+  }
+}
+
+window.addEventListener('beforeunload', () => { if (saveTimer) savePage(); });
+
+qs('prev').onclick = async ()=>{ if (pageIndex > 0) { await savePage(); pageIndex--; renderPage(); } };
+qs('next').onclick = async ()=>{
+  if (pageIndex < SCHEMA.length-1) { await savePage(); pageIndex++; renderPage(); }
+  else {
+    try {
+      const res = await fetch(`${GAS_BASE_URL}?path=finalize`, { method:'POST', body: JSON.stringify({ sessionId }) });
+      const json = await res.json();
+      if (json.ok) { alert('Formulario completado. ¡Gracias!'); }
+      else { alert('Formulario finalizado con advertencias.'); }
+    } catch(e) { alert('No se pudo finalizar.'); }
+  }
+};
+
+init();
+</script>
+</body>
+</html>
