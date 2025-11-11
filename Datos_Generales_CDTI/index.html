@@ -18,7 +18,11 @@
                     <div class="logo-icon">F</div>
                     <h1 id="main-title">Recopilación de Datos del Cliente</h1>
                 </div>
-                <div id="autosave-indicator" class="autosave-status">Autosave activo</div>
+                <div class="flex items-center space-x-3">
+                    <button id="show-form-btn" onclick="setView('client')" style="padding: 0.5rem 1rem; background-color: var(--accent); color: white; border-radius: 0.375rem; border: none; font-size: 0.875rem;">Formulario</button>
+                    <button id="show-admin-btn" onclick="promptAdminKey()" style="padding: 0.5rem 1rem; background-color: #d1d5db; color: var(--brand); border-radius: 0.375rem; border: none; font-size: 0.875rem;">Admin</button>
+                    <div id="autosave-indicator" class="autosave-status">Autosave activo</div>
+                </div>
             </header>
 
             <div class="progress-header">

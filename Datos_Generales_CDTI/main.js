@@ -638,234 +638,185 @@ window.updateAllTotals = updateAllTotals;
 
 // Nota: No cambian los ids de inputs (siguen siendo rh_{year}_...), por tanto saveFormData y validatePage4 siguen funcionando.
 
-/** Carga los datos existentes de un usuario. */
+/** Carga los datos existentes de un usuario desde Firestore. */
 async function loadUserFormData() {
-    if (!db || !userId) {
-        console.warn("DB or userId not ready for loading data.");
-        return;
-    }
-    
-    const collectionPath = `artifacts/${appId}/public/data/client_forms`;
-    const docRef = doc(db, collectionPath, userId);
+    if (!db || !userId || userId === 'loading') return;
     
     try {
-        const docSnap = await getDoc(docRef);
+        const collectionPath = `artifacts/${appId}/public/data/client_forms`;
+        const docSnap = await getDoc(doc(db, collectionPath, userId));
+        
         if (docSnap.exists()) {
-            console.log("Documento existente encontrado, rellenando formulario.");
             const data = docSnap.data();
             
-            // Página 1: Contactos
-            document.getElementById('instNIF').value = data.instNIF || '';
-            document.getElementById('instNombre').value = data.instNombre || '';
-            document.getElementById('instApellidos').value = data.instApellidos || '';
-            document.getElementById('instCargo').value = data.instCargo || '';
-            document.getElementById('instTelefono').value = data.instTelefono || '';
-            document.getElementById('instEmail').value = data.instEmail || '';
-            document.getElementById('tecNombre').value = data.tecNombre || '';
-            document.getElementById('tecApellidos').value = data.tecApellidos || '';
-            document.getElementById('tecCargo').value = data.tecCargo || '';
-            document.getElementById('finNombre').value = data.finNombre || '';
-            document.getElementById('finApellidos').value = data.finApellidos || '';
-            document.getElementById('finCargo').value = data.finCargo || '';
+            // Cargar datos básicos
+            Object.keys(data).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    if (element.type === 'checkbox') {
+                        element.checked = data[key] || false;
+                    } else {
+                        element.value = data[key] || '';
+                    }
+                }
+            });
             
-            // Página 2: Dirección
-            document.getElementById('dirTipoVia').value = data.dirTipoVia || '';
-            document.getElementById('dirDireccion').value = data.dirDireccion || '';
-            document.getElementById('dirNumero').value = data.dirNumero || '';
-            document.getElementById('dirCP').value = data.dirCP || '';
-            document.getElementById('dirProvincia').value = data.dirProvincia || '';
-            document.getElementById('dirLocalidad').value = data.dirLocalidad || '';
-            document.getElementById('dirTelefono').value = data.dirTelefono || '';
-            document.getElementById('dirEmail').value = data.dirEmail || '';
-
-            // Página 3: Organización (estáticos)
-            document.getElementById('orgAnoCapital').value = data.orgAnoCapital || '';
-            document.getElementById('orgCapitalSocial').value = data.orgCapitalSocial || '';
-
-            // Página 4: Recursos Humanos - reconstruir usando recHumanos array
-            const recHumanosArr = Array.isArray(data.recHumanos) ? data.recHumanos : [];
-            renderRecursosHumanos(recHumanosArr);
-
-            // Página 4: si no hay dato, renderRecursosHumanos generará vacíos
-            // Página 4 validation state update:
-            const page4Validation = validatePage4();
-            setStepError(4, !page4Validation.isValid);
-            if (!page4Validation.isValid) showPageError(4, "Revisar Recursos Humanos: " + page4Validation.errors.join(', '));
-            else clearPageError(4);
-
-            // Página 5: Gastos I+D
-            document.getElementById('id_ano').value = data.id_ano || '';
-            document.getElementById('id_inmovilizado').value = data.id_inmovilizado || '';
-            document.getElementById('id_gastos_corrientes').value = data.id_gastos_corrientes || '';
-
-            // Página 6: Productos
-            document.getElementById('prod1_nombre').value = data.prod1_nombre || '';
-            document.getElementById('prod1_ventas').value = data.prod1_ventas || '';
-            document.getElementById('prod1_nac').value = data.prod1_nac || '';
-            document.getElementById('prod1_exp').value = data.prod1_exp || '';
-            document.getElementById('prod2_nombre').value = data.prod2_nombre || '';
-            document.getElementById('prod2_ventas').value = data.prod2_ventas || '';
-            document.getElementById('prod2_nac').value = data.prod2_nac || '';
-            document.getElementById('prod2_exp').value = data.prod2_exp || '';
-            document.getElementById('prod3_nombre').value = data.prod3_nombre || '';
-            document.getElementById('prod3_ventas').value = data.prod3_ventas || '';
-            document.getElementById('prod3_nac').value = data.prod3_nac || '';
-            document.getElementById('prod3_exp').value = data.prod3_exp || '';
-
-            // Página 7: Tipo Entidad
-            document.getElementById('entidadTipo').value = data.entidadTipo || '';
-            document.getElementById('entidadTamaño').value = data.entidadTamaño || '';
-            document.getElementById('ent_efectivos').value = data.ent_efectivos || '';
-            document.getElementById('ent_volumen_negocio').value = data.ent_volumen_negocio || '';
-            document.getElementById('ent_balance_general').value = data.ent_balance_general || '';
-
-            // Página 8: Datos Bancarios
-            document.getElementById('bankIBAN').value = data.bankIBAN || '';
-            document.getElementById('bankEntidad').value = data.bankEntidad || '';
-            document.getElementById('bankOficina').value = data.bankOficina || '';
-            document.getElementById('bankDC').value = data.bankDC || '';
-            document.getElementById('bankNumero').value = data.bankNumero || '';
-
-            // Página 9 (Condiciones)
-            document.getElementById('cond_1').checked = !!data.cond_1;
-            document.getElementById('cond_2').checked = !!data.cond_2;
-            document.getElementById('cond_3').checked = !!data.cond_3;
-            document.getElementById('cond_4').checked = !!data.cond_4;
-
-            // Reconstruir arrays dinámicos: accionarial, consejo, filiales (si existen)
-            // ACCIONARIAL
-            const accionarialArr = Array.isArray(data.accionarial) ? data.accionarial : [];
-            const accContainer = document.getElementById('accionarial-container');
-            if (accContainer) {
-                accContainer.innerHTML = '';
-                if (accionarialArr.length === 0) {
-                    // default empty group
-                    accContainer.innerHTML = `<div class="accionarial-grupo form-grid md:grid-cols-2" style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <div><label for="acc_1_nombre">Nombre / Razón Social:</label><input id="acc_1_nombre" type="text" class="input-default"></div>
-                        <div><label for="acc_1_cif">CIF:</label><input id="acc_1_cif" type="text" class="input-default"></div>
-                        <div><label for="acc_1_pct">% Participación:</label><input id="acc_1_pct" type="number" step="0.1" class="input-default"></div>
-                        <div><label for="acc_1_pyme">Pyme:</label><select id="acc_1_pyme" class="input-default"><option value=\"\">--</option><option value=\"Sí\">Sí</option><option value=\"No\">No</option></select></div>
-                        <div><label for="acc_1_nacionalidad">Nacionalidad:</label><input id="acc_1_nacionalidad" type="text" class="input-default"></div>
-                    </div>`;
-                    accionarialCount = 1;
-                } else {
-                    accionarialArr.forEach((acc, idx) => {
-                        const i = idx + 1;
-                        const bg = i % 2 === 0 ? '#f3f4f6' : 'var(--card)';
-                        const div = document.createElement('div');
-                        div.className = 'accionarial-grupo form-grid md:grid-cols-2';
-                        div.style.cssText = `background-color: ${bg}; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;`;
-                        div.innerHTML = `
-                            <div><label for="acc_${i}_nombre">Nombre / Razón Social:</label><input id="acc_${i}_nombre" type="text" class="input-default" value="${acc.nombre || ''}"></div>
-                            <div><label for="acc_${i}_cif">CIF:</label><input id="acc_${i}_cif" type="text" class="input-default" value="${acc.cif || ''}"></div>
-                            <div><label for="acc_${i}_pct">% Participación:</label><input id="acc_${i}_pct" type="number" step="0.1" class="input-default" value="${acc.porcentaje || ''}"></div>
-                            <div><label for="acc_${i}_pyme">Pyme:</label><select id="acc_${i}_pyme" class="input-default"><option value="">--</option><option value="Sí"${acc.pyme==='Sí'?' selected':''}>Sí</option><option value="No"${acc.pyme==='No'?' selected':''}>No</option></select></div>
-                            <div><label for="acc_${i}_nacionalidad">Nacionalidad:</label><input id="acc_${i}_nacionalidad" type="text" class="input-default" value="${acc.nacionalidad || ''}"></div>
-                            <button type="button" onclick="removeAccionarialGrupo(this)" class="md:col-span-2" style="background-color: #ef4444; color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">− Eliminar</button>
-                        `;
-                        accContainer.appendChild(div);
-                    });
-                    accionarialCount = accionarialArr.length;
-                }
+            // Cargar datos dinámicos
+            if (data.accionarial && Array.isArray(data.accionarial)) {
+                loadAccionarialData(data.accionarial);
             }
-
-            // CONSEJO
-            const consejoArr = Array.isArray(data.consejo) ? data.consejo : [];
-            const consejoContainer = document.getElementById('consejo-container');
-            if (consejoContainer) {
-                consejoContainer.innerHTML = '';
-                if (consejoArr.length === 0) {
-                    consejoContainer.innerHTML = `<div class="consejo-grupo form-grid md:grid-cols-2" style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <div><label for="consejo_1_nombre">Nombre:</label><input id="consejo_1_nombre" type="text" class="input-default"></div>
-                        <div><label for="consejo_1_dni">DNI/CIF:</label><input id="consejo_1_dni" type="text" class="input-default"></div>
-                        <div><label for="consejo_1_cargo">Cargo:</label><input id="consejo_1_cargo" type="text" class="input-default"></div>
-                        <div><label for="consejo_1_nacionalidad">Nacionalidad:</label><input id="consejo_1_nacionalidad" type="text" class="input-default"></div>
-                    </div>`;
-                    consejoCount = 1;
-                } else {
-                    consejoArr.forEach((c, idx) => {
-                        const i = idx + 1;
-                        const bg = i % 2 === 0 ? '#f3f4f6' : 'var(--card)';
-                        const div = document.createElement('div');
-                        div.className = 'consejo-grupo form-grid md:grid-cols-2';
-                        div.style.cssText = `background-color: ${bg}; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;`;
-                        div.innerHTML = `
-                            <div><label for="consejo_${i}_nombre">Nombre:</label><input id="consejo_${i}_nombre" type="text" class="input-default" value="${c.nombre || ''}"></div>
-                            <div><label for="consejo_${i}_dni">DNI/CIF:</label><input id="consejo_${i}_dni" type="text" class="input-default" value="${c.dni || ''}"></div>
-                            <div><label for="consejo_${i}_cargo">Cargo:</label><input id="consejo_${i}_cargo" type="text" class="input-default" value="${c.cargo || ''}"></div>
-                            <div><label for="consejo_${i}_nacionalidad">Nacionalidad:</label><input id="consejo_${i}_nacionalidad" type="text" class="input-default" value="${c.nacionalidad || ''}"></div>
-                            <button type="button" onclick="removeConsejoGrupo(this)" class="md:col-span-2" style="background-color: #ef4444; color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">− Eliminar</button>
-                        `;
-                        consejoContainer.appendChild(div);
-                    });
-                    consejoCount = consejoArr.length;
-                }
+            
+            if (data.consejo && Array.isArray(data.consejo)) {
+                loadConsejoData(data.consejo);
             }
-
-            // FILIALES
-            const filialesArr = Array.isArray(data.filiales) ? data.filiales : [];
-            const filialContainer = document.getElementById('filial-container');
-            if (filialContainer) {
-                filialContainer.innerHTML = '';
-                if (filialesArr.length === 0) {
-                    filialContainer.innerHTML = `<div class="filial-grupo form-grid md:grid-cols-2" style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <div><label for="filial_1_razon">Razón Social:</label><input id="filial_1_razon" type="text" class="input-default"></div>
-                        <div><label for="filial_1_cif">CIF:</label><input id="filial_1_cif" type="text" class="input-default"></div>
-                        <div><label for="filial_1_actividad">Actividad Principal:</label><input id="filial_1_actividad" type="text" class="input-default"></div>
-                        <div><label for="filial_1_pct">% Participación:</label><input id="filial_1_pct" type="number" step="0.1" class="input-default"></div>
-                        <div><label for="filial_1_pais">País:</label><input id="filial_1_pais" type="text" class="input-default"></div>
-                    </div>`;
-                    filialCount = 1;
-                } else {
-                    filialesArr.forEach((f, idx) => {
-                        const i = idx + 1;
-                        const bg = i % 2 === 0 ? '#f3f4f6' : 'var(--card)';
-                        const div = document.createElement('div');
-                        div.className = 'filial-grupo form-grid md:grid-cols-2';
-                        div.style.cssText = `background-color: ${bg}; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;`;
-                        div.innerHTML = `
-                            <div><label for="filial_${i}_razon">Razón Social:</label><input id="filial_${i}_razon" type="text" class="input-default" value="${f.razon || ''}"></div>
-                            <div><label for="filial_${i}_cif">CIF:</label><input id="filial_${i}_cif" type="text" class="input-default" value="${f.cif || ''}"></div>
-                            <div><label for="filial_${i}_actividad">Actividad Principal:</label><input id="filial_${i}_actividad" type="text" class="input-default" value="${f.actividad || ''}"></div>
-                            <div><label for="filial_${i}_pct">% Participación:</label><input id="filial_${i}_pct" type="number" step="0.1" class="input-default" value="${f.porcentaje || ''}"></div>
-                            <div><label for="filial_${i}_pais">País:</label><input id="filial_${i}_pais" type="text" class="input-default" value="${f.pais || ''}"></div>
-                            <button type="button" onclick="removeFilialGrupo(this)" class="md:col-span-2" style="background-color: #ef4444; color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; margin-top: 0.5rem;">− Eliminar</button>
-                        `;
-                        filialContainer.appendChild(div);
-                    });
-                    filialCount = filialesArr.length;
-                }
+            
+            if (data.filiales && Array.isArray(data.filiales)) {
+                loadFilialesData(data.filiales);
             }
-
-        } else {
-            console.log("No existing document found for this user.");
-            // If no doc, render Recursos Humanos blank
-            renderRecursosHumanos([]);
+            
+            if (data.productos && Array.isArray(data.productos)) {
+                loadProductosData(data.productos);
+            }
+            
+            if (data.recHumanos && Array.isArray(data.recHumanos)) {
+                renderRecursosHumanos(data.recHumanos);
+            }
         }
     } catch (error) {
-        console.error("Error loading user data:", error);
+        console.error("Error cargando datos del usuario:", error);
     }
-    
-    // Disparar eventos input para que las validaciones se apliquen visualmente
-    document.querySelectorAll('[data-page="1"] input, [data-page="1"] select').forEach(el => el.dispatchEvent(new Event('input')));
-    document.querySelectorAll('[data-page="2"] input, [data-page="2"] select').forEach(el => el.dispatchEvent(new Event('input')));
-
-    // Mostrar la primera página después de cargar
-    showPage(1);
 }
 
-/** Pide la clave de administrador. */
-async function promptAdminKey() {
-    const key = await showMessageBox(
-        "Acceso de Administrador",
-        "Por favor, ingrese la clave de administrador para acceder a los datos.",
-        true
-    );
-    if (key === ADMIN_KEY) {
-        setView('admin');
-    } else if (key !== false) { // false means canceled
-        showMessageBox("Acceso Denegado", "Clave incorrecta. Permanece en la vista de cliente.");
-    }
+function loadAccionarialData(accionarial) {
+    // No limpiar el container ya que el primer grupo ya existe en el HTML
+    accionarial.forEach((item, index) => {
+        if (index === 0) {
+            // Primer elemento usa los campos existentes
+            const el1 = document.getElementById('acc_1_nombre');
+            const el2 = document.getElementById('acc_1_cif');
+            const el3 = document.getElementById('acc_1_pct');
+            const el4 = document.getElementById('acc_1_pyme');
+            const el5 = document.getElementById('acc_1_nacionalidad');
+            
+            if (el1) el1.value = item.nombre || '';
+            if (el2) el2.value = item.cif || '';
+            if (el3) el3.value = item.porcentaje || '';
+            if (el4) el4.value = item.pyme || '';
+            if (el5) el5.value = item.nacionalidad || '';
+        } else {
+            // Elementos adicionales se crean dinámicamente
+            addAccionarialGrupo();
+            const currentCount = accionarialCount;
+            const el1 = document.getElementById(`acc_${currentCount}_nombre`);
+            const el2 = document.getElementById(`acc_${currentCount}_cif`);
+            const el3 = document.getElementById(`acc_${currentCount}_pct`);
+            const el4 = document.getElementById(`acc_${currentCount}_pyme`);
+            const el5 = document.getElementById(`acc_${currentCount}_nacionalidad`);
+            
+            if (el1) el1.value = item.nombre || '';
+            if (el2) el2.value = item.cif || '';
+            if (el3) el3.value = item.porcentaje || '';
+            if (el4) el4.value = item.pyme || '';
+            if (el5) el5.value = item.nacionalidad || '';
+        }
+    });
+}
+
+function loadConsejoData(consejo) {
+    // No limpiar el container ya que el primer grupo ya existe en el HTML
+    consejo.forEach((item, index) => {
+        if (index === 0) {
+            // Primer elemento usa los campos existentes
+            const el1 = document.getElementById('consejo_1_nombre');
+            const el2 = document.getElementById('consejo_1_dni');
+            const el3 = document.getElementById('consejo_1_cargo');
+            const el4 = document.getElementById('consejo_1_nacionalidad');
+            
+            if (el1) el1.value = item.nombre || '';
+            if (el2) el2.value = item.dni || '';
+            if (el3) el3.value = item.cargo || '';
+            if (el4) el4.value = item.nacionalidad || '';
+        } else {
+            // Elementos adicionales se crean dinámicamente
+            addConsejoGrupo();
+            const currentCount = consejoCount;
+            const el1 = document.getElementById(`consejo_${currentCount}_nombre`);
+            const el2 = document.getElementById(`consejo_${currentCount}_dni`);
+            const el3 = document.getElementById(`consejo_${currentCount}_cargo`);
+            const el4 = document.getElementById(`consejo_${currentCount}_nacionalidad`);
+            
+            if (el1) el1.value = item.nombre || '';
+            if (el2) el2.value = item.dni || '';
+            if (el3) el3.value = item.cargo || '';
+            if (el4) el4.value = item.nacionalidad || '';
+        }
+    });
+}
+
+function loadFilialesData(filiales) {
+    // No limpiar el container ya que el primer grupo ya existe en el HTML
+    filiales.forEach((item, index) => {
+        if (index === 0) {
+            // Primer elemento usa los campos existentes
+            const el1 = document.getElementById('filial_1_razon');
+            const el2 = document.getElementById('filial_1_cif');
+            const el3 = document.getElementById('filial_1_actividad');
+            const el4 = document.getElementById('filial_1_pct');
+            const el5 = document.getElementById('filial_1_pais');
+            
+            if (el1) el1.value = item.razon || '';
+            if (el2) el2.value = item.cif || '';
+            if (el3) el3.value = item.actividad || '';
+            if (el4) el4.value = item.porcentaje || '';
+            if (el5) el5.value = item.pais || '';
+        } else {
+            // Elementos adicionales se crean dinámicamente
+            addFilialGrupo();
+            const currentCount = filialCount;
+            const el1 = document.getElementById(`filial_${currentCount}_razon`);
+            const el2 = document.getElementById(`filial_${currentCount}_cif`);
+            const el3 = document.getElementById(`filial_${currentCount}_actividad`);
+            const el4 = document.getElementById(`filial_${currentCount}_pct`);
+            const el5 = document.getElementById(`filial_${currentCount}_pais`);
+            
+            if (el1) el1.value = item.razon || '';
+            if (el2) el2.value = item.cif || '';
+            if (el3) el3.value = item.actividad || '';
+            if (el4) el4.value = item.porcentaje || '';
+            if (el5) el5.value = item.pais || '';
+        }
+    });
+}
+
+function loadProductosData(productos) {
+    const container = document.getElementById('productos-container');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    productoCount = 0;
+    
+    // Renderizar primer producto
+    renderProductosIniciales();
+    
+    productos.forEach((item, index) => {
+        if (index === 0) {
+            // Primer elemento usa los campos existentes
+            document.getElementById('prod1_nombre').value = item.nombre || '';
+            document.getElementById('prod1_ventas').value = item.ventas || '';
+            document.getElementById('prod1_nac').value = item.nacional || '';
+            document.getElementById('prod1_exp').value = item.exportacion || '';
+        } else {
+            // Elementos adicionales se crean dinámicamente
+            addProductoGrupo();
+            const currentCount = productoCount;
+            document.getElementById(`prod${currentCount}_nombre`).value = item.nombre || '';
+            document.getElementById(`prod${currentCount}_ventas`).value = item.ventas || '';
+            document.getElementById(`prod${currentCount}_nac`).value = item.nacional || '';
+            document.getElementById(`prod${currentCount}_exp`).value = item.exportacion || '';
+        }
+    });
+    
+    validarTotalVentas();
 }
 
 /** Guarda los datos del formulario en Firestore usando setDoc con el userId. */
@@ -934,18 +885,9 @@ async function saveFormData(isFinalSave = false) {
             id_inmovilizado: document.getElementById('id_inmovilizado') ? document.getElementById('id_inmovilizado').value.trim() : '',
             id_gastos_corrientes: document.getElementById('id_gastos_corrientes') ? document.getElementById('id_gastos_corrientes').value.trim() : '',
 
-            prod1_nombre: document.getElementById('prod1_nombre').value.trim(),
-            prod1_ventas: document.getElementById('prod1_ventas').value.trim(),
-            prod1_nac: document.getElementById('prod1_nac').value.trim(),
-            prod1_exp: document.getElementById('prod1_exp').value.trim(),
-            prod2_nombre: document.getElementById('prod2_nombre').value.trim(),
-            prod2_ventas: document.getElementById('prod2_ventas').value.trim(),
-            prod2_nac: document.getElementById('prod2_nac').value.trim(),
-            prod2_exp: document.getElementById('prod2_exp').value.trim(),
-            prod3_nombre: document.getElementById('prod3_nombre').value.trim(),
-            prod3_ventas: document.getElementById('prod3_ventas').value.trim(),
-            prod3_nac: document.getElementById('prod3_nac').value.trim(),
-            prod3_exp: document.getElementById('prod3_exp').value.trim(),
+            // --- INICIO DE CORRECCIÓN (Página 6) ---
+            // Los productos se gestionan dinámicamente más abajo
+            // --- FIN DE CORRECCIÓN ---
 
             entidadTipo: document.getElementById('entidadTipo').value,
             entidadTamaño: document.getElementById('entidadTamaño').value,
@@ -964,6 +906,36 @@ async function saveFormData(isFinalSave = false) {
             cond_3: document.getElementById('cond_3').checked,
             cond_4: document.getElementById('cond_4').checked
         };
+
+        // --- INICIO DE CORRECCIÓN (Página 6) ---
+        // Recolectar Productos (DINÁMICAMENTE)
+        const productos = [];
+        document.querySelectorAll('#productos-container .producto-grupo').forEach((grupo, index) => {
+            const nombreInput = grupo.querySelector('input[id*="_nombre"]');
+            if (!nombreInput) return;
+            
+            // Extraer el número del ID (prod1 -> 1, prod2 -> 2, etc.)
+            const match = nombreInput.id.match(/prod(\d+)_nombre/);
+            const prodNum = match ? match[1] : (index + 1);
+            
+            const nombre = nombreInput.value.trim();
+            const ventas = document.getElementById(`prod${prodNum}_ventas`)?.value?.trim() || '';
+            const nac = document.getElementById(`prod${prodNum}_nac`)?.value?.trim() || '';
+            const exp = document.getElementById(`prod${prodNum}_exp`)?.value?.trim() || '';
+
+            if (nombre || ventas || nac || exp) {
+                productos.push({ 
+                    id: `prod${prodNum}`,
+                    nombre: nombre, 
+                    ventas: ventas, 
+                    nacional: nac, 
+                    exportacion: exp 
+                });
+            }
+        });
+        formData.productos = productos; // Añadir el array al objeto formData
+        // --- FIN DE CORRECCIÓN ---
+
 
         // Recolectar Accionarial dinámico
         const accionarial = [];
@@ -1008,36 +980,36 @@ async function saveFormData(isFinalSave = false) {
 
         // Recolectar Recursos Humanos dinámico (recHumanos array)
     
-const recHumanos = [];
-document.querySelectorAll('#recursos-container .form-section').forEach(section => {
-    const year = section.dataset.year;
-    if (!year) return;
-    const obj = {
-        year: Number(year),
-        directivo_hombres: document.getElementById(`rh_${year}_directivo_h`) ? document.getElementById(`rh_${year}_directivo_h`).value.trim() : '',
-        directivo_mujeres: document.getElementById(`rh_${year}_directivo_m`) ? document.getElementById(`rh_${year}_directivo_m`).value.trim() : '',
-        administracion_hombres: document.getElementById(`rh_${year}_administracion_h`) ? document.getElementById(`rh_${year}_administracion_h`).value.trim() : '',
-        administracion_mujeres: document.getElementById(`rh_${year}_administracion_m`) ? document.getElementById(`rh_${year}_administracion_m`).value.trim() : '',
-        produccion_hombres: document.getElementById(`rh_${year}_produccion_h`) ? document.getElementById(`rh_${year}_produccion_h`).value.trim() : '',
-        produccion_mujeres: document.getElementById(`rh_${year}_produccion_m`) ? document.getElementById(`rh_${year}_produccion_m`).value.trim() : '',
-        comercial_hombres: document.getElementById(`rh_${year}_comercial_h`) ? document.getElementById(`rh_${year}_comercial_h`).value.trim() : '',
-        comercial_mujeres: document.getElementById(`rh_${year}_comercial_m`) ? document.getElementById(`rh_${year}_comercial_m`).value.trim() : '',
-        // I+D
-        id_doct_hombres: document.getElementById(`rh_${year}_id_doct_h`) ? document.getElementById(`rh_${year}_id_doct_h`).value.trim() : '',
-        id_doct_mujeres: document.getElementById(`rh_${year}_id_doct_m`) ? document.getElementById(`rh_${year}_id_doct_m`).value.trim() : '',
-        id_mast_hombres: document.getElementById(`rh_${year}_id_mast_h`) ? document.getElementById(`rh_${year}_id_mast_h`).value.trim() : '',
-        id_mast_mujeres: document.getElementById(`rh_${year}_id_mast_m`) ? document.getElementById(`rh_${year}_id_mast_m`).value.trim() : '',
-        id_grad_hombres: document.getElementById(`rh_${year}_id_grad_h`) ? document.getElementById(`rh_${year}_id_grad_h`).value.trim() : '',
-        id_grad_mujeres: document.getElementById(`rh_${year}_id_grad_m`) ? document.getElementById(`rh_${year}_id_grad_m`).value.trim() : '',
-        id_otros_hombres: document.getElementById(`rh_${year}_id_otros_h`) ? document.getElementById(`rh_${year}_id_otros_h`).value.trim() : '',
-        id_otros_mujeres: document.getElementById(`rh_${year}_id_otros_m`) ? document.getElementById(`rh_${year}_id_otros_m`).value.trim() : '',
-        // total calculado y campo editable
-        total_personas: updateTotalsForYear(year),
-        total_titulados: document.getElementById(`rh_${year}_total_titulados`) ? document.getElementById(`rh_${year}_total_titulados`).value.trim() : ''
-    };
-    recHumanos.push(obj);
-});
-formData.recHumanos = recHumanos;
+        const recHumanos = [];
+        document.querySelectorAll('#recursos-container .form-section').forEach(section => {
+            const year = section.dataset.year;
+            if (!year) return;
+            const obj = {
+                year: Number(year),
+                directivo_hombres: document.getElementById(`rh_${year}_directivo_h`) ? document.getElementById(`rh_${year}_directivo_h`).value.trim() : '',
+                directivo_mujeres: document.getElementById(`rh_${year}_directivo_m`) ? document.getElementById(`rh_${year}_directivo_m`).value.trim() : '',
+                administracion_hombres: document.getElementById(`rh_${year}_administracion_h`) ? document.getElementById(`rh_${year}_administracion_h`).value.trim() : '',
+                administracion_mujeres: document.getElementById(`rh_${year}_administracion_m`) ? document.getElementById(`rh_${year}_administracion_m`).value.trim() : '',
+                produccion_hombres: document.getElementById(`rh_${year}_produccion_h`) ? document.getElementById(`rh_${year}_produccion_h`).value.trim() : '',
+                produccion_mujeres: document.getElementById(`rh_${year}_produccion_m`) ? document.getElementById(`rh_${year}_produccion_m`).value.trim() : '',
+                comercial_hombres: document.getElementById(`rh_${year}_comercial_h`) ? document.getElementById(`rh_${year}_comercial_h`).value.trim() : '',
+                comercial_mujeres: document.getElementById(`rh_${year}_comercial_m`) ? document.getElementById(`rh_${year}_comercial_m`).value.trim() : '',
+                // I+D
+                id_doct_hombres: document.getElementById(`rh_${year}_id_doct_h`) ? document.getElementById(`rh_${year}_id_doct_h`).value.trim() : '',
+                id_doct_mujeres: document.getElementById(`rh_${year}_id_doct_m`) ? document.getElementById(`rh_${year}_id_doct_m`).value.trim() : '',
+                id_mast_hombres: document.getElementById(`rh_${year}_id_mast_h`) ? document.getElementById(`rh_${year}_id_mast_h`).value.trim() : '',
+                id_mast_mujeres: document.getElementById(`rh_${year}_id_mast_m`) ? document.getElementById(`rh_${year}_id_mast_m`).value.trim() : '',
+                id_grad_hombres: document.getElementById(`rh_${year}_id_grad_h`) ? document.getElementById(`rh_${year}_id_grad_h`).value.trim() : '',
+                id_grad_mujeres: document.getElementById(`rh_${year}_id_grad_m`) ? document.getElementById(`rh_${year}_id_grad_m`).value.trim() : '',
+                id_otros_hombres: document.getElementById(`rh_${year}_id_otros_h`) ? document.getElementById(`rh_${year}_id_otros_h`).value.trim() : '',
+                id_otros_mujeres: document.getElementById(`rh_${year}_id_otros_m`) ? document.getElementById(`rh_${year}_id_otros_m`).value.trim() : '',
+                // total calculado y campo editable
+                total_personas: updateTotalsForYear(year),
+                total_titulados: document.getElementById(`rh_${year}_total_titulados`) ? document.getElementById(`rh_${year}_total_titulados`).value.trim() : ''
+            };
+            recHumanos.push(obj);
+        });
+        formData.recHumanos = recHumanos;
         
         // Si es guardado final, validar todas las páginas
         if (isFinalSave) {
@@ -1643,6 +1615,16 @@ window.actualizarEjercicioAnterior = actualizarEjercicioAnterior;
 window.validateIntegerField = validateIntegerField;
 
 
+/** Solicita la clave de administrador para acceder al panel admin */
+async function promptAdminKey() {
+    const key = await showMessageBox("Acceso Administrador", "Introduzca la clave de administrador:", true);
+    if (key === ADMIN_KEY) {
+        setView('admin');
+    } else if (key) {
+        showMessageBox("Error", "Clave incorrecta.");
+    }
+}
+
 // Exponer funciones globales mínimas
 window.setView = setView;
 window.promptAdminKey = promptAdminKey;
@@ -1679,6 +1661,12 @@ window.onload = function () {
     
     // Render Productos inicialmente (al menos 1 producto)
     renderProductosIniciales();
+    
+    // Inicializar contadores para elementos dinámicos
+    accionarialCount = 1;
+    consejoCount = 1;
+    filialCount = 1;
+    productoCount = 1;
 
     // Añadir el listener para el auto-guardado a todo el formulario
     const dataForm = document.getElementById('data-form');
