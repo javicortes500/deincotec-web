@@ -208,14 +208,18 @@ function debouncedValidatePage8() {
 /** Inicializa Firebase y autentica al usuario. */
 async function initializeFirebase() {
     try {
-        if (Object.keys(firebaseConfig).length === 0) {
-            console.error("Firebase config is missing.");
-            const statusEl = document.getElementById('data-loading-status');
+        // --- INICIO DE MODIFICACIÓN CLAVE ---
+        const statusEl = document.getElementById('data-loading-status');
+        
+        if (Object.keys(firebaseConfig).length === 0 || !firebaseConfig.projectId) {
+            console.error("Firebase config is missing or invalid.");
             if (statusEl) {
-                 statusEl.textContent = "ERROR: Configuración de Firebase faltante.";
+                 statusEl.textContent = "ERROR: Configuración de Firebase faltante. Por favor, revise main.js.";
             }
-            return;
+            // Retornar sin inicializar si la configuración es inválida
+            return; 
         }
+        // --- FIN DE MODIFICACIÓN CLAVE ---
 
         app = initializeApp(firebaseConfig);
         db = getFirestore(app);
