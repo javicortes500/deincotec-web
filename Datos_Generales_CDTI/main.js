@@ -23,6 +23,7 @@ import {
 
 
 // Variables Globales del Entorno
+const appId = 'datos-generales-cdti';
 const firebaseConfig = {
   apiKey: "AIzaSyDlwdxMgXISODURrmEiG9q-86BZSaIkvnk",
   authDomain: "datos-generales-cdti.firebaseapp.com",
@@ -32,7 +33,7 @@ const firebaseConfig = {
   appId: "1:931823934681:web:bb1836591790f385a032c8",
   measurementId: "G-PJNVSJ3JFH"
 };
-
+const initialAuthToken = null;
 const ADMIN_KEY = 'admin123'; 
 const TOTAL_PAGES = 9; // Total de 9 páginas
 let currentPage = 1;
