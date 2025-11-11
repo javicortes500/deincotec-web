@@ -1294,7 +1294,7 @@ async function loadUserFormData() {
     if (!db || !userId || userId === 'loading') return;
     
     try {
-        const collectionPath = `artifacts/${appId}/public/data/client_forms`;
+        const collectionPath = 'clientes';
         const docSnap = await getDoc(doc(db, collectionPath, userId));
         
         if (docSnap.exists()) {
@@ -1768,7 +1768,7 @@ function loadAdminFormData() {
     statusEl.textContent = "Conectando con la base de datos...";
 
     try {
-        const collectionPath = `artifacts/${appId}/public/data/client_forms`;
+        const collectionPath = 'clientes';
         const q = query(collection(db, collectionPath));
 
     unsubscribe = onSnapshot(q, (querySnapshot) => {
