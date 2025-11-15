@@ -1,831 +1,395 @@
-/* style.css — Material Design 3 */
+/* style.css — Material Design 3 (modernizado) */
 
 /* =============================
    MATERIAL DESIGN 3 THEME
-   Based on Google's Material You
+   Modern UI / Soft Glass
    ============================= */
 :root {
-  /* Material Design 3 Color System */
-  --md-sys-color-primary: #0b57d0;
+  /* Material Design 3 Color System (ligeramente actualizada) */
+  --md-sys-color-primary: #2563eb;           /* azul más vibrante */
   --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-primary-container: #d3e3fd;
-  --md-sys-color-on-primary-container: #001b3d;
-  
-  --md-sys-color-secondary: #006a6a;
-  --md-sys-color-on-secondary: #ffffff;
-  --md-sys-color-secondary-container: #9ef2f2;
-  --md-sys-color-on-secondary-container: #002020;
-  
-  --md-sys-color-tertiary: #984061;
-  --md-sys-color-on-tertiary: #ffffff;
-  --md-sys-color-tertiary-container: #ffd9e3;
-  --md-sys-color-on-tertiary-container: #3e001e;
-  
-  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-primary-container: #dbeafe;
+  --md-sys-color-on-primary-container: #0f172a;
+
+  --md-sys-color-secondary: #0f766e;
+  --md-sys-color-on-secondary: #e0f2f1;
+  --md-sys-color-secondary-container: #ccfbf1;
+  --md-sys-color-on-secondary-container: #022c22;
+
+  --md-sys-color-tertiary: #9333ea;
+  --md-sys-color-on-tertiary: #f9f5ff;
+  --md-sys-color-tertiary-container: #ede9fe;
+  --md-sys-color-on-tertiary-container: #2e1065;
+
+  --md-sys-color-error: #dc2626;
   --md-sys-color-on-error: #ffffff;
-  --md-sys-color-error-container: #ffdad6;
-  --md-sys-color-on-error-container: #410002;
-  
-  --md-sys-color-background: #f9f9ff;
-  --md-sys-color-on-background: #191c20;
-  --md-sys-color-surface: #f9f9ff;
-  --md-sys-color-on-surface: #191c20;
-  --md-sys-color-surface-variant: #e1e2ec;
-  --md-sys-color-on-surface-variant: #44474e;
-  --md-sys-color-outline: #74777f;
-  --md-sys-color-outline-variant: #c4c6d0;
-  
-  --md-sys-color-surface-container-lowest: #ffffff;
-  --md-sys-color-surface-container-low: #f3f3fa;
-  --md-sys-color-surface-container: #ededf4;
-  --md-sys-color-surface-container-high: #e7e8ee;
-  --md-sys-color-surface-container-highest: #e2e2e9;
-  
-  /* Material Design 3 Elevation */
-  --md-sys-elevation-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-  --md-sys-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
-  --md-sys-elevation-5: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
-  
-  /* Material Design 3 Shape */
+  --md-sys-color-error-container: #fee2e2;
+  --md-sys-color-on-error-container: #7f1d1d;
+
+  --md-sys-color-background: #020617;       /* fondo oscuro azul marino */
+  --md-sys-color-on-background: #0f172a;
+  --md-sys-color-surface: #0b1220;
+  --md-sys-color-on-surface: #020617;
+  --md-sys-color-surface-variant: #e5e7eb;
+  --md-sys-color-on-surface-variant: #4b5563;
+  --md-sys-color-outline: #cbd5f5;
+  --md-sys-color-outline-variant: #e5e7eb;
+
+  --md-sys-color-surface-container-lowest: rgba(15, 23, 42, 0.75);
+  --md-sys-color-surface-container-low: rgba(15, 23, 42, 0.65);
+  --md-sys-color-surface-container: rgba(15, 23, 42, 0.6);
+  --md-sys-color-surface-container-high: rgba(15, 23, 42, 0.7);
+  --md-sys-color-surface-container-highest: rgba(15, 23, 42, 0.8);
+
+  /* Elevation (ligeramente más suaves) */
+  --md-sys-elevation-1: 0 10px 30px rgba(15, 23, 42, 0.35);
+  --md-sys-elevation-2: 0 18px 45px rgba(15, 23, 42, 0.45);
+  --md-sys-elevation-3: 0 24px 60px rgba(15, 23, 42, 0.55);
+  --md-sys-elevation-4: 0 28px 75px rgba(15, 23, 42, 0.6);
+  --md-sys-elevation-5: 0 32px 90px rgba(15, 23, 42, 0.65);
+
+  /* Shape */
   --md-sys-shape-corner-none: 0px;
-  --md-sys-shape-corner-extra-small: 4px;
-  --md-sys-shape-corner-small: 8px;
-  --md-sys-shape-corner-medium: 12px;
-  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-small: 8px;
+  --md-sys-shape-corner-small: 10px;
+  --md-sys-shape-corner-medium: 14px;
+  --md-sys-shape-corner-large: 18px;
   --md-sys-shape-corner-extra-large: 28px;
-  
-  /* Material Design 3 Motion */
-  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
-  --md-sys-motion-duration-short: 200ms;
-  --md-sys-motion-duration-medium: 300ms;
-  --md-sys-motion-duration-long: 400ms;
-  
+
+  /* Motion */
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0.0, 0.0, 1);
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1);
+  --md-sys-motion-duration-short: 160ms;
+  --md-sys-motion-duration-medium: 220ms;
+  --md-sys-motion-duration-long: 320ms;
+
   /* Legacy aliases */
   --brand: var(--md-sys-color-primary);
   --accent: var(--md-sys-color-secondary);
   --bg: var(--md-sys-color-background);
-  --card: var(--md-sys-color-surface-container-low);
+  --card: var(--md-sys-color-surface-container-lowest);
   --muted: var(--md-sys-color-on-surface-variant);
-  --border: var(--md-sys-color-outline-variant);
-  --success: #0f9d58;
+  --border: rgba(148, 163, 184, 0.5);
+  --success: #22c55e;
   --danger: var(--md-sys-color-error);
   --stepper-width: 280px;
-  --form-gap: 1.5rem;
+  --form-gap: 1.75rem;
   --transition: all var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard);
 }
 
 /* ================= Reseteo y Base ================= */
-*, :before, :after { 
-  box-sizing: border-box; 
-  border-width: 0; 
-  border-style: solid; 
-  border-color: var(--border); 
+*, :before, :after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--border);
 }
 
 body {
-  font-family: 'Roboto', 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
-  color: var(--md-sys-color-on-background);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: #e5e7eb;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   padding: 0;
   margin: 0;
-  background-color: var(--md-sys-color-background);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.35), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(45, 212, 191, 0.25), transparent 55%),
+    radial-gradient(circle at 0% 100%, rgba(147, 51, 234, 0.22), transparent 55%),
+    linear-gradient(135deg, #020617, #020617);
 }
 
-/* ================= Pantalla de Login - Material Design 3 ================= */
+/* ================= Pantalla de Login ================= */
 .login-container {
   width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--md-sys-color-surface-container-low);
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
 }
 
 .login-card {
-  background-color: var(--md-sys-color-surface-container-highest);
-  padding: 2.5rem 2rem;
-  border-radius: var(--md-sys-shape-corner-extra-large);
-  box-shadow: var(--md-sys-elevation-1);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.82));
+  padding: 2.75rem 2.25rem;
+  border-radius: 1.9rem;
+  box-shadow: var(--md-sys-elevation-2);
   width: 100%;
-  max-width: 26rem;
+  max-width: 25rem;
   text-align: center;
   animation: md-fade-in var(--md-sys-motion-duration-long) var(--md-sys-motion-easing-emphasized);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  backdrop-filter: blur(18px);
 }
 
 @keyframes md-fade-in {
-  from { 
+  from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px) scale(0.99);
   }
-  to { 
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .login-logo {
-  max-width: 240px;
+  max-width: 220px;
   height: auto;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.75rem;
   display: block;
   opacity: 0.95;
 }
 
 .login-card h1 {
-  color: var(--md-sys-color-on-surface);
-  font-size: 1.75rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  margin-bottom: 0.5rem;
+  color: #f9fafb;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.75rem;
   margin-top: 0;
 }
 
 .login-subtitle {
-  color: var(--md-sys-color-on-surface-variant);
-  margin-bottom: 2rem;
-  font-size: 0.875rem;
-  line-height: 1.43;
-  letter-spacing: 0.01071em;
+  color: #9ca3af;
+  margin-bottom: 2.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-/* Material Design 3 - Text Fields */
+/* ================= Inputs estilo Material ================= */
 .input-group {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
   text-align: left;
 }
 
 .input-group label {
   display: block;
   font-weight: 500;
-  color: var(--md-sys-color-on-surface-variant);
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.03333em;
+  color: #9ca3af;
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-/* Material Design 3 - Filled Text Field */
+/* Filled text field (login) */
 .input-group input {
   width: 100%;
-  padding: 1.5rem 1rem 0.5rem;
-  border: none;
-  border-bottom: 1px solid var(--md-sys-color-outline);
-  border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.03125em;
+  padding: 1rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.85);
+  font-size: 0.98rem;
+  color: #e5e7eb;
   transition: var(--transition);
-  background-color: var(--md-sys-color-surface-container-highest);
-  color: var(--md-sys-color-on-surface);
+  box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+}
+
+.input-group input::placeholder {
+  color: #6b7280;
 }
 
 .input-group input:hover {
-  background-color: var(--md-sys-color-on-surface);
-  background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, var(--md-sys-color-surface-container-highest));
+  border-color: rgba(191, 219, 254, 0.9);
+  background: rgba(15, 23, 42, 0.95);
 }
 
 .input-group input:focus {
   outline: none;
-  border-bottom: 2px solid var(--md-sys-color-primary);
-  background-color: var(--md-sys-color-surface-container-highest);
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.5);
 }
 
-/* Material Design 3 - Filled Button */
+/* ================= Botones ================= */
+.btn-primary,
+button {
+  width: auto;
+  background: radial-gradient(circle at 0% 0%, #22c55e, #16a34a);
+  color: #f9fafb;
+  padding: 0.7rem 1.7rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+              box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+              background var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+              opacity var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+  margin-bottom: 1rem;
+  box-shadow: 0 16px 30px rgba(34, 197, 94, 0.35);
+  border: none;
+  min-height: 42px;
+}
+
 .btn-primary {
   width: 100%;
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-  padding: 0.625rem 1.5rem;
-  border: none;
-  border-radius: var(--md-sys-shape-corner-large);
-  font-weight: 500;
-  font-size: 0.875rem;
-  letter-spacing: 0.00714em;
-  text-transform: none;
-  cursor: pointer;
-  transition: var(--transition);
-  margin-bottom: 1rem;
-  box-shadow: var(--md-sys-elevation-1);
-  min-height: 40px;
 }
 
-.btn-primary:hover {
-  box-shadow: var(--md-sys-elevation-2);
-  background-color: color-mix(in srgb, var(--md-sys-color-primary) 92%, black);
+.btn-primary:hover,
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 40px rgba(34, 197, 94, 0.4);
+  opacity: 0.98;
 }
 
-.btn-primary:active {
-  box-shadow: var(--md-sys-elevation-1);
+.btn-primary:active,
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 25px rgba(22, 163, 74, 0.35);
 }
 
-.btn-primary:focus {
-  outline: none;
-}
-
-.btn-primary:disabled {
-  background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
-  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+.btn-primary:disabled,
+button:disabled {
+  background: rgba(148, 163, 184, 0.35);
+  color: rgba(148, 163, 184, 0.9);
   box-shadow: none;
   cursor: not-allowed;
 }
 
-/* Material Design 3 - Error Container */
+/* ================= Mensajes de error ================= */
 .error-message {
   color: var(--md-sys-color-on-error-container);
-  font-size: 0.75rem;
-  letter-spacing: 0.03333em;
+  font-size: 0.78rem;
   text-align: center;
-  padding: 0.75rem;
+  padding: 0.65rem 0.8rem;
   background-color: var(--md-sys-color-error-container);
-  border-radius: var(--md-sys-shape-corner-small);
+  border-radius: 999px;
+  margin-top: 0.2rem;
 }
 
-/* Material Design 3 - Assist Chip */
+/* Assist Chip */
 .client-badge {
-  background-color: var(--md-sys-color-surface-container-high);
-  color: var(--md-sys-color-on-surface-variant);
-  padding: 0.375rem 0.75rem;
-  border-radius: var(--md-sys-shape-corner-small);
+  background: rgba(15, 23, 42, 0.8);
+  color: #e5e7eb;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
   font-size: 0.75rem;
-  letter-spacing: 0.03333em;
-  font-weight: 500;
-  border: 1px solid var(--md-sys-color-outline);
+  letter-spacing: 0.09em;
+  font-weight: 600;
+  border: 1px solid rgba(156, 163, 175, 0.6);
+  text-transform: uppercase;
 }
 
-/* ================= Header y Footer ================= */
-/* Material Design 3 - Footer */
+/* ================= App container / Footer ================= */
 .site-footer {
   width: 100%;
   max-width: 64rem;
   text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
-  color: var(--md-sys-color-on-surface-variant);
-  font-size: 0.75rem;
-  letter-spacing: 0.03333em;
-  font-weight: 400;
-  background-color: transparent;
+  margin: 2.25rem auto 1.5rem;
+  padding: 0.75rem;
+  color: #9ca3af;
+  font-size: 0.78rem;
 }
 
 #app {
   width: 100%;
   max-width: 72rem;
-  background-color: var(--md-sys-color-background);
-  box-shadow: none;
-  border-radius: 0;
-  padding: 1.5rem;
-  border: none;
+  margin: 0 auto;
+  padding: 1.75rem;
 }
 
 @media (max-width: 640px) {
-  #app { padding: 1rem; }
-  body { padding: 0; }
+  #app { padding: 1.15rem; }
 }
 
-/* Material Design 3 - Typography Scale */
-h1, h2, h3, h4 { 
-  font-weight: 400; 
-  color: var(--md-sys-color-on-surface);
+/* ================= Typography Scale ================= */
+h1, h2, h3, h4 {
+  font-weight: 500;
+  color: #e5e7eb;
   margin: 0;
 }
 
-h1 { 
-  font-size: 1.375rem; 
-  line-height: 1.75rem; 
-  letter-spacing: 0;
+h1 {
+  font-size: 1.7rem;
+  line-height: 2rem;
 }
-h2{ font-size:1.5rem; line-height:2rem; margin-bottom:1rem; padding-bottom:.5rem; border-bottom:1px solid var(--border) }
-h3{ font-size:1.25rem; line-height:1.75rem; color:var(--brand); margin-bottom:1.5rem; display:flex; align-items:center; }
-h4{ font-size:1.125rem; line-height:1.5rem; color:var(--brand-2); margin-bottom:.75rem }
+
+h2 {
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+h3 {
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  color: #bfdbfe;
+  margin-bottom: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+h4 {
+  font-size: 1.05rem;
+  line-height: 1.5rem;
+  color: #93c5fd;
+  margin-bottom: 0.75rem;
+}
 
 /* ================= Header del Formulario ================= */
-/* Material Design 3 - Top App Bar */
 .form-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background-color: var(--md-sys-color-surface);
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
-  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8));
+  border-radius: 1.5rem;
+  margin-bottom: 1.9rem;
   box-shadow: var(--md-sys-elevation-2);
+  border: 1px solid rgba(148, 163, 184, 0.4);
 }
 
 .header-logo {
-  height: 48px;
+  height: 44px;
   width: auto;
-  max-width: 180px;
+  max-width: 190px;
   display: inline-block;
   transition: var(--transition);
 }
 
 .header-logo:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-/* Material Design 3 - Badge */
 .autosave-status {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.03333em;
-  color: var(--success);
-  padding: 0.25rem 0.625rem;
-  background-color: color-mix(in srgb, var(--success) 12%, transparent);
-  border-radius: var(--md-sys-shape-corner-small);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  color: #bbf7d0;
+  padding: 0.25rem 0.8rem;
+  background-color: rgba(22, 163, 74, 0.18);
+  border-radius: 999px;
+  text-transform: uppercase;
 }
 
-/* Material Design 3 - Linear Progress Indicator */
+/* ================= Progress bar ================= */
 .progress-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.85rem;
+  color: #9ca3af;
   font-weight: 500;
-  letter-spacing: 0.00714em;
 }
 
-#progress-percentage { 
-  font-weight: 500; 
-  color: var(--md-sys-color-primary); 
+#progress-percentage {
+  font-weight: 600;
+  color: #bfdbfe;
 }
 
 .progress-bar-container {
   width: 100%;
-  background-color: var(--md-sys-color-surface-container-highest);
-  border-radius: var(--md-sys-shape-corner-large);
-  height: 4px;
-  margin-bottom: 1.5rem;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background-color: var(--md-sys-color-primary);
-  transition: width 0.3s var(--md-sys-motion-easing-standard);
-  border-radius: var(--md-sys-shape-corner-large);
-}
-
-/* ================= Layout (mobile-first) ================= */
-.form-layout-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--form-gap);
-}
-.stepper-column { grid-column: span 1; }
-.content-column { grid-column: span 1; }
-
-/* ================= Ocultar número inicial en headings ================= */
-/* Si los títulos incluyen un .step-icon (número), ocultarlo visualmente */
-[data-page] h3 .step-icon { display: none; }
-
-/* Material Design 3 - Navigation Rail (Stepper) */
-#stepper-nav ul { 
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-}
-
-#stepper-nav .step {
-  display: flex; 
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border-radius: var(--md-sys-shape-corner-large);
-  margin-bottom: 0.5rem;
-  transition: var(--transition);
-  cursor: pointer;
-  position: relative;
-  background-color: transparent;
-}
-
-#stepper-nav .step:hover {
-  background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
-}
-
-#stepper-nav .step-number {
-  display: inline-flex; 
-  align-items: center; 
-  justify-content: center;
-  width: 2rem; 
-  height: 2rem; 
-  border-radius: var(--md-sys-shape-corner-large);
-  background-color: var(--md-sys-color-surface-container-highest);
-  color: var(--md-sys-color-on-surface-variant);
-  font-weight: 500;
-  margin-right: 0.75rem;
-  transition: var(--transition);
-  font-size: 0.875rem;
-}
-
-#stepper-nav .step-label { 
-  font-weight: 500; 
-  color: var(--md-sys-color-on-surface-variant); 
-  font-size: 0.875rem;
-  letter-spacing: 0.00714em;
-}
-
-/* Material Design 3 - Active State */
-#stepper-nav .step.active { 
-  background-color: var(--md-sys-color-secondary-container);
-}
-
-#stepper-nav .step.active .step-number { 
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-}
-
-#stepper-nav .step.active .step-label {
-  color: var(--md-sys-color-on-secondary-container);
-  font-weight: 500;
-}
-
-/* Material Design 3 - Error State */
-#stepper-nav .step.error { 
-  background-color: var(--md-sys-color-error-container);
-}
-
-#stepper-nav .step.error .step-number { 
-  background-color: var(--md-sys-color-error); 
-  color:#fff; 
-}
-#stepper-nav .step.error .step-label { 
-  color:var(--danger) !important; 
-  font-weight:700; 
-}
-
-#stepper-nav .step.completed { 
-  background-color: rgba(16,185,129,.08); 
-  border-color: rgba(16,185,129,.2); 
-}
-#stepper-nav .step.completed::before {
-  background: var(--success);
-}
-#stepper-nav .step.completed .step-number { 
-  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
-  color:#fff;
-  box-shadow: var(--shadow-sm);
-}
-#stepper-nav .step.completed .step-label { 
-  color:var(--success); 
-  font-weight:600; 
-}
-
-/* Material Design 3 - Input Controls */
-button, input, select { 
-  font-family: inherit; 
-  font-size: 100%; 
-  line-height: inherit; 
-  color: inherit; 
-  margin: 0; 
-  padding: 0; 
-  transition: var(--transition); 
-}
-
-/* Material Design 3 - Filled Button */
-button { 
-  cursor: pointer; 
-  padding: 0.625rem 1.5rem; 
-  font-weight: 500; 
-  letter-spacing: 0.00714em;
-  color: var(--md-sys-color-on-primary);
-  background-color: var(--md-sys-color-primary);
-  box-shadow: var(--md-sys-elevation-1);
-  border: none;
-  border-radius: var(--md-sys-shape-corner-large);
-  min-height: 40px;
-}
-
-button:hover { 
-  box-shadow: var(--md-sys-elevation-2);
-  background-color: color-mix(in srgb, var(--md-sys-color-primary) 92%, black);
-}
-
-button:active {
-  box-shadow: var(--md-sys-elevation-1);
-}
-
-/* Material Design 3 - Outlined Text Fields */
-input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="password"], select {
-  width: 100%; 
-  display: block; 
-  padding: 1rem; 
-  background-color: transparent;
-  border: 1px solid var(--md-sys-color-outline);
-  border-radius: var(--md-sys-shape-corner-extra-small);
-  margin-top: 0.25rem;
-  font-size: 1rem;
-  letter-spacing: 0.03125em;
-  color: var(--md-sys-color-on-surface);
-}
-
-.input-small { 
-  font-size: 0.875rem; 
-  padding: 0.75rem; 
-}
-
-input:hover, select:hover {
-  border-color: var(--md-sys-color-on-surface);
-}
-
-input:focus, select:focus { 
-  border-color: var(--md-sys-color-primary);
-  border-width: 2px;
-  outline: 0;
-  padding: calc(1rem - 1px);
-}
-
-input::placeholder {
-  color: var(--md-sys-color-on-surface-variant);
-  opacity: 1;
-}
-
-/* ================= Layout del Formulario ================= */
-#form-navigation { display:flex; justify-content:space-between; align-items:center; padding-top:1.5rem; border-top:1px solid var(--border); margin-top:1.5rem; }
-#page-indicator { font-size:.875rem; color:var(--muted); font-weight:500; }
-
-/* Material Design 3 - Surface Container */
-[data-page] {
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-extra-large);
-  padding: 2rem 1.5rem; 
-  background-color: var(--md-sys-color-surface-container-low);
-  box-shadow: var(--md-sys-elevation-1);
-}
-
-[data-page] h3 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  color: var(--md-sys-color-on-surface);
-  margin-bottom: 1.5rem;
-  margin-top: 0;
-}
-
-/* Material Design 3 - Outlined Card */
-.form-section { 
-  padding: 1.5rem; 
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-medium);
-  background-color: var(--md-sys-color-surface-container-lowest);
-  transition: var(--transition);
-  margin-bottom: 1.5rem;
-}
-
-.form-section:hover {
-  box-shadow: var(--md-sys-elevation-1);
-}
-
-.form-section h4 {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.009375em;
-  color: var(--md-sys-color-on-surface);
-  margin-bottom: 1rem;
-  margin-top: 0;
-}
-
-/* Material Design 3 - Label Typography */
-label {
-  display: block;
-  font-weight: 500;
-  font-size: 0.75rem;
-  letter-spacing: 0.03333em;
-  color: var(--md-sys-color-on-surface-variant);
-  margin-bottom: 0.25rem;
-}
-
-label .text-red-500 {
-  color: var(--md-sys-color-error);
-  font-weight: 500;
-}
-
-/* Grid helpers */
-.form-grid { display:grid; grid-template-columns:repeat(1, minmax(0,1fr)); gap:1rem; }
-
-/* ================= Responsive columns (md+) ================= */
-@media (min-width: 768px) {
-  .form-grid[class*="md:grid-cols-2"], .grid[class*="md:grid-cols-2"] { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .form-grid[class*="md:grid-cols-3"], .grid[class*="md:grid-cols-3"] { grid-template-columns: repeat(3, minmax(0,1fr)); }
-  .form-grid[class*="md:grid-cols-4"], .grid[class*="md:grid-cols-4"] { grid-template-columns: repeat(4, minmax(0,1fr)); }
-
-  /* Layout con stepper a la izquierda */
-  .form-layout-grid { display:grid; grid-template-columns: var(--stepper-width) 1fr; gap:2rem; align-items:start; }
-  .stepper-column { grid-column:1 / 2; align-self:start; }
-  .content-column { grid-column:2 / 3; }
-
-  #stepper-nav { position: sticky; top: 1.5rem; width:100%; z-index:5; }
-  #recursos-container .form-grid { gap: .5rem; }
-  #recursos-container label { font-size:.825rem; }
-  #recursos-container input { padding:.45rem .6rem; font-size:.92rem; }
-}
-
-/* Small screens */
-@media (max-width: 767px) {
-  .form-layout-grid { grid-template-columns: 1fr; }
-  #stepper-nav { position: static; width:auto; }
-}
-
-/* ================= Recursos Humanos specific styles ================= */
-#recursos-container .rec-grid { gap: 0.5rem; }
-#recursos-container .rec-item { display:flex; flex-direction:column; justify-content:flex-start; }
-#recursos-container .rec-item label { margin:0 0 .25rem 0; line-height:1.1; font-size:.85rem; align-self:flex-start; }
-#recursos-container .rec-item input { margin:0; padding:.45rem .6rem; font-size:.92rem; }
-
-/* ================= Estados de validación ================= */
-.input-valid{ border-color:#22c55e !important; box-shadow: 0 0 0 2px #bbf7d0 !important; }
-.input-invalid{ 
-    border-color:#ef4444 !important; 
-    box-shadow: 0 0 0 2px #fecaca !important; 
-    position: relative;
-}
-.input-default{ border-color:var(--border) !important; }
-.input-readonly{ background-color: #e5e7eb !important; cursor: not-allowed !important; border-color: #d1d5db !important; }
-
-/* ================= Tooltip de error ================= */
-.error-tooltip {
-    display: none;
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ef4444;
-    color: white;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.375rem;
-    font-size: 0.875rem;
-    white-space: nowrap;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    pointer-events: none;
-}
-
-/* Flecha del tooltip */
-.error-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 6px;
-    border-style: solid;
-    border-color: #ef4444 transparent transparent transparent;
-}
-
-/* Wrapper para posicionar el tooltip */
-.input-wrapper {
-    position: relative;
-    display: block;
-}
-
-/* ================= Otros estilos (accionarial/consejo/filial/productos/modals/admin) ================= */
-.accionarial-grupo, .consejo-grupo, .filial-grupo, .producto-grupo { transition: background-color .18s ease; }
-.accionarial-grupo:hover, .consejo-grupo:hover, .filial-grupo:hover, .producto-grupo:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-
-/* Modal */
-/* Modal: controlar visibilidad desde clases (JS usa modal.classList.add('flex') para mostrar) */
-.modal-overlay {
-  display: none; /* oculto por defecto */
-  position: fixed;
-  inset: 0;
-  background-color: rgba(17,24,39, 0.8);
-  z-index: 50;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-/* Cuando JS agrega 'flex' mostramos el modal */
-.modal-overlay.flex {
-  display: flex;
-}
-
-/* Modal caja */
-.modal-box {
-  background-color: var(--card);
-  border-radius: 0.75rem;
-  padding: 1rem;
-  width: 100%;
-  max-width: 28rem;
-  box-shadow: 0 20px 40px rgba(2,6,23,0.2);
-  border: 1px solid var(--border);
-}
-
-/* Asegurarnos de que .hidden oculte todo (es la forma que usa el HTML) */
-.hidden {
-  display: none !important;
-}
-/* Admin table tweaks */
-table { border-collapse:collapse; width:100%; }
-th, td { padding:.75rem 1rem; text-align:left; border-top:1px solid var(--border); }
-thead th { background-color:#eef2ff; color:var(--accent); font-weight:700; font-size:.75rem; text-transform:uppercase; }
-tbody tr:hover { background-color:#fbfdff; }
-
-/* Utilities */
-.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-.select-all{ user-select: all; }
-/* ==========================
-   Error box estilo (recuadro rojo/pálido)
-   ========================== */
-.page-error-message {
-  display: none; /* oculto por defecto; JS lo mostrará */
-  width: 100%;
-  box-sizing: border-box;
-  background: #fff5f5;                    /* rosa muy claro */
-  border: 1px solid #fecaca;              /* borde rojo claro */
-  color: #b91c1c;                         /* texto rojo oscuro */
-  padding: 0.65rem 1rem;
-  border-radius: 0.5rem;
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-/* variante para mensajes con lista: texto normal dentro del recuadro */
-.page-error-message .msg {
-  color: #b91c1c;
-  display: inline-block;
-  vertical-align: middle;
-  font-weight: 600;
-}
-
-/* icono opcional al inicio del mensaje (círculo, rojo) */
-.page-error-message .err-icon {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:1.6rem;
-  height:1.6rem;
-  border-radius:50%;
-  background:#7f1d1d;      /* rojo oscuro */
-  color:#fff;
-  font-size:0.95rem;
-  margin-right:0.6rem;
-  vertical-align:middle;
-}
-
-/* Forzar visibilidad si la clase se quita .hidden (compatibilidad) */
-.page-error-message.visible {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* pequeño ajuste responsive: reducir padding en móvil */
-@media (max-width: 640px){
-  .page-error-message { padding: 0.5rem 0.75rem; font-size: .95rem; }
-}
-/* Estilo para el display del total de personas por año (negrita y azul) */
-.rec-total-personas {
-  font-weight: 800;
-  color: #1e3a8a; /* azul oscuro (tailwind indigo-900 / ajustable) */
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  font-size: 1rem;
-}
-
-/* Hacer que el label "Total Personas" destaque y tenga separación */
-.rec-total-personas::before {
-  content: '';
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-right: 0.4rem;
-}
-/* ===== Recursos Humanos: total a la derecha y estilo ===== */
-.rec-total-personas {
-  font-weight: 800;
-  color: #1e40af;       /* azul oscuro */
-  font-size: 1rem;
-  margin-left: auto;    /* empuja a la derecha si el contenedor es flex */
-  text-align: right;
-}
-
-/* El contenedor del display de total debe ser flex; si usas el inline style ya lo es.
-   Aseguramos que el contenedor permita llevar el total a la derecha: */
-.rec-total-container {
-  display: flex;
-  width: 100%;
-  justify-content: flex-end; /* alternativa a margin-left:auto */
-  align-items: center;
-  margin-top: 0.5rem;
-}
-
-/* Validación visual ya existente, por si falta: */
-.input-invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 2px rgba(239,68,68,.08) !important; }
-.input-valid   { border-color: #16a34a !important; box-shadow: 0 0 0 2px rgba(34,197,94,.06) !important; }
+  background-color: rgba(15, 23, 42
