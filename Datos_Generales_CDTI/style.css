@@ -688,6 +688,60 @@ label .text-red-500 {
   border-radius: 0.75rem;
 }
 
+/* ================= Agrupación visual Inmovilizado Material ================= */
+.recursos-id-table tr.group-inmovilizado-start td:first-child {
+  border-top: 2px solid var(--muted);
+  border-left: 2px solid var(--muted);
+  border-bottom: 1px solid var(--border);
+  border-top-left-radius: 0.75rem;
+}
+
+.recursos-id-table tr.group-inmovilizado-start td:last-child {
+  border-top: 2px solid var(--muted);
+  border-right: 2px solid var(--muted);
+  border-bottom: 1px solid var(--border);
+  border-top-right-radius: 0.75rem;
+}
+
+.recursos-id-table tr.group-inmovilizado-start td:not(:first-child):not(:last-child) {
+  border-top: 2px solid var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.recursos-id-table tr.group-inmovilizado td:first-child {
+  border-left: 2px solid var(--muted);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.recursos-id-table tr.group-inmovilizado td:last-child {
+  border-right: 2px solid var(--muted);
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.recursos-id-table tr.group-inmovilizado td:not(:first-child):not(:last-child) {
+  border: 1px solid var(--border);
+}
+
+.recursos-id-table tr.group-inmovilizado-end td:first-child {
+  border-left: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  border-bottom-left-radius: 0.75rem;
+}
+
+.recursos-id-table tr.group-inmovilizado-end td:last-child {
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  border-bottom-right-radius: 0.75rem;
+}
+
+.recursos-id-table tr.group-inmovilizado-end td:not(:first-child):not(:last-child) {
+  border-bottom: 2px solid var(--muted);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
 /* ================= Estados de validación ================= */
 .input-valid{ border-color:#22c55e !important; box-shadow: 0 0 0 2px #bbf7d0 !important; }
 .input-invalid{ 
