@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Reglas para la colección de usuarios
+    // Solo el administrador puede crear, leer, actualizar y eliminar usuarios
+    match /usuarios/{userId} {
+      // Permitir lectura y escritura completa para todos (temporal para desarrollo)
+      // En producción, deberías implementar autenticación Firebase Auth
+      allow read, write: if true;
+    }
+    
+    // Reglas para la colección de clientes
+    match /clientes/{clientId} {
+      // Permitir lectura y escritura completa para todos (temporal para desarrollo)
+      // En producción, deberías implementar autenticación Firebase Auth
+      allow read, write: if true;
+    }
+    
+    // IMPORTANTE: Estas reglas permiten acceso completo sin autenticación
+    // Para producción, deberías implementar autenticación Firebase Auth y usar:
+    // allow read, write: if request.auth != null;
+  }
+}
