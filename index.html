@@ -32,7 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
-    .container-narrow { max-width: 1100px; }
+    .container-narrow { max-width: 1400px; }
     .carousel-slide { min-height: 500px; }
     @media (min-width: 768px) { .carousel-slide { height: 650px; } }
     #submitBtn:disabled { opacity: 0.7; cursor: not-allowed; }
@@ -66,9 +66,32 @@
       <section id="hero-carousel" class="relative bg-brand-900 text-white overflow-hidden">
         <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out">
           
+          <!-- Slide Nuevo: Convocatoria 2025 -->
+          <div class="carousel-slide relative w-full flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1470&auto=format&fit=crop" alt="Convocatoria 2025 Grupos Operativos" class="absolute inset-0 w-full h-full object-cover -z-10" />
+            <div class="absolute inset-0 bg-brand-900/70"></div>
+            <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
+              <span class="inline-block py-1 px-3 rounded-full bg-brand-500 text-white text-xs font-semibold tracking-wider mb-4">NUEVA CONVOCATORIA</span>
+              <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Nueva convocatoria en Andalucía<br />para impulsar la innovación agraria
+              </h1>
+              <p class="text-lg md:text-xl text-brand-200 max-w-3xl mx-auto mb-10">
+                Grupos Operativos con financiación al 100% para proyectos entre 75.000 y 500.000 €. Presenta tu propuesta antes del 6 de febrero de 2026.
+              </p>
+              <div class="flex gap-4 justify-center">
+                <a href="noticias/noticia-4.html" class="rounded-full bg-white text-brand-800 px-6 py-3 font-medium hover:bg-slate-100 transition shadow">
+                  Leer Noticia
+                </a>
+                <a href="#contacto" class="rounded-full bg-transparent border border-white/50 text-white px-6 py-3 font-medium hover:bg-white/10 transition">
+                  Solicitar Asesoramiento
+                </a>
+              </div>
+            </div>
+          </div>
+
           <!-- Slide 1: Innovación -->
           <div class="carousel-slide relative w-full flex-shrink-0">
-            <img src="https://placehold.co/1400x700/0c3580/c7dbff?text=Innovación" alt="Innovación y Competitividad Empresarial" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/0c3580/c7dbff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop" alt="Innovación y Competitividad Empresarial" class="absolute inset-0 w-full h-full object-cover -z-10" />
             <div class="absolute inset-0 bg-brand-900/70"></div>
             <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
               <h1 class="text-4xl md:text-6xl font-bold mb-6">
@@ -90,7 +113,7 @@
           
           <!-- Slide 2: Financiación -->
           <div class="carousel-slide relative w-full flex-shrink-0">
-            <img src="https://placehold.co/1400x700/134ab4/e5efff?text=Financiación" alt="Financiación I+D+i" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/134ab4/e5efff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1626&auto=format&fit=crop" alt="Financiación I+D+i" class="absolute inset-0 w-full h-full object-cover -z-10" />
             <div class="absolute inset-0 bg-brand-900/70"></div>
             <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
               <h1 class="text-4xl md:text-6xl font-bold mb-6">
@@ -113,7 +136,7 @@
           
           <!-- Slide 3: Deducciones Fiscales -->
           <div class="carousel-slide relative w-full flex-shrink-0">
-            <img src="https://placehold.co/1400x700/0a2a66/c7dbff?text=Ahorro+Fiscal" alt="Deducciones Fiscales" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/0a2a66/c7dbff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1426&auto=format&fit=crop" alt="Deducciones Fiscales" class="absolute inset-0 w-full h-full object-cover -z-10" />
             <div class="absolute inset-0 bg-brand-900/70"></div>
             <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
               <h1 class="text-4xl md:text-6xl font-bold mb-6">
@@ -136,7 +159,7 @@
           
           <!-- Slide 4: Patentes -->
           <div class="carousel-slide relative w-full flex-shrink-0">
-            <img src="https://placehold.co/1400x700/1e5fe6/f2f7ff?text=Patentes+y+Marcas" alt="Patentes y Propiedad Industrial" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/1e5fe6/f2f7ff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=1512&auto=format&fit=crop" alt="Patentes y Propiedad Industrial" class="absolute inset-0 w-full h-full object-cover -z-10" />
             <div class="absolute inset-0 bg-brand-900/70"></div>
             <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
               <h1 class="text-4xl md:text-6xl font-bold mb-6">
@@ -159,7 +182,7 @@
           
           <!-- Slide 5: Consultoría -->
           <div class="carousel-slide relative w-full flex-shrink-0">
-            <img src="https://placehold.co/1400x700/0c3580/9bbcff?text=Estrategia" alt="Consultoría Estratégica" class="absolute inset-0 w-full h-full object-cover -z-10" onerror="this.src='https://placehold.co/1400x700/0c3580/9bbcff?text=Error+Cargando+Imagen'; this.onerror=null;" />
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1470&auto=format&fit=crop" alt="Consultoría Estratégica" class="absolute inset-0 w-full h-full object-cover -z-10" />
             <div class="absolute inset-0 bg-brand-900/70"></div>
             <div class="relative z-10 mx-auto container-narrow px-4 h-full flex flex-col justify-center text-center items-center">
               <h1 class="text-4xl md:text-6xl font-bold mb-6">
@@ -302,10 +325,23 @@
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
             
+            <!-- Noticia 4 (Nueva) -->
+            <a href="noticias/noticia-4.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+              <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1470&auto=format&fit=crop" alt="Convocatoria 2025" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+              <div class="absolute inset-0 bg-brand-900/60 group-hover:bg-brand-900/50 transition-colors"></div>
+              <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
+                <span class="text-sm font-medium uppercase tracking-wider opacity-90 bg-brand-600 px-2 py-1 rounded mb-2">NUEVO</span>
+                <span class="text-xs font-medium uppercase tracking-wider opacity-80 mb-1">4 Dic, 2025 · Ayudas</span>
+                <h3 class="text-xl font-semibold mt-1">
+                  Nueva convocatoria andaluza para Grupos Operativos
+                </h3>
+              </div>
+            </a>
+
             <!-- Noticia 1 -->
-            <!-- CAMBIO: Ruta absoluta -->
-            <a href="/noticias/noticia-1.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
-              <img src="https://placehold.co/600x400/134ab4/134ab4" alt="Imagen de noticia" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+            <a href="noticias/noticia-1.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1470&auto=format&fit=crop" alt="Convocatoria CDTI" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+              <div class="absolute inset-0 bg-brand-900/60 group-hover:bg-brand-900/50 transition-colors"></div>
               <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
                 <span class="text-sm font-medium uppercase tracking-wider opacity-80">15 Oct, 2025 · Financiación</span>
                 <h3 class="text-xl font-semibold mt-1">
@@ -315,25 +351,13 @@
             </a>
 
             <!-- Noticia 2 -->
-            <!-- CAMBIO: Ruta absoluta -->
-            <a href="/noticias/noticia-2.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
-              <img src="https://placehold.co/600x400/134ab4/134ab4" alt="Imagen de noticia" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
+            <a href="noticias/noticia-2.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1470&auto=format&fit=crop" alt="Deducciones Fiscales" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+              <div class="absolute inset-0 bg-brand-900/60 group-hover:bg-brand-900/50 transition-colors"></div>
               <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
                 <span class="text-sm font-medium uppercase tracking-wider opacity-80">10 Oct, 2025 · Fiscalidad</span>
                 <h3 class="text-xl font-semibold mt-1">
                   Novedades en Deducciones Fiscales por Innovación
-                </h3>
-              </div>
-            </a>
-
-            <!-- Noticia 3 -->
-            <!-- CAMBIO: Ruta absoluta -->
-            <a href="/noticias/noticia-3.html" class="group relative block rounded-lg shadow-lg overflow-hidden aspect-[3/2] hover:shadow-xl hover:-translate-y-1 transition-all">
-              <img src="https://placehold.co/600x400/134ab4/134ab4" alt="Imagen de noticia" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/134ab4/134ab4'; this.onerror=null;">
-              <div class="absolute inset-0 p-6 flex flex-col justify-center items-center text-white text-center">
-                <span class="text-sm font-medium uppercase tracking-wider opacity-80">05 Oct, 2025 · Patentes</span>
-                <h3 class="text-xl font-semibold mt-1">
-                  La importancia de proteger la propiedad industrial
                 </h3>
               </div>
             </a>
@@ -374,6 +398,9 @@
               <form id="contactForm" class="bg-white p-8 rounded-lg shadow-xl border border-slate-200 grid gap-5">
                 
                 <div id="form-status" class="hidden p-4 rounded-md text-sm" role="alert"></div>
+
+                <!-- Honeypot Anti-Spam (Campo oculto que los bots suelen rellenar) -->
+                <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
 
                 <div>
                   <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Nombre</label>
@@ -530,6 +557,17 @@
         contactForm.addEventListener('submit', async function(e) {
           e.preventDefault();
           clearErrors();
+
+          // 1. Protección Anti-Spam (Honeypot)
+          // Si el campo oculto "_gotcha" tiene valor, es un bot. Simulamos éxito y salimos.
+          const honeypot = contactForm.querySelector('[name="_gotcha"]');
+          if (honeypot && honeypot.value) {
+            console.log('Bot detectado por honeypot.');
+            showStatus('¡Mensaje enviado con éxito! Gracias por contactar.', false);
+            contactForm.reset();
+            return;
+          }
+
           let isValid = true;
 
           const nombreValue = nombre.value.trim();
@@ -563,9 +601,8 @@
           }
           
           if (FORMSPREE_ENDPOINT === "TU_URL_DE_FORMSPREE_AQUI" || FORMSPREE_ENDPOINT === "https://formspree.io/f/xyzbqvvv") {
-              showStatus('Error: El formulario no está configurado. (Falta URL de Formspree)');
-              console.error("Error: FORMSPREE_ENDPOINT no está configurado en el script.");
-              isValid = false;
+              showStatus('⚠️ FALTA CONFIGURACIÓN: Debes poner tu URL de Formspree en el código (línea ~500) para que funcione.');
+              return; // Salimos aquí para que se vea este mensaje específico
           }
 
           if (!isValid) {
