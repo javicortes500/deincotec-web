@@ -287,41 +287,67 @@
           </div>
           
           <!-- Grid de Servicios (Reordenado) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
             
             <!-- 1. Consultoría y Estrategia -->
-            <a href="/servicios/consultoria.html" id="servicio-consultoria" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
-              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <a href="/servicios/consultoria.html" id="servicio-consultoria" class="group relative flex flex-col bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden hover:-translate-y-1">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              
+              <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-100 group-hover:text-brand-700 transition-colors duration-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Consultoría y Estrategia</h3>
-              <p class="text-slate-600">Definición de planes estratégicos de I+D+i y hojas de ruta tecnológicas.</p>
+              
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Consultoría y Estrategia</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed flex-grow">Definición de planes estratégicos de I+D+i y hojas de ruta tecnológicas.</p>
+              
+              <div class="flex items-center text-brand-600 font-semibold text-sm mt-auto group-hover:translate-x-1 transition-transform">
+                Saber más 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+              </div>
             </a>
             
             <!-- 2. Financiación I+D+i -->
-            <a href="/servicios/financiacion.html" id="servicio-financiacion" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
-              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            <a href="/servicios/financiacion.html" id="servicio-financiacion" class="group relative flex flex-col bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden hover:-translate-y-1">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              
+              <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-100 group-hover:text-brand-700 transition-colors duration-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
               </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Financiación I+D+i</h3>
-              <p class="text-slate-600">Gestión de ayudas públicas (CDTI, ENISA, MINECO) y programas europeos.</p>
+              
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Financiación I+D+i</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed flex-grow">Gestión de ayudas públicas (CDTI, ENISA, MINECO) y programas europeos.</p>
+              
+              <div class="flex items-center text-brand-600 font-semibold text-sm mt-auto group-hover:translate-x-1 transition-transform">
+                Saber más 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+              </div>
             </a>
       
             <!-- 3. Inversiones Productivas -->
-            <a href="/servicios/inversiones.html" id="servicio-inversiones" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
-              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <a href="/servicios/inversiones.html" id="servicio-inversiones" class="group relative flex flex-col bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden hover:-translate-y-1">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              
+              <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-100 group-hover:text-brand-700 transition-colors duration-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
               </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Inversiones Productivas</h3>
-              <p class="text-slate-600">Asesoramiento en proyectos de inversión empresarial y optimización de activos.</p>
+              
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Inversiones Productivas</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed flex-grow">Asesoramiento en proyectos de inversión empresarial y optimización de activos.</p>
+              
+              <div class="flex items-center text-brand-600 font-semibold text-sm mt-auto group-hover:translate-x-1 transition-transform">
+                Saber más 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+              </div>
             </a>
       
             <!-- 4. Deducciones Fiscales -->
-            <a href="/servicios/deducciones.html" id="servicio-deducciones" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
-              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <a href="/servicios/deducciones.html" id="servicio-deducciones" class="group relative flex flex-col bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden hover:-translate-y-1">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              
+              <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-100 group-hover:text-brand-700 transition-colors duration-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <ellipse cx="12" cy="6" rx="7" ry="2.5"></ellipse>
                   <path d="M5 6v4c0 1.38 3.134 2.5 7 2.5s7-1.12 7-2.5V6"></path>
                   <ellipse cx="12" cy="12" rx="7" ry="2.5"></ellipse>
@@ -329,23 +355,39 @@
                   <ellipse cx="12" cy="18" rx="7" ry="2.5"></ellipse>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Deducciones Fiscales</h3>
-              <p class="text-slate-600">Maximización del ahorro fiscal por I+D+i (Informes Motivados) y Patent Box.</p>
+              
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Deducciones Fiscales</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed flex-grow">Maximización del ahorro fiscal por I+D+i (Informes Motivados) y Patent Box.</p>
+              
+              <div class="flex items-center text-brand-600 font-semibold text-sm mt-auto group-hover:translate-x-1 transition-transform">
+                Saber más 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+              </div>
             </a>
             
             <!-- 5. Patentes y Prop. Industrial -->
-            <a href="/servicios/patentes.html" id="servicio-patentes" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
-              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <a href="/servicios/patentes.html" id="servicio-patentes" class="group relative flex flex-col bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden hover:-translate-y-1">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              
+              <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-100 group-hover:text-brand-700 transition-colors duration-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Patentes y Prop. Industrial</h3>
-              <p class="text-slate-600">Protección de activos intangibles: patentes, marcas y propiedad intelectual.</p>
+              
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">Patentes y Prop. Industrial</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed flex-grow">Protección de activos intangibles: patentes, marcas y propiedad intelectual.</p>
+              
+              <div class="flex items-center text-brand-600 font-semibold text-sm mt-auto group-hover:translate-x-1 transition-transform">
+                Saber más 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+              </div>
             </a>
       
             <!-- 6. Eficiencia Energética -->
-            <a href="/servicios/eficiencia.html" id="servicio-eficiencia" class="block bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:bg-white hover:shadow-lg hover:border-brand-200 hover:scale-[1.02] transform transition-all duration-300">
-              <div class="w-12 h-12 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center mb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a href="/servicios/eficiencia.html" id="servicio-eficiencia" class="group relative flex flex-col bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden hover:-translate-y-1">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-300 to-brand-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+              
+              <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:bg-brand-100 group-hover:text-brand-700 transition-colors duration-300 shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12,2C12,2,4,9,4,13c0,4.4,3.6,8,8,8s8-3.6,8-8C20,9,12,2,12,2z"></path>
                   <path d="M12,21L12,7"></path>
                   <path d="M12,12L9,15"></path>
@@ -356,8 +398,14 @@
                   <path d="M12,7L15,10"></path>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-slate-900 mb-2">Eficiencia Energética</h3>
-              <p class="text-slate-600">Auditorías energéticas, optimización de consumos y gestión de ayudas.</p>
+              
+              <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-700 transition-colors">Eficiencia Energética</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed flex-grow">Auditorías energéticas, optimización de consumos y gestión de ayudas.</p>
+              
+              <div class="flex items-center text-brand-600 font-semibold text-sm mt-auto group-hover:translate-x-1 transition-transform">
+                Saber más 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+              </div>
             </a>
       
           </div>
