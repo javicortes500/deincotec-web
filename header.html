@@ -33,6 +33,23 @@
         </div>
       </div>
       <!-- Fin Desplegable -->
+      
+      <!-- Desplegable Sectores (Desktop) -->
+      <div class="relative group">
+        <a href="index.html#sectores" class="flex items-center gap-1 text-slate-700 hover:text-brand-700 transition nav-link-header" data-page="sectores">
+          Sectores
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+        </a>
+        <div class="absolute left-0 pt-2 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+          <div class="bg-white rounded-lg shadow-xl w-60 border border-slate-200 py-2">
+            <a href="sectores/agroalimentario.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header">Agroalimentario</a>
+            <a href="sectores/industria.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header">Industria y Energía</a>
+            <a href="sectores/agua.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header">Agua y Medioambiente</a>
+            <a href="sectores/construccion.html" class="block px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 nav-link-header">Construcción</a>
+          </div>
+        </div>
+      </div>
+      
       <!-- data-page="noticias" ayudará a marcarlo como activo -->
       <a href="index.html#noticias" class="text-slate-700 hover:text-brand-700 transition nav-link-header" data-page="noticias">Noticias</a>
       <a href="index.html#contacto" class="inline-flex items-center gap-2 rounded-full bg-brand-700 px-4 py-2 hover:bg-brand-800 transition shadow-sm nav-link-header" data-page="contacto" style="color: #ffffff !important;">
@@ -67,6 +84,21 @@
         </div>
       </div>
       <!-- Fin Desplegable Móvil -->
+      
+      <!-- Desplegable Sectores (Móvil) -->
+      <div>
+        <button id="mobileSectoresBtn" class="py-2 w-full flex justify-between items-center hover:text-brand-700">
+          Sectores
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 pointer-events-none" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+        </button>
+        <div id="mobileSectoresMenu" class="hidden pl-4 pt-2 grid gap-2">
+          <a href="sectores/agroalimentario.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Agroalimentario</a>
+          <a href="sectores/industria.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Industria y Energía</a>
+          <a href="sectores/agua.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Agua y Medioambiente</a>
+          <a href="sectores/construccion.html" class="block py-1 text-sm text-slate-600 hover:text-brand-700 mobile-link">Construcción</a>
+        </div>
+      </div>
+      
       <a href="index.html#noticias" class="py-2 hover:text-brand-700 mobile-link">Noticias</a>
       <a href="index.html#contacto" class="py-2 hover:text-brand-700 mobile-link">Contacto</a>
     </div>

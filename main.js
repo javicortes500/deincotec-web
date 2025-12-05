@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileServicesBtn = document.getElementById('mobileServicesBtn');
     const mobileServicesMenu = document.getElementById('mobileServicesMenu');
+    const mobileSectoresBtn = document.getElementById('mobileSectoresBtn');
+    const mobileSectoresMenu = document.getElementById('mobileSectoresMenu');
     const mobileLinks = document.querySelectorAll('.mobile-link');
 
     if (menuBtn && mobileMenu) {
@@ -86,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.classList.toggle('hidden');
         if (mobileMenu.classList.contains('hidden')) {
           if (mobileServicesMenu) mobileServicesMenu.classList.add('hidden');
+          if (mobileSectoresMenu) mobileSectoresMenu.classList.add('hidden');
         }
       });
     }
@@ -97,11 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    if (mobileSectoresBtn && mobileSectoresMenu) {
+      mobileSectoresBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileSectoresMenu.classList.toggle('hidden');
+      });
+    }
+
     if (mobileLinks.length > 0 && mobileMenu) {
       mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.add('hidden');
           if (mobileServicesMenu) mobileServicesMenu.classList.add('hidden');
+          if (mobileSectoresMenu) mobileSectoresMenu.classList.add('hidden');
         });
       });
     }
@@ -149,6 +160,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       // 3) Sección padre
       else if (linkPage === 'servicios' && currentPath.startsWith('servicios/')) {
+        link.classList.add('text-brand-700', 'font-semibold');
+        link.classList.remove('text-slate-700');
+      }
+      else if (linkPage === 'sectores' && currentPath.startsWith('sectores/')) {
         link.classList.add('text-brand-700', 'font-semibold');
         link.classList.remove('text-slate-700');
       }
