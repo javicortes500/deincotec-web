@@ -31,7 +31,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     html { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
-    .container-narrow { max-width: 1100px; }
+    .container-narrow { max-width: 1400px; }
   </style>
 </head>
 <body class="bg-white text-slate-800">
@@ -43,11 +43,14 @@
   <main>
     <section id="page-servicio-deducciones" class="bg-white">
       <!-- Encabezado de la página -->
-      <div class="bg-slate-50 border-b border-slate-200">
-        <div class="mx-auto container-narrow px-4 py-12">
-          <h1 class="text-4xl md:text-5xl font-bold text-slate-900">Deducciones Fiscales por I+D+i</h1>
-          <p class="mt-4 text-xl text-slate-600">Convierta su innovación en el máximo ahorro fiscal con total seguridad.</p>
+      <div class="relative bg-slate-900 border-b border-slate-200 overflow-hidden">
+        <!-- Imagen de fondo -->
+        <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1426&auto=format&fit=crop" alt="Deducciones Fiscales" class="absolute inset-0 w-full h-full object-cover opacity-20" />
+        <div class="relative z-10 mx-auto container-narrow px-4 py-16 md:py-24 text-center md:text-left">
+          <h1 class="text-4xl md:text-5xl font-bold text-white">Deducciones Fiscales por I+D+i</h1>
+          <p class="mt-4 text-xl text-brand-100 max-w-2xl">Convierta su innovación en el máximo ahorro fiscal con total seguridad.</p>
         </div>
+      </div>
       </div>
       
       <!-- Contenido de la página -->
@@ -88,9 +91,9 @@
           </div>
           
           <!-- Columna de Imagen -->
-          <div class="flex flex-col h-full">
-            <img src="https://lh3.googleusercontent.com/d/1xwZTx6lN4n-Gyi_ajGM-wSkdjnIg763f" alt="Deducciones Fiscales e Informes Motivados" class="rounded-lg shadow-xl w-full h-auto object-cover aspect-[4/3]" onerror="this.src='https://placehold.co/600x450/0a2a66/c7dbff?text=Error+Img'; this.onerror=null;">
-            <div class="mt-auto bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg mt-8">
+          <div class="flex flex-col h-full gap-6">
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1470&auto=format&fit=crop" alt="Deducciones Fiscales e Informes Motivados" class="rounded-lg shadow-xl w-full object-cover aspect-[4/3] md:aspect-auto md:flex-1" />
+            <div class="bg-brand-50 border border-brand-200 text-brand-800 p-6 rounded-lg">
               <h4 class="text-xl font-semibold mb-3">¿Sabe si su empresa puede deducirse?</h4>
               <p class="mb-4">Muchas empresas innovan sin saber que pueden obtener un gran retorno fiscal por ello. Analizamos su caso sin compromiso.</p>
               
