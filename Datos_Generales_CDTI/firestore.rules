@@ -3,23 +3,36 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Reglas para la colección de usuarios
-    // Solo el administrador puede crear, leer, actualizar y eliminar usuarios
+    // Función helper para identificar administradores
+    // Los administradores se loguean con Email/Password o Google (no anónimos)
+    function isAdmin() {
+      return request.auth != null && 
+             !('anonymous' in request.auth.token.firebase.identities) &&
+             (request.auth.token.firebase.sign_in_provider == 'password' || 
+              request.auth.token.firebase.sign_in_provider == 'google.com');
+    }
+
     match /usuarios/{userId} {
-      // Permitir lectura y escritura completa para todos (temporal para desarrollo)
-      // En producción, deberías implementar autenticación Firebase Auth
-      allow read, write: if true;
+      // LOGIN CLIENTE: Necesita leer su propio documento para verificar si existe y está activo.
+      // Al ser el userId la "contraseña", conocer el ID otorga acceso.
+      // Se permite GET (leer un documento específico) a cualquiera.
+      allow get: if true; 
+      
+      // ADMIN: Solo el admin puede listar todos los usuarios o modificarlos.
+      allow list, write: if isAdmin();
     }
     
-    // Reglas para la colección de clientes
     match /clientes/{clientId} {
-      // Permitir lectura y escritura completa para todos (temporal para desarrollo)
-      // En producción, deberías implementar autenticación Firebase Auth
-      allow read, write: if true;
+      // DATOS CLIENTE: Solo el usuario autenticado con ese clientId puede acceder a sus propios datos
+      // Esto asegura que un cliente no pueda acceder a datos de otro cliente
+      allow get, update: if request.auth != null && request.auth.uid == clientId;
+      allow create: if request.auth != null && request.auth.uid == clientId;
+      
+      // Nunca permitir delete directo de documentos por clientes (solo admin)
+      allow delete: if false;
+      
+      // ADMIN: Puede ver/listar/modificar todos los documentos de clientes
+      allow list, read, write, delete: if isAdmin();
     }
-    
-    // IMPORTANTE: Estas reglas permiten acceso completo sin autenticación
-    // Para producción, deberías implementar autenticación Firebase Auth y usar:
-    // allow read, write: if request.auth != null;
   }
 }

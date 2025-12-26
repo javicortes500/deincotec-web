@@ -1,54 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Recopilación de Datos</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex flex-col items-center p-4">
+
+<body class="md3-body">
 
     <!-- Pantalla de Login -->
     <div id="login-screen" class="login-container">
         <div class="login-card">
             <img src="logo-deincotec.png" alt="DEINCOTEC Logo" class="login-logo">
-            <h1>Formulario de Datos Generales CDTI</h1>
-            <p class="login-subtitle">Introduzca la contraseña de acceso proporcionada por su consultor:</p>
-            <div id="session-warning" style="display: none; padding: 0.75rem; margin-bottom: 1rem; background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.375rem;">
+            <h1>Formulario<br>Datos Generales Cliente</h1>
+            <p class="login-subtitle" style="text-align: justify;">Introduzca la contraseña de acceso proporcionada por
+                su consultor:</p>
+            <div id="session-warning"
+                style="display: none; padding: 0.75rem; margin-bottom: 1rem; background-color: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.375rem;">
                 <p style="margin: 0; font-size: 0.875rem; color: #92400e;">
-                    ⚠️ Ya tiene una sesión activa. Si desea usar otra contraseña, <a href="#" onclick="clearSessionAndReload(event)" style="color: #b45309; text-decoration: underline; font-weight: 600;">haga clic aquí</a> para limpiar la sesión.
+                    ⚠️ Ya tiene una sesión activa. Si desea usar otra contraseña, <a href="#"
+                        onclick="clearSessionAndReload(event)"
+                        style="color: #b45309; text-decoration: underline; font-weight: 600;">haga clic aquí</a> para
+                    limpiar la sesión.
                 </p>
             </div>
             <form id="login-form">
                 <div class="input-group">
                     <label for="client-password">Contraseña de Cliente:</label>
-                    <input type="password" id="client-password" name="clientPassword" 
-                           placeholder="Introduzca su contraseña" required>
+                    <input type="password" id="client-password" name="clientPassword"
+                        placeholder="Introduzca su contraseña" required>
                 </div>
                 <button type="submit" class="btn-primary">Acceder al Formulario</button>
                 <div id="login-error" class="error-message" style="display: none;"></div>
+                <p style="margin-top: 0.75rem; font-size: 0.75rem; color: #6b7280; text-align: center;">
+                    💡 Use la contraseña proporcionada por su consultor
+                </p>
             </form>
+            <div style="margin-top: 1.5rem; text-align: center; border-top: 1px solid #e5e7eb; padding-top: 1rem;">
+                <p style="margin: 0 0 0.5rem 0; font-size: 0.75rem; color: #9ca3af;">
+                    ¿Es usted administrador?
+                </p>
+                <button onclick="promptAdminKey()" 
+                    style="background: none; border: none; cursor: pointer; color: #6b7280; font-size: 0.875rem; padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; border-radius: 0.375rem;"
+                    onmouseover="this.style.backgroundColor='#f3f4f6'; this.style.color='#374151';"
+                    onmouseout="this.style.backgroundColor='transparent'; this.style.color='#6b7280';">
+                    <span class="material-symbols-outlined" style="font-size: 1.25rem;">admin_panel_settings</span>
+                    Acceso Administrador (Google / Email)
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Aplicación Principal (inicialmente oculta) -->
     <div id="app" class="w-full max-w-6xl" style="display: none;">
-        
+
         <div id="client-view" class="space-y-6">
 
             <header class="form-header">
                 <div class="flex items-center space-x-3">
                     <img src="logo-deincotec.png" alt="DEINCOTEC Logo" class="header-logo">
-                    <h1 id="main-title">Recopilación de Datos del Cliente</h1>
-                    <div id="client-info" class="client-badge" style="display: none;">
-                        Cliente: <span id="client-id"></span>
+                    <div class="flex flex-col" style="align-items: flex-start;">
+                        <h1 id="main-title" style="margin: 0; line-height: 1.2;">Recopilación de Datos del Cliente</h1>
+                        <div id="client-info" class="client-badge"
+                            style="display: none; align-items: center; gap: 0.5rem; background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem; width: fit-content;">
+                            <span class="material-symbols-outlined" style="font-size: 1rem;">person</span>
+                            <span>Cliente: <strong id="client-id"></strong></span>
+                        </div>
                     </div>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <button id="show-admin-btn" onclick="promptAdminKey()" disabled style="padding: 0.5rem 1rem; background-color: #d1d5db; color: var(--brand); border-radius: 0.375rem; border: none; font-size: 0.875rem; opacity: 0.5;" title="Inicializando...">Admin</button>
-                    <button id="logout-btn" onclick="logout()" style="padding: 0.5rem 1rem; background-color: #ef4444; color: white; border-radius: 0.375rem; border: none; font-size: 0.875rem; display: none;">Cerrar Sesión</button>
+                    <button id="show-admin-btn" onclick="promptAdminKey()" disabled
+                        style="padding: 0.5rem 1rem; background-color: #d1d5db; color: var(--brand); border-radius: 0.375rem; border: none; font-size: 0.875rem; opacity: 0.5;"
+                        title="Inicializando...">Admin</button>
                     <div id="autosave-indicator" class="autosave-status">Autosave activo</div>
+                    <button id="logout-btn" onclick="logout()"
+                        style="padding: 0.5rem 1rem; background-color: #ef4444; color: white; border-radius: 0.375rem; border: none; font-size: 0.875rem; display: none;">Cerrar
+                        Sesión</button>
                 </div>
             </header>
 
@@ -60,7 +94,7 @@
                 <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
             </div>
             <div class="form-layout-grid">
-                
+
                 <div class="stepper-column">
                     <nav id="stepper-nav">
                         <ul>
@@ -98,6 +132,10 @@
                             </li>
                             <li id="step-9" class="step">
                                 <span class="step-number">9</span>
+                                <span class="step-label">Declaraciones</span>
+                            </li>
+                            <li id="step-10" class="step">
+                                <span class="step-number">10</span>
                                 <span class="step-label">Condiciones</span>
                             </li>
                         </ul>
@@ -106,79 +144,103 @@
 
                 <div class="content-column">
                     <form id="data-form" onsubmit="event.preventDefault(); saveFormData(true);">
-                        
+
                         <div data-page="1" class="space-y-6">
                             <div class="page-header">
-                                <h3><span class="step-icon">1</span> Página 1 - Contactos</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page1')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 1 - Contactos</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page1')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
                             <div id="page1-error-message" class="page-error-message hidden"></div>
-                            
+
                             <div class="form-section">
-                                <h4 class="font-semibold text-gray-800">Contacto Institucional</h4>
+                                <h4 class="font-semibold text-gray-800">
+                                    <span class="material-symbols-outlined section-icon">apartment</span>
+                                    Contacto Institucional
+                                </h4>
                                 <div class="form-grid md:grid-cols-2">
                                     <div>
                                         <label for="instNIF">NIF: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="instNIF" oninput="validateField(this, 'nif');" class="input-default" autocomplete="organization">
+                                        <input type="text" id="instNIF" oninput="validateField(this, 'nif');"
+                                            class="input-default" autocomplete="organization">
                                     </div>
                                     <div>
                                         <label for="instNombre">Nombre: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="instNombre" oninput="validateField(this, 'required');" class="input-default" autocomplete="name">
+                                        <input type="text" id="instNombre" oninput="validateField(this, 'required');"
+                                            class="input-default" autocomplete="name">
                                     </div>
                                     <div>
-                                        <label for="instApellidos">Apellidos: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="instApellidos" oninput="validateField(this, 'required');" class="input-default" autocomplete="family-name">
+                                        <label for="instApellidos">Apellidos: <span
+                                                class="text-red-500">*</span></label>
+                                        <input type="text" id="instApellidos" oninput="validateField(this, 'required');"
+                                            class="input-default" autocomplete="family-name">
                                     </div>
                                     <div>
                                         <label for="instCargo">Cargo: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="instCargo" oninput="validateField(this, 'required');" class="input-default">
+                                        <input type="text" id="instCargo" oninput="validateField(this, 'required');"
+                                            class="input-default">
                                     </div>
                                     <div>
                                         <label for="instTelefono">Teléfono: <span class="text-red-500">*</span></label>
-                                        <input type="tel" id="instTelefono" oninput="validatePhoneField(this);" class="input-default" placeholder="9 dígitos" autocomplete="tel" inputmode="numeric" maxlength="9">
+                                        <input type="tel" id="instTelefono" oninput="validatePhoneField(this);"
+                                            class="input-default" placeholder="9 dígitos" autocomplete="tel"
+                                            inputmode="numeric" maxlength="9">
                                     </div>
                                     <div>
                                         <label for="instEmail">E-Mail: <span class="text-red-500">*</span></label>
-                                        <input type="email" id="instEmail" oninput="validateField(this, 'email');" class="input-default" autocomplete="email">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-section">
-                                <h4 class="font-semibold text-gray-800">Contacto Técnico</h4>
-                                <div class="form-grid md:grid-cols-3">
-                                    <div>
-                                        <label for="tecNombre">Nombre: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="tecNombre" oninput="validateField(this, 'required');" class="input-default">
-                                    </div>
-                                    <div>
-                                        <label for="tecApellidos">Apellidos: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="tecApellidos" oninput="validateField(this, 'required');" class="input-default">
-                                    </div>
-                                    <div>
-                                        <label for="tecCargo">Cargo: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="tecCargo" oninput="validateField(this, 'required');" class="input-default">
+                                        <input type="email" id="instEmail" oninput="validateField(this, 'email');"
+                                            class="input-default" autocomplete="email">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-section">
-                                <h4 class="font-semibold text-gray-800">Contacto Financiero</h4>
+                                <h4 class="font-semibold text-gray-800">
+                                    <span class="material-symbols-outlined section-icon">engineering</span>
+                                    Contacto Técnico
+                                </h4>
+                                <div class="form-grid md:grid-cols-3">
+                                    <div>
+                                        <label for="tecNombre">Nombre: <span class="text-red-500">*</span></label>
+                                        <input type="text" id="tecNombre" oninput="validateField(this, 'required');"
+                                            class="input-default">
+                                    </div>
+                                    <div>
+                                        <label for="tecApellidos">Apellidos: <span class="text-red-500">*</span></label>
+                                        <input type="text" id="tecApellidos" oninput="validateField(this, 'required');"
+                                            class="input-default">
+                                    </div>
+                                    <div>
+                                        <label for="tecCargo">Cargo: <span class="text-red-500">*</span></label>
+                                        <input type="text" id="tecCargo" oninput="validateField(this, 'required');"
+                                            class="input-default">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">
+                                    <span class="material-symbols-outlined section-icon">payments</span>
+                                    Contacto Financiero
+                                </h4>
                                 <div class="form-grid md:grid-cols-3">
                                     <div>
                                         <label for="finNombre">Nombre: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="finNombre" oninput="validateField(this, 'required');" class="input-default">
+                                        <input type="text" id="finNombre" oninput="validateField(this, 'required');"
+                                            class="input-default">
                                     </div>
                                     <div>
                                         <label for="finApellidos">Apellidos: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="finApellidos" oninput="validateField(this, 'required');" class="input-default">
+                                        <input type="text" id="finApellidos" oninput="validateField(this, 'required');"
+                                            class="input-default">
                                     </div>
                                     <div>
                                         <label for="finCargo">Cargo: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="finCargo" oninput="validateField(this, 'required');" class="input-default">
+                                        <input type="text" id="finCargo" oninput="validateField(this, 'required');"
+                                            class="input-default">
                                     </div>
                                 </div>
                             </div>
@@ -186,33 +248,45 @@
 
                         <div data-page="2" class="space-y-4 hidden">
                             <div class="page-header">
-                                <h3><span class="step-icon">2</span> Página 2 - Dirección</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page2')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 2 - Dirección</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page2')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
                             <div id="page2-error-message" class="page-error-message hidden"></div>
-                            
+
                             <!-- Dirección de Desarrollo -->
                             <div class="form-section">
                                 <h4 class="font-semibold text-gray-800">Dirección de Desarrollo</h4>
                                 <div class="form-grid md:grid-cols-3">
                                     <div>
                                         <label for="dirTipoVia">Tipo vía: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirTipoVia" oninput="validateField(this, 'required');" class="input-default" placeholder="Ej: Calle, Avenida..." autocomplete="street-address">
+                                        <input type="text" id="dirTipoVia" oninput="validateField(this, 'required');"
+                                            class="input-default" placeholder="Ej: Calle, Avenida..."
+                                            autocomplete="street-address">
                                     </div>
                                     <div class="md:col-span-2">
                                         <label for="dirDireccion">Dirección: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirDireccion" oninput="validateField(this, 'required');" class="input-default">
+                                        <input type="text" id="dirDireccion" oninput="validateField(this, 'required');"
+                                            class="input-default">
                                     </div>
                                     <div>
                                         <label for="dirNumero">Número: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirNumero" oninput="this.value=this.value.replace(/\D/g,''); validateField(this, 'number');" class="input-default" inputmode="numeric">
+                                        <input type="text" id="dirNumero"
+                                            oninput="this.value=this.value.replace(/\D/g,''); validateField(this, 'number');"
+                                            class="input-default" inputmode="numeric">
+                                    </div>
+                                    <div>
+                                        <label for="dirDatosAdicionales">Datos adicionales Dirección:</label>
+                                        <input type="text" id="dirDatosAdicionales" class="input-default">
                                     </div>
                                     <div>
                                         <label for="dirCP">C. Postal: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirCP" oninput="handleCPInput(this)" class="input-default" placeholder="5 dígitos" inputmode="numeric" maxlength="5" autocomplete="postal-code">
+                                        <input type="text" id="dirCP" oninput="handleCPInput(this)"
+                                            class="input-default" placeholder="5 dígitos" inputmode="numeric"
+                                            maxlength="5" autocomplete="postal-code">
                                     </div>
                                     <div>
                                         <label for="dirProvincia">Provincia: <span class="text-red-500">*</span></label>
@@ -224,200 +298,255 @@
                                     </div>
                                     <div>
                                         <label for="dirTelefono">Teléfono: <span class="text-red-500">*</span></label>
-                                        <input type="tel" id="dirTelefono" oninput="validatePhoneField(this);" class="input-default" placeholder="9 dígitos" autocomplete="tel" inputmode="numeric" maxlength="9">
+                                        <input type="tel" id="dirTelefono" oninput="validatePhoneField(this);"
+                                            class="input-default" placeholder="9 dígitos" autocomplete="tel"
+                                            inputmode="numeric" maxlength="9">
                                     </div>
                                     <div>
                                         <label for="dirEmail">E-Mail: <span class="text-red-500">*</span></label>
-                                        <input type="email" id="dirEmail" oninput="validateField(this, 'email');" class="input-default" autocomplete="email">
+                                        <input type="email" id="dirEmail" oninput="validateField(this, 'email');"
+                                            class="input-default" autocomplete="email">
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Dirección de Notificaciones -->
                             <div class="form-section">
-                                <h4 class="font-semibold text-gray-800">Dirección de Notificaciones</h4>
+                                <div class="flex justify-between items-center mb-4" style="margin-bottom: 16px;">
+                                    <h4 class="font-semibold text-gray-800" style="margin: 0;">Dirección de
+                                        Notificaciones</h4>
+                                    <button type="button" onclick="copyAddressData()"
+                                        class="text-sm text-blue-600 hover:text-blue-800 font-medium underline"
+                                        style="background: none; border: none; cursor: pointer; color: var(--md-sys-color-primary);">
+                                        Igual que dirección de desarrollo
+                                    </button>
+                                </div>
                                 <div class="form-grid md:grid-cols-3">
                                     <div>
-                                        <label for="dirNotifTipoVia">Tipo vía: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirNotifTipoVia" oninput="validateField(this, 'required');" class="input-default" placeholder="Ej: Calle, Avenida..." autocomplete="street-address">
+                                        <label for="dirNotifTipoVia">Tipo vía: <span
+                                                class="text-red-500">*</span></label>
+                                        <input type="text" id="dirNotifTipoVia"
+                                            oninput="validateField(this, 'required');" class="input-default"
+                                            placeholder="Ej: Calle, Avenida..." autocomplete="street-address">
                                     </div>
                                     <div class="md:col-span-2">
-                                        <label for="dirNotifDireccion">Dirección: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirNotifDireccion" oninput="validateField(this, 'required');" class="input-default">
+                                        <label for="dirNotifDireccion">Dirección: <span
+                                                class="text-red-500">*</span></label>
+                                        <input type="text" id="dirNotifDireccion"
+                                            oninput="validateField(this, 'required');" class="input-default">
                                     </div>
                                     <div>
                                         <label for="dirNotifNumero">Número: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirNotifNumero" oninput="this.value=this.value.replace(/\D/g,''); validateField(this, 'number');" class="input-default" inputmode="numeric">
+                                        <input type="text" id="dirNotifNumero"
+                                            oninput="this.value=this.value.replace(/\D/g,''); validateField(this, 'number');"
+                                            class="input-default" inputmode="numeric">
+                                    </div>
+                                    <div>
+                                        <label for="dirNotifDatosAdicionales">Datos adicionales Dirección:</label>
+                                        <input type="text" id="dirNotifDatosAdicionales" class="input-default">
                                     </div>
                                     <div>
                                         <label for="dirNotifCP">C. Postal: <span class="text-red-500">*</span></label>
-                                        <input type="text" id="dirNotifCP" oninput="handleCPInputNotif(this)" class="input-default" placeholder="5 dígitos" inputmode="numeric" maxlength="5" autocomplete="postal-code">
+                                        <input type="text" id="dirNotifCP" oninput="handleCPInputNotif(this)"
+                                            class="input-default" placeholder="5 dígitos" inputmode="numeric"
+                                            maxlength="5" autocomplete="postal-code">
                                     </div>
                                     <div>
-                                        <label for="dirNotifProvincia">Provincia: <span class="text-red-500">*</span></label>
+                                        <label for="dirNotifProvincia">Provincia: <span
+                                                class="text-red-500">*</span></label>
                                         <input type="text" id="dirNotifProvincia" readonly>
                                     </div>
                                     <div>
-                                        <label for="dirNotifLocalidad">Localidad: <span class="text-red-500">*</span></label>
+                                        <label for="dirNotifLocalidad">Localidad: <span
+                                                class="text-red-500">*</span></label>
                                         <input type="text" id="dirNotifLocalidad" readonly>
                                     </div>
                                     <div>
-                                        <label for="dirNotifTelefono">Teléfono: <span class="text-red-500">*</span></label>
-                                        <input type="tel" id="dirNotifTelefono" oninput="validatePhoneField(this);" class="input-default" placeholder="9 dígitos" autocomplete="tel" inputmode="numeric" maxlength="9">
+                                        <label for="dirNotifTelefono">Teléfono: <span
+                                                class="text-red-500">*</span></label>
+                                        <input type="tel" id="dirNotifTelefono" oninput="validatePhoneField(this);"
+                                            class="input-default" placeholder="9 dígitos" autocomplete="tel"
+                                            inputmode="numeric" maxlength="9">
                                     </div>
                                     <div>
                                         <label for="dirNotifEmail">E-Mail: <span class="text-red-500">*</span></label>
-                                        <input type="email" id="dirNotifEmail" oninput="validateField(this, 'email');" class="input-default" autocomplete="email">
+                                        <input type="email" id="dirNotifEmail" oninput="validateField(this, 'email');"
+                                            class="input-default" autocomplete="email">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div data-page="3" class="space-y-4 hidden">
-    <div class="page-header">
-        <h3><span class="step-icon">3</span> Página 3 - Organización</h3>
-        <button type="button" class="info-button" onclick="showInfoPopup('page3')" title="Información sobre esta sección">
-            <span class="info-button-icon">ℹ</span>
-            <span>Ayuda</span>
-        </button>
-    </div>
-    <div id="page3-error-message" class="page-error-message hidden"></div>
+                            <div class="page-header">
+                                <h3>Página 3 - Organización</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page3')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
+                                    <span>Ayuda</span>
+                                </button>
+                            </div>
+                            <div id="page3-error-message" class="page-error-message hidden"></div>
 
-    <!-- Capital Social (se mantiene tal cual) -->
-    <div class="form-section">
-        <h4 class="font-semibold text-gray-800">Capital Social (Último año)</h4>
-        <div class="form-grid md:grid-cols-2">
-            <div>
-                <label for="orgAnoCapital">Año Capital Social:</label>
-                <select id="orgAnoCapital" class="input-default">
-                    <option value="">-- Seleccione --</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                    <option value="2030">2030</option>
-                    <option value="2031">2031</option>
-                    <option value="2032">2032</option>
-                    <option value="2033">2033</option>
-                    <option value="2034">2034</option>
-                    <option value="2035">2035</option>
-                </select>
-            </div>
-            <div>
-                <label for="orgCapitalSocial">Capital Social (€): <span class="text-red-500">*</span></label>
-                <input type="text" id="orgCapitalSocial" oninput="validateCurrencyField(this);" class="input-default" placeholder="Ej: 50.000,00" inputmode="decimal">
-            </div>
-        </div>
-    </div>
+                            <!-- Capital Social (se mantiene tal cual) -->
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">Capital Social (Último año)</h4>
+                                <div class="form-grid md:grid-cols-2">
+                                    <div>
+                                        <label for="orgAnoCapital">Año Capital Social: <span
+                                                class="text-red-500">*</span></label>
+                                        <select id="orgAnoCapital" class="input-default">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                            <option value="2031">2031</option>
+                                            <option value="2032">2032</option>
+                                            <option value="2033">2033</option>
+                                            <option value="2034">2034</option>
+                                            <option value="2035">2035</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="orgCapitalSocial">Capital Social (€): <span
+                                                class="text-red-500">*</span></label>
+                                        <input type="text" id="orgCapitalSocial" oninput="validateCurrencyField(this);"
+                                            class="input-default" placeholder="Ej: 50.000,00" inputmode="decimal">
+                                    </div>
+                                </div>
+                            </div>
 
-    <!-- Composición Accionarial -->
-    <div class="form-section">
-        <h4 class="font-semibold text-gray-800">Composición Accionarial</h4>
-        <div id="accionarial-container">
-            <div class="accionarial-grupo form-grid md:grid-cols-2" style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                <div>
-                    <label for="acc_1_nombre">Nombre / Razón Social:</label>
-                    <input id="acc_1_nombre" type="text" class="input-default">
-                </div>
-                <div>
-                    <label for="acc_1_cif">CIF:</label>
-                    <input id="acc_1_cif" type="text" class="input-default">
-                </div>
-                <div style="position: relative;">
-                    <label for="acc_1_pct">% Participación:</label>
-                    <input id="acc_1_pct" type="number" step="0.1" class="input-default" oninput="validatePercentageField(this)">
-                </div>
-                <div>
-                    <label for="acc_1_pyme">Pyme:</label>
-                    <select id="acc_1_pyme" class="input-default">
-                        <option value="">--</option>
-                        <option value="Sí">Sí</option>
-                        <option value="No">No</option>
-                        <option value="No aplica">No aplica</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="acc_1_nacionalidad">Nacionalidad:</label>
-                    <input id="acc_1_nacionalidad" type="text" class="input-default">
-                </div>
-            </div>
-        </div>
-        <button type="button" onclick="addAccionarialGrupo()" class="mt-4" style="background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='var(--accent-2)'" onmouseout="this.style.backgroundColor='var(--accent)'">
-            <span style="color: white;">+</span> Añadir Accionista
-        </button>
-    </div>
+                            <!-- Composición Accionarial -->
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">Composición Accionarial</h4>
+                                <div id="accionarial-container">
+                                    <div class="accionarial-grupo form-grid md:grid-cols-2"
+                                        style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                                        <div>
+                                            <label for="acc_1_nombre">Nombre / Razón Social: <span
+                                                    class="text-red-500">*</span></label>
+                                            <input id="acc_1_nombre" type="text" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="acc_1_cif">CIF: <span class="text-red-500">*</span></label>
+                                            <input id="acc_1_cif" type="text" class="input-default">
+                                        </div>
+                                        <div style="position: relative;">
+                                            <label for="acc_1_pct">% Participación: <span
+                                                    class="text-red-500">*</span></label>
+                                            <input id="acc_1_pct" type="number" step="0.1" class="input-default"
+                                                oninput="validatePercentageField(this)">
+                                        </div>
+                                        <div>
+                                            <label for="acc_1_pyme">Pyme: <span class="text-red-500">*</span></label>
+                                            <select id="acc_1_pyme" class="input-default">
+                                                <option value="">--</option>
+                                                <option value="Sí">Sí</option>
+                                                <option value="No">No</option>
+                                                <option value="No aplica">No aplica</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="acc_1_nacionalidad">Nacionalidad: <span
+                                                    class="text-red-500">*</span></label>
+                                            <input id="acc_1_nacionalidad" type="text" class="input-default">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="addAccionarialGrupo()" class="mt-4"
+                                    style="background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease;"
+                                    onmouseover="this.style.backgroundColor='var(--accent-2)'"
+                                    onmouseout="this.style.backgroundColor='var(--accent)'">
+                                    <span style="color: white;">+</span> Añadir Accionista
+                                </button>
+                            </div>
 
-    <!-- Consejo -->
-    <div class="form-section">
-        <h4 class="font-semibold text-gray-800">Composición del Consejo de Administración</h4>
-        <div id="consejo-container">
-            <div class="consejo-grupo form-grid md:grid-cols-2" style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                <div>
-                    <label for="consejo_1_nombre">Nombre:</label>
-                    <input id="consejo_1_nombre" type="text" class="input-default">
-                </div>
-                <div>
-                    <label for="consejo_1_dni">DNI/CIF:</label>
-                    <input id="consejo_1_dni" type="text" class="input-default">
-                </div>
-                <div>
-                    <label for="consejo_1_cargo">Cargo:</label>
-                    <input id="consejo_1_cargo" type="text" class="input-default">
-                </div>
-                <div>
-                    <label for="consejo_1_nacionalidad">Nacionalidad:</label>
-                    <input id="consejo_1_nacionalidad" type="text" class="input-default">
-                </div>
-            </div>
-        </div>
-        <button type="button" onclick="addConsejoGrupo()" class="mt-4" style="background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='var(--accent-2)'" onmouseout="this.style.backgroundColor='var(--accent)'">
-            <span style="color: white;">+</span> Añadir Miembro
-        </button>
-    </div>
+                            <!-- Consejo -->
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">Composición del Consejo de Administración</h4>
+                                <div id="consejo-container">
+                                    <div class="consejo-grupo form-grid md:grid-cols-2"
+                                        style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                                        <div>
+                                            <label for="consejo_1_nombre">Nombre: <span
+                                                    class="text-red-500">*</span></label>
+                                            <input id="consejo_1_nombre" type="text" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="consejo_1_dni">NIF/CIF: <span
+                                                    class="text-red-500">*</span></label>
+                                            <input id="consejo_1_dni" type="text" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="consejo_1_cargo">Cargo: <span
+                                                    class="text-red-500">*</span></label>
+                                            <input id="consejo_1_cargo" type="text" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="consejo_1_nacionalidad">Nacionalidad: <span
+                                                    class="text-red-500">*</span></label>
+                                            <input id="consejo_1_nacionalidad" type="text" class="input-default">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="addConsejoGrupo()" class="mt-4"
+                                    style="background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease;"
+                                    onmouseover="this.style.backgroundColor='var(--accent-2)'"
+                                    onmouseout="this.style.backgroundColor='var(--accent)'">
+                                    <span style="color: white;">+</span> Añadir Miembro
+                                </button>
+                            </div>
 
-    <!-- Filiales -->
-    <div class="form-section">
-        <h4 class="font-semibold text-gray-800">Filiales</h4>
-        <div id="filial-container">
-            <div class="filial-grupo form-grid md:grid-cols-2" style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                <div>
-                    <label for="filial_1_razon">Razón Social:</label>
-                    <input id="filial_1_razon" type="text" class="input-default">
-                </div>
-                <div>
-                    <label for="filial_1_cif">CIF:</label>
-                    <input id="filial_1_cif" type="text" class="input-default">
-                </div>
-                <div>
-                    <label for="filial_1_actividad">Actividad Principal:</label>
-                    <input id="filial_1_actividad" type="text" class="input-default">
-                </div>
-                <div>
-                    <label for="filial_1_pct">% Participación:</label>
-                    <input id="filial_1_pct" type="number" step="0.1" class="input-default">
-                </div>
-                <div>
-                    <label for="filial_1_pais">País:</label>
-                    <input id="filial_1_pais" type="text" class="input-default">
-                </div>
-            </div>
-        </div>
-        <button type="button" onclick="addFilialGrupo()" class="mt-4" style="background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='var(--accent-2)'" onmouseout="this.style.backgroundColor='var(--accent)'">
-            <span style="color: white;">+</span> Añadir Filial
-        </button>
-    </div>
+                            <!-- Filiales -->
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">Filiales</h4>
+                                <div id="filial-container">
+                                    <div class="filial-grupo form-grid md:grid-cols-2"
+                                        style="background-color: var(--card); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                                        <div>
+                                            <label for="filial_1_razon">Razón Social:</label>
+                                            <input id="filial_1_razon" type="text" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="filial_1_cif">CIF:</label>
+                                            <input id="filial_1_cif" type="text" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="filial_1_actividad">Actividad Principal:</label>
+                                            <input id="filial_1_actividad" type="text" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="filial_1_pct">% Participación:</label>
+                                            <input id="filial_1_pct" type="number" step="0.1" class="input-default">
+                                        </div>
+                                        <div>
+                                            <label for="filial_1_pais">País:</label>
+                                            <input id="filial_1_pais" type="text" class="input-default">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="addFilialGrupo()" class="mt-4"
+                                    style="background-color: var(--accent); color: white; padding: 0.6rem 1.2rem; border-radius: 0.5rem; border: none; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease;"
+                                    onmouseover="this.style.backgroundColor='var(--accent-2)'"
+                                    onmouseout="this.style.backgroundColor='var(--accent)'">
+                                    <span style="color: white;">+</span> Añadir Filial
+                                </button>
+                            </div>
 
-</div>
+                        </div>
 
                         <!-- Página 4: Recursos Humanos - será generado dinámicamente por JS -->
                         <div data-page="4" class="space-y-4 hidden">
                             <div class="page-header">
-                                <h3><span class="step-icon">4</span> Página 4 - Recursos Humanos</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page4')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 4 - Recursos Humanos</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page4')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
@@ -427,14 +556,16 @@
 
                         <div data-page="5" class="space-y-4 hidden">
                             <div class="page-header">
-                                <h3><span class="step-icon">5</span> Página 5 - Recursos I+D</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page5')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 5 - Recursos I+D</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page5')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
-                            <p class="text-sm text-gray-500">Indique los recursos destinados a I+D (histórico y previstos).</p>
-                            
+                            <p class="text-sm text-gray-500">Indique los recursos destinados a I+D (histórico y
+                                previstos).</p>
+
                             <div id="recursos-id-container" class="overflow-x-auto">
                                 <!-- La tabla se generará dinámicamente aquí -->
                             </div>
@@ -442,33 +573,36 @@
 
                         <div data-page="6" class="space-y-4 hidden">
                             <div class="page-header">
-                                <h3><span class="step-icon">6</span> Página 6 - Productos/Servicios</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page6')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 6 - Productos/Servicios</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page6')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
                             <div id="page6-error-message" class="page-error-message hidden"></div>
-                            
+
                             <div id="productos-container" class="space-y-4">
                                 <!-- Los productos se renderizan dinámicamente aquí -->
                             </div>
-                            
-                            <button type="button" onclick="addProductoGrupo()" class="btn-add" style="background-color: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; cursor: pointer; border: none;">
+
+                            <button type="button" onclick="addProductoGrupo()" class="btn-add"
+                                style="background-color: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 0.375rem; font-weight: 600; cursor: pointer; border: none;">
                                 + Añadir Producto/Servicio
                             </button>
                         </div>
-                        
+
                         <div data-page="7" class="space-y-4 hidden">
                             <div class="page-header">
-                                <h3><span class="step-icon">7</span> Página 7 - Tipo de Entidad</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page7')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 7 - Tipo de Entidad</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page7')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
                             <div id="page7-error-message" class="page-error-message hidden"></div>
-                            
+
                             <div class="form-grid md:grid-cols-2">
                                 <div>
                                     <label for="entidadTipo">Tipo de Entidad:</label>
@@ -490,8 +624,10 @@
                                 </div>
                                 <div>
                                     <label for="entidadPeriodoRef">Periodo de Referencia:</label>
-                                    <select id="entidadPeriodoRef" class="input-default" onchange="actualizarEjercicioAnterior()">
+                                    <select id="entidadPeriodoRef" class="input-default"
+                                        onchange="actualizarEjercicioAnterior()">
                                         <option value="">-- Seleccione --</option>
+                                        <option value="2023">2023</option>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
@@ -507,39 +643,46 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="form-section" style="margin-top: 2rem;">
                                 <h4 class="font-semibold text-gray-800">Datos último ejercicio cerrado</h4>
                                 <div class="form-grid md:grid-cols-3">
                                     <div>
                                         <label for="ent_efectivos">Efectivos (UTA):</label>
-                                        <input type="text" id="ent_efectivos" class="input-default" oninput="validateIntegerField(this)">
+                                        <input type="text" id="ent_efectivos" class="input-default"
+                                            oninput="validateIntegerField(this)">
                                     </div>
                                     <div>
                                         <label for="ent_volumen_negocio">Volumen de Negocio (€):</label>
-                                        <input type="text" id="ent_volumen_negocio" class="input-default" oninput="validateCurrencyField(this)" placeholder="Ej: 1.500.000,00">
+                                        <input type="text" id="ent_volumen_negocio" class="input-default"
+                                            oninput="validateCurrencyField(this)" placeholder="Ej: 1.500.000,00">
                                     </div>
                                     <div>
                                         <label for="ent_balance_general">Balance General (€):</label>
-                                        <input type="text" id="ent_balance_general" class="input-default" oninput="validateCurrencyField(this)" placeholder="Ej: 2.000.000,00">
+                                        <input type="text" id="ent_balance_general" class="input-default"
+                                            oninput="validateCurrencyField(this)" placeholder="Ej: 2.000.000,00">
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-section">
-                                <h4 class="font-semibold text-gray-800" id="ejercicioAnteriorTitle">Ejercicio anterior</h4>
+                                <h4 class="font-semibold text-gray-800" id="ejercicioAnteriorTitle">Ejercicio anterior
+                                </h4>
                                 <div class="form-grid md:grid-cols-3">
                                     <div>
                                         <label for="ent_anterior_efectivos">Efectivos (UTA):</label>
-                                        <input type="text" id="ent_anterior_efectivos" class="input-default" oninput="validateIntegerField(this)">
+                                        <input type="text" id="ent_anterior_efectivos" class="input-default"
+                                            oninput="validateIntegerField(this)">
                                     </div>
                                     <div>
                                         <label for="ent_anterior_volumen_negocio">Volumen de Negocio (€):</label>
-                                        <input type="text" id="ent_anterior_volumen_negocio" class="input-default" oninput="validateCurrencyField(this)" placeholder="Ej: 1.500.000,00">
+                                        <input type="text" id="ent_anterior_volumen_negocio" class="input-default"
+                                            oninput="validateCurrencyField(this)" placeholder="Ej: 1.500.000,00">
                                     </div>
                                     <div>
                                         <label for="ent_anterior_balance_general">Balance General (€):</label>
-                                        <input type="text" id="ent_anterior_balance_general" class="input-default" oninput="validateCurrencyField(this)" placeholder="Ej: 2.000.000,00">
+                                        <input type="text" id="ent_anterior_balance_general" class="input-default"
+                                            oninput="validateCurrencyField(this)" placeholder="Ej: 2.000.000,00">
                                     </div>
                                 </div>
                             </div>
@@ -547,134 +690,638 @@
 
                         <div data-page="8" class="space-y-4 hidden">
                             <div class="page-header">
-                                <h3><span class="step-icon">8</span> Página 8 - Datos Bancarios</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page8')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 8 - Datos Bancarios</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page8')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
                             <div class="form-grid md:grid-cols-3">
                                 <div class="md:col-span-3">
                                     <label for="bankIBAN">IBAN:</label>
-                                    <input type="text" id="bankIBAN" class="input-default" placeholder="ES00" maxlength="4" oninput="validateBankField(this, 'iban')">
+                                    <input type="text" id="bankIBAN" class="input-default" placeholder="ES00"
+                                        maxlength="4" oninput="validateBankField(this, 'iban')">
                                 </div>
                                 <div>
                                     <label for="bankEntidad">Entidad:</label>
-                                    <input type="text" id="bankEntidad" class="input-default" placeholder="1234" maxlength="4" oninput="validateBankField(this, 'entidad')">
+                                    <input type="text" id="bankEntidad" class="input-default" placeholder="1234"
+                                        maxlength="4" oninput="validateBankField(this, 'entidad')">
                                 </div>
                                 <div>
                                     <label for="bankOficina">Oficina:</label>
-                                    <input type="text" id="bankOficina" class="input-default" placeholder="5678" maxlength="4" oninput="validateBankField(this, 'oficina')">
+                                    <input type="text" id="bankOficina" class="input-default" placeholder="5678"
+                                        maxlength="4" oninput="validateBankField(this, 'oficina')">
                                 </div>
                                 <div>
                                     <label for="bankDC">DC:</label>
-                                    <input type="text" id="bankDC" class="input-default" placeholder="90" maxlength="2" oninput="validateBankField(this, 'dc')">
+                                    <input type="text" id="bankDC" class="input-default" placeholder="90" maxlength="2"
+                                        oninput="validateBankField(this, 'dc')">
                                 </div>
                                 <div class="md:col-span-3">
                                     <label for="bankNumero">Número de Cuenta:</label>
-                                    <input type="text" id="bankNumero" class="input-default" placeholder="0123456789" maxlength="10" oninput="validateBankField(this, 'cuenta')">
+                                    <input type="text" id="bankNumero" class="input-default" placeholder="0123456789"
+                                        maxlength="10" oninput="validateBankField(this, 'cuenta')">
                                 </div>
                             </div>
                         </div>
 
                         <div data-page="9" class="space-y-4 hidden">
                             <div class="page-header">
-                                <h3><span class="step-icon">9</span> Página 9 - Condiciones</h3>
-                                <button type="button" class="info-button" onclick="showInfoPopup('page9')" title="Información sobre esta sección">
-                                    <span class="info-button-icon">ℹ</span>
+                                <h3>Página 9 - Declaraciones</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page9')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
                                     <span>Ayuda</span>
                                 </button>
                             </div>
-                            <p class="text-sm text-gray-500">Por favor, lea y acepte las siguientes condiciones.</p>
-                            
+
+                            <p class="text-sm text-gray-500">Por favor, complete las siguientes declaraciones
+                                obligatorias.</p>
+
                             <div class="form-section">
-                                <h4 class="font-semibold text-gray-800">Condiciones Presentación Empresa</h4>
-                                <div class="space-y-6">
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_1" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>1. Estoy informado/a de las condiciones FEDER:</strong> He leído las características de este tipo de ayudas y las obligaciones inherentes a la financiación FEDER. Estas modalidades de proyectos se apoyan con Ayudas Parcialmente Reembolsables cofinanciadas por Fondo Europeo de Desarrollo Regional (FEDER). Si su proyecto recibe finalmente cofinanciación FEDER, deberá aceptar, como beneficiario, determinadas obligaciones. Si desea acceder a la solicitud electrónica ha de leer y darse por informado de las características y obligaciones inherentes a la financiación FEDER.
-                                        </label>
-                                        <input id="cond_1" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <h4 class="font-semibold text-gray-800">DECLARACIÓN DE AYUDAS</h4>
+                                <div class="space-y-4">
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿La entidad ha solicitado u obtenido algún tipo
+                                            de ayuda de cualquier Administración o ente público o privado, nacional, o
+                                            internacional, en relación con el proyecto o actuación objeto de esta
+                                            solicitud?</label>
+                                        <select id="decl_ayuda_solicitada" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                        </select>
                                     </div>
-                                    
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_2" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>2. Tratamiento de datos de carácter personal:</strong><br><br>
-                                            Los datos de carácter personal asociados al expediente serán tratados por el CDTI con la finalidad de llevar a cabo la tramitación del expediente así como el control de la ayuda concedida, en su caso. Tales datos personales tienen carácter necesario y su no presentación determinará la imposibilidad de continuar con el procedimiento.<br><br>
-                                            CDTI está legitimado para el tratamiento de los datos en virtud de la Ley 14/2011, de 1 de junio, de la Ciencia, la Tecnología y la Innovación, que lo designa como agente de financiación del Sistema Español de Ciencia, Tecnología e Innovación.<br><br>
-                                            Los datos serán protegidos y conservados conforme a lo dispuesto en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, y resto de normativa aplicable durante los plazos establecidos en la normativa reguladora de la ayuda.<br><br>
-                                            El CDTI realizará cesiones de datos a las Administraciones Públicas, a las entidades y sujetos que estipule la Ley. Asimismo, las entidades que colaboren con CDTI en la evaluación del presente proyecto podrán tener acceso a tales datos personales con la única y exclusiva finalidad de realizar la referida evaluación.<br><br>
-                                            En el proceso de evaluación del proyecto, el CDTI podrá solicitar la colaboración de otras entidades. Acepto que se envíe la documentación de la propuesta a estas entidades para la realización del informe de valoración.<br><br>
-                                            El titular de los datos podrá ejercer los derechos de acceso, rectificación y supresión, de limitación del tratamiento y de oposición a través de los medios indicados en la página web del CDTI ("aviso legal"). Igualmente tendrán derecho a presentar reclamación ante la Agencia Española de Protección de Datos.
-                                        </label>
-                                        <input id="cond_2" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
-                                    </div>
-                                    
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_3" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>3. Estoy informado/a de las condiciones que aplican al porcentaje máximo de gastos generales:</strong><br><br>
-                                            El importe de gastos generales que se considerará elegible a efectos de solicitar la cofinanciación europea de la ayuda, será el resultante de la aplicación de un porcentaje del 15% sobre los gastos directos de personal del proyecto válidamente justificados, en virtud de lo previsto en el Reglamento (UE) 651/2014, de 17 de junio.
-                                        </label>
-                                        <input id="cond_3" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
-                                    </div>
-                                    
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_4" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>4. Estoy informado/a de las condiciones de cofinanciación:</strong><br><br>
-                                            En los proyectos cofinanciados con fondos FEDER, solo se financiarán aquellas actividades del proyecto que sean desarrolladas en el ámbito geográfico de la Comunidad Autónoma que figure como "Comunidad de Desarrollo". En este sentido, la partida de «Gastos de Personal» corresponderá a personas que realicen sus trabajos en dicha comunidad, de forma tal que el trabajador debe estar dado de alta en un centro de trabajo de la Comunidad Autónoma correspondiente.
-                                        </label>
-                                        <input id="cond_4" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿La entidad ha solicitado u obtenido, en
+                                            relación con el proyecto o actuación objeto de esta solicitud, alguna ayuda
+                                            privada cuyas fuentes de financiación o de otorgamiento de garantía o
+                                            reafianzamiento están financiadas por cualquier Fondo proveniente del
+                                            Presupuesto de la Unión Europea (Fondos Estructurales, de Inversión Europeos
+                                            u otros de naturaleza comunitaria)?</label>
+                                        <select id="decl_ayuda_europea" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">ENTIDAD EN CRISIS</h4>
+                                <div class="decl-select-row">
+                                    <label class="decl-select-label">Consideración de entidad en crisis, según la
+                                        definición del artículo 2, apartado 18, del Reglamento (UE) nº 651/2014, de la
+                                        Comisión del 17 de junio de 2014 (*).</label>
+                                    <select id="decl_entidad_crisis" class="decl-select-input">
+                                        <option value="">-- Seleccione --</option>
+                                        <option value="Si">Sí</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">OTRAS DECLARACIONES</h4>
+                                <div class="space-y-3">
+                                    <!-- Checkbox general para seleccionar todos -->
+                                    <label class="decl-checkbox-row" style="background-color: #e8f5e9; border: 2px solid #4caf50; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                                        <span class="decl-checkbox-label" style="font-weight: 600; color: #2e7d32;">
+                                            ✓ Seleccionar todas las declaraciones de esta sección
+                                        </span>
+                                        <input type="checkbox" id="decl_select_all_otras" class="decl-checkbox-input" style="width: 20px; height: 20px;">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante cumple los requisitos
+                                            establecidos en la presente convocatoria para resultar beneficiario de las
+                                            ayudas contempladas en la misma.</span>
+                                        <input type="checkbox" id="decl_cumple_requisitos" class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">No ha iniciado las actividades
+                                            correspondientes al proyecto antes de la presentación de la solicitud de
+                                            ayuda a CDTI.</span>
+                                        <input type="checkbox" id="decl_no_inicio_previo" class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante cumplirá con la normativa
+                                            comunitaria, nacional y, en su caso, autonómica o local que le
+                                            afecte.</span>
+                                        <input type="checkbox" id="decl_cumple_normativa" class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que estará sujeto a las
+                                            actuaciones de control que lleven a cabo las instituciones facultadas para
+                                            ello.</span>
+                                        <input type="checkbox" id="decl_sujeto_control" class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">La empresa declara que la entidad que figura
+                                            como solicitante de la ayuda en la presente convocatoria actúa como
+                                            representante de la agrupación que desarrollará el proyecto objeto de la
+                                            presente solicitud.</span>
+                                        <input type="checkbox" id="decl_representante_agrupacion"
+                                            class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que el proyecto
+                                            presentado respeta el principio DNSH.</span>
+                                        <input type="checkbox" id="decl_respeta_dnsh" class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">No tiene deudas por reintegro de ayudas,
+                                            prestamos o anticipos con la Administración.</span>
+                                        <input type="checkbox" id="decl_no_deudas" class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante autoriza la cesión y
+                                            tratamiento de datos entre las Administraciones Públicas implicadas.</span>
+                                        <input type="checkbox" id="decl_autoriza_cesion_datos"
+                                            class="decl-checkbox-input otras-declaraciones-item">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">CUMPLIMIENTO FEDER</h4>
+                                <div class="space-y-3">
+                                    <!-- Checkbox general para seleccionar todos -->
+                                    <label class="decl-checkbox-row" style="background-color: #e8f5e9; border: 2px solid #4caf50; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                                        <span class="decl-checkbox-label" style="font-weight: 600; color: #2e7d32;">
+                                            ✓ Seleccionar todas las declaraciones de esta sección
+                                        </span>
+                                        <input type="checkbox" id="decl_select_all_feder" class="decl-checkbox-input" style="width: 20px; height: 20px;">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que los gastos de
+                                            personal imputados al proyecto corresponden a personal dado de alta en algún
+                                            centro de trabajo ubicado en una de las Comunidades Autónomas de desarrollo
+                                            previstas en la presente convocatoria.</span>
+                                        <input type="checkbox" id="decl_feder_personal_ca" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante es conocedor de las medidas y
+                                            las condiciones obligatorias que deberá cumplir si aceptase la ayuda.</span>
+                                        <input type="checkbox" id="decl_feder_conoce_condiciones"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante confirma que tiene capacidad
+                                            administrativa, financiera y operativa para cumplir las condiciones
+                                            enumeradas con anterioridad, y disponibilidad presupuestaria para afrontar
+                                            la inversión total prevista.</span>
+                                        <input type="checkbox" id="decl_feder_capacidad" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante cumplirá con lo dispuesto en
+                                            los artículos 46, 47, 49, 50 y en el Anexo IX del Reglamento (UE) nº
+                                            1060/2021.</span>
+                                        <input type="checkbox" id="decl_feder_cumple_reglamento"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante se compromete a observar
+                                            estrictamente la normativa aplicable en materia de publicidad de los Fondos
+                                            Estructurales.</span>
+                                        <input type="checkbox" id="decl_feder_publicidad" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante da su consentimiento para que
+                                            los materiales de comunicación y visibilidad del proyecto se pongan a
+                                            disposición de las instituciones de la Unión.</span>
+                                        <input type="checkbox" id="decl_feder_licencia_ue" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante es conocedor que la minoración
+                                            de la ayuda prevista en el artículo 50.3 del Reglamento (UE) nº 1060/2021 no
+                                            supone la exención de la aplicación de las causas de reintegro.</span>
+                                        <input type="checkbox" id="decl_feder_conoce_minoracion"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que la operación objeto
+                                            de ayuda no ha concluido materialmente o no se ha ejecutado íntegramente
+                                            antes de la fecha de presentación de la solicitud de ayuda.</span>
+                                        <input type="checkbox" id="decl_feder_operacion_no_concluida"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante se compromete a conservar todos
+                                            los documentos justificativos relacionados con una operación durante un
+                                            plazo de cinco años.</span>
+                                        <input type="checkbox" id="decl_feder_conservar_docs"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que está informado de
+                                            la obligación de mantener registros contables independientes o a utilizar
+                                            códigos de contabilidad apropiados.</span>
+                                        <input type="checkbox" id="decl_feder_registros_contables"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que conoce la
+                                            declaración institucional en materia antifraude de la Autoridad de
+                                            Gestión.</span>
+                                        <input type="checkbox" id="decl_feder_conoce_antifraude"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara estar informado de las
+                                            medidas antifraude que como beneficiario público debe adoptar.</span>
+                                        <input type="checkbox" id="decl_feder_informado_medidas"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante se compromete a difundir en su
+                                            organización el comunicado sobre conocimiento de hechos que pudieran ser
+                                            constitutivos de fraude.</span>
+                                        <input type="checkbox" id="decl_feder_difundir_comunicado"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante asume los compromisos de
+                                            durabilidad y reubicación, establecidos en el artículo 65, el artículo 66, y
+                                            el artículo 73, apartado 2, letra h) del Reglamento (UE) nº
+                                            1060/2021.</span>
+                                        <input type="checkbox" id="decl_feder_durabilidad" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante está informado de la obligación
+                                            de facilitar la información pertinente en relación con el cumplimiento de
+                                            los indicadores de realización y resultados.</span>
+                                        <input type="checkbox" id="decl_feder_indicadores" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante estará a disposición de los
+                                            órganos competentes estatales o comunitarios para verificación.</span>
+                                        <input type="checkbox" id="decl_feder_comprobacion" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante acepta las obligaciones
+                                            contempladas en el artículo 129 del Reglamento (UE, Euratom) 2018/1046 en
+                                            relación a la cooperación en la defensa de los intereses financieros de la
+                                            Unión.</span>
+                                        <input type="checkbox" id="decl_feder_cooperacion" class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante es conocedor de la posibilidad
+                                            de que la Autoridad de Gestión utilice la información comunicada para
+                                            efectuar análisis de riesgos.</span>
+                                        <input type="checkbox" id="decl_feder_analisis_riesgos"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que conoce que la
+                                            conformidad de la aceptación de la ayuda supone figurar como beneficiario en
+                                            la lista de operaciones cofinanciadas.</span>
+                                        <input type="checkbox" id="decl_feder_lista_operaciones"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante declara que en cumplimiento del
+                                            artículo 73 del Reglamento (UE) nº 1060/2021, en la ejecución de la
+                                            operación se garantizará la accesibilidad a las personas con
+                                            discapacidad.</span>
+                                        <input type="checkbox" id="decl_feder_accesibilidad"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El solicitante autoriza al CDTI a facilitar
+                                            estas declaraciones de responsabilidad a la Autoridad de Gestión del
+                                            FEDER.</span>
+                                        <input type="checkbox" id="decl_feder_autoriza_facilitar"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">LISTA COMPROBACIÓN EMPRESA</h4>
+                                <div class="space-y-4">
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿Ha elaborado la empresa que solicita la ayuda
+                                            un plan de igualdad de mujeres y hombres?</label>
+                                        <select id="decl_plan_igualdad" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                            <option value="No Aplica">No Aplica</option>
+                                        </select>
+                                    </div>
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿Dispone la empresa de un protocolo que recoge
+                                            medidas específicas para prevenir el acoso sexual?</label>
+                                        <select id="decl_protocolo_acoso" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                            <option value="No Aplica">No Aplica</option>
+                                        </select>
+                                    </div>
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿Posee la empresa el distintivo empresarial
+                                            para la igualdad efectiva de mujeres y hombres?</label>
+                                        <select id="decl_distintivo_igualdad" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿Ha puesto en marcha la empresa medidas de
+                                            conciliación de la vida personal, laboral y familiar?</label>
+                                        <select id="decl_medidas_conciliacion" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿Cumple la empresa con la obligación de reserva
+                                            de al menos el 2% de los puestos de trabajo destinados a personas con
+                                            discapacidad?</label>
+                                        <select id="decl_reserva_discapacidad" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                            <option value="No Aplica">No Aplica</option>
+                                        </select>
+                                    </div>
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿Tiene la empresa establecidas medidas de
+                                            accesibilidad a las instalaciones y/o a los puestos de trabajo para sus
+                                            empleados con discapacidad?</label>
+                                        <select id="decl_accesibilidad_instalaciones" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿La actividad empresarial tiene impacto
+                                            positivo con el desarrollo sostenible, conservación, protección y mejora del
+                                            medio ambiente?</label>
+                                        <select id="decl_impacto_medioambiental" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="decl-select-row">
+                                        <label class="decl-select-label">¿El responsable principal de la propuesta es
+                                            una mujer?</label>
+                                        <select id="decl_responsable_mujer" class="decl-select-input">
+                                            <option value="">-- Seleccione --</option>
+                                            <option value="Si">Sí</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">LISTA COMPROBACIÓN PROYECTO</h4>
+                                <div class="space-y-3">
+                                    <!-- Checkbox general para seleccionar todos -->
+                                    <label class="decl-checkbox-row" style="background-color: #e8f5e9; border: 2px solid #4caf50; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                                        <span class="decl-checkbox-label" style="font-weight: 600; color: #2e7d32;">
+                                            ✓ Seleccionar todas las declaraciones de esta sección
+                                        </span>
+                                        <input type="checkbox" id="decl_select_all_proyecto" class="decl-checkbox-input" style="width: 20px; height: 20px;">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">En el caso de que la operación sea un proyecto
+                                            o incluya alguna parte que responda a la definición del artículo 5, apartado
+                                            3b de la Ley 21/2013, cuenta con las autorizaciones que fueren
+                                            pertinentes.</span>
+                                        <input type="checkbox" id="decl_proy_autorizaciones"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">¿Se cumplen el resto de las normas
+                                            medioambientales nacionales y comunitarias?</span>
+                                        <input type="checkbox" id="decl_proy_normas_ambientales"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">¿Se cumplen las normas nacionales y
+                                            comunitarias sobre desarrollo sostenible?</span>
+                                        <input type="checkbox" id="decl_proy_desarrollo_sostenible"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">¿El proyecto a desarrollar contiene una
+                                            dimensión de género por sus objetivos, plan de trabajo, tecnologías
+                                            aplicadas o desarrolladas, resultados o aplicaciones?</span>
+                                        <input type="checkbox" id="decl_proy_dimension_genero"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">¿Los resultados del proyecto tienen un impacto
+                                            positivo sobre la igualdad de género?</span>
+                                        <input type="checkbox" id="decl_proy_impacto_genero"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">¿El desarrollo del proyecto procura eliminar
+                                            las desigualdades y promover la igualdad entre hombres y mujeres?</span>
+                                        <input type="checkbox" id="decl_proy_eliminar_desigualdades"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">¿El desarrollo del proyecto lucha contra la
+                                            discriminación por razón de sexo, raza u origen étnico, religión o
+                                            convicciones, discapacidad, edad u orientación sexual?</span>
+                                        <input type="checkbox" id="decl_proy_lucha_discriminacion"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">La agrupación declara su conformidad para
+                                            acceder a una ayuda parcialmente reembolsable, en los términos previstos en
+                                            el artículo 24 de la convocatoria.</span>
+                                        <input type="checkbox" id="decl_proy_ayuda_reembolsable"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">CUMPLIMIENTO FEDER PROYECTO</h4>
+                                <div class="space-y-3">
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">Las actividades y tecnología asociada al
+                                            proyecto son susceptibles de cofinanciar con FEDER 21-27.</span>
+                                        <input type="checkbox" id="decl_feder_proy_susceptible_cofinanciar"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                    <label class="decl-checkbox-row">
+                                        <span class="decl-checkbox-label">El proyecto es de uso civil (No podrán ser
+                                            cofinanciados con FEDER proyectos de uso dual o militar).</span>
+                                        <input type="checkbox" id="decl_feder_proy_uso_civil"
+                                            class="decl-checkbox-input">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-page="10" class="space-y-4 hidden">
+                            <div class="page-header">
+                                <h3>Página 10 - Condiciones</h3>
+                                <button type="button" class="info-button" onclick="showInfoPopup('page10')"
+                                    title="Información sobre esta sección">
+                                    <span class="material-symbols-outlined">info</span>
+                                    <span>Ayuda</span>
+                                </button>
+                            </div>
+
+                            <p class="text-sm text-gray-500">Por favor, lea y acepte las siguientes condiciones.</p>
+
+                            <div
+                                style="padding: 1rem; background-color: #f0fdf4; border: 2px solid #86efac; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                                <label for="acceptAllConditions"
+                                    style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                    <input id="acceptAllConditions" type="checkbox"
+                                        style="width: 1.5rem; height: 1.5rem; cursor: pointer;"
+                                        class="text-green-600 border-gray-300 rounded focus:ring-green-500"
+                                        onchange="validatePage10()">
+                                    <span class="text-base font-semibold text-gray-800">Acepto todas las
+                                        condiciones</span>
+                                </label>
+                            </div>
+
+                            <div class="form-section">
+                                <h4 class="font-semibold text-gray-800">Condiciones Presentación Empresa</h4>
+                                <div class="space-y-4">
+                                    <div class="text-sm text-gray-700"
+                                        style="text-align: justify; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <strong>1. Estoy informado/a de las condiciones FEDER:</strong> He leído las
+                                        características de este tipo de ayudas y las obligaciones inherentes a la
+                                        financiación FEDER. Estas modalidades de proyectos se apoyan con Ayudas
+                                        Parcialmente Reembolsables cofinanciadas por Fondo Europeo de Desarrollo
+                                        Regional (FEDER). Si su proyecto recibe finalmente cofinanciación FEDER, deberá
+                                        aceptar, como beneficiario, determinadas obligaciones. Si desea acceder a la
+                                        solicitud electrónica ha de leer y darse por informado de las características y
+                                        obligaciones inherentes a la financiación FEDER.
+                                    </div>
+
+                                    <div class="text-sm text-gray-700"
+                                        style="text-align: justify; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <strong>2. Tratamiento de datos de carácter personal:</strong><br><br>
+                                        Los datos de carácter personal asociados al expediente serán tratados por el
+                                        CDTI con la finalidad de llevar a cabo la tramitación del expediente así como el
+                                        control de la ayuda concedida, en su caso. Tales datos personales tienen
+                                        carácter necesario y su no presentación determinará la imposibilidad de
+                                        continuar con el procedimiento.<br><br>
+                                        CDTI está legitimado para el tratamiento de los datos en virtud de la Ley
+                                        14/2011, de 1 de junio, de la Ciencia, la Tecnología y la Innovación, que lo
+                                        designa como agente de financiación del Sistema Español de Ciencia, Tecnología e
+                                        Innovación.<br><br>
+                                        Los datos serán protegidos y conservados conforme a lo dispuesto en el
+                                        Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de
+                                        2016, y resto de normativa aplicable durante los plazos establecidos en la
+                                        normativa reguladora de la ayuda.<br><br>
+                                        El CDTI realizará cesiones de datos a las Administraciones Públicas, a las
+                                        entidades y sujetos que estipule la Ley. Asimismo, las entidades que colaboren
+                                        con CDTI en la evaluación del presente proyecto podrán tener acceso a tales
+                                        datos personales con la única y exclusiva finalidad de realizar la referida
+                                        evaluación.<br><br>
+                                        En el proceso de evaluación del proyecto, el CDTI podrá solicitar la
+                                        colaboración de otras entidades. Acepto que se envíe la documentación de la
+                                        propuesta a estas entidades para la realización del informe de
+                                        valoración.<br><br>
+                                        El titular de los datos podrá ejercer los derechos de acceso, rectificación y
+                                        supresión, de limitación del tratamiento y de oposición a través de los medios
+                                        indicados en la página web del CDTI ("aviso legal"). Igualmente tendrán derecho
+                                        a presentar reclamación ante la Agencia Española de Protección de Datos.
+                                    </div>
+
+                                    <div class="text-sm text-gray-700"
+                                        style="text-align: justify; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <strong>3. Estoy informado/a de las condiciones que aplican al porcentaje máximo
+                                            de gastos generales:</strong><br><br>
+                                        El importe de gastos generales que se considerará elegible a efectos de
+                                        solicitar la cofinanciación europea de la ayuda, será el resultante de la
+                                        aplicación de un porcentaje del 15% sobre los gastos directos de personal del
+                                        proyecto válidamente justificados, en virtud de lo previsto en el Reglamento
+                                        (UE) 651/2014, de 17 de junio.
+                                    </div>
+
+                                    <div class="text-sm text-gray-700" style="text-align: justify;">
+                                        <strong>4. Estoy informado/a de las condiciones de
+                                            cofinanciación:</strong><br><br>
+                                        En los proyectos cofinanciados con fondos FEDER, solo se financiarán aquellas
+                                        actividades del proyecto que sean desarrolladas en el ámbito geográfico de la
+                                        Comunidad Autónoma que figure como "Comunidad de Desarrollo". En este sentido,
+                                        la partida de «Gastos de Personal» corresponderá a personas que realicen sus
+                                        trabajos en dicha comunidad, de forma tal que el trabajador debe estar dado de
+                                        alta en un centro de trabajo de la Comunidad Autónoma correspondiente.
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-section">
                                 <h4 class="font-semibold text-gray-800">Condiciones Presentación Proyecto</h4>
-                                <div class="space-y-6">
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_5" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>1. Confidencialidad y transparencia:</strong><br><br>
-                                            En el supuesto de la existencia de información confidencial por razón de su vinculación a secretos técnicos o comerciales u otros motivos debidamente justificados, el solicitante deberá designarla expresamente como tal en los documentos correspondientes, sin que sea admisible una declaración genérica de confidencialidad.<br><br>
-                                            No obstante, de conformidad con la normativa vigente en materia de publicidad y transparencia de ayudas públicas, los datos del proyecto y de los beneficiarios así como el importe de la ayuda concedida, en su caso, serán públicos. Esta información también podrá utilizarse con fines estadísticos y de análisis, seguimiento y mejora de las ayudas de I+D+i, y/o por exigencias legales.
-                                        </label>
-                                        <input id="cond_5" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+                                <div class="space-y-4">
+                                    <div class="text-sm text-gray-700"
+                                        style="text-align: justify; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <strong>1. Confidencialidad y transparencia:</strong><br><br>
+                                        En el supuesto de la existencia de información confidencial por razón de su
+                                        vinculación a secretos técnicos o comerciales u otros motivos debidamente
+                                        justificados, el solicitante deberá designarla expresamente como tal en los
+                                        documentos correspondientes, sin que sea admisible una declaración genérica de
+                                        confidencialidad.<br><br>
+                                        No obstante, de conformidad con la normativa vigente en materia de publicidad y
+                                        transparencia de ayudas públicas, los datos del proyecto y de los beneficiarios
+                                        así como el importe de la ayuda concedida, en su caso, serán públicos. Esta
+                                        información también podrá utilizarse con fines estadísticos y de análisis,
+                                        seguimiento y mejora de las ayudas de I+D+i, y/o por exigencias legales.
                                     </div>
-                                    
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_6" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>2. Estoy informado de que para dar cumplimiento al Reglamento (UE) 2021/1060 del Parlamento Europeo y del Consejo de 24 de junio de 2021,</strong> se requiere un informe favorable, único por proyecto y emitido por entidad acreditada por la ENAC según el esquema RDE-31, que confirme el cumplimiento del principio de «no causar un perjuicio significativo» ó DNSH por sus siglas en inglés. El informe se presentará por la empresa al CDTI entre la aprobación del proyecto y la firma del contrato. El informe deberá responder a los objetivos del art. 9 y a los aspectos recogidos en el art. 17 del Reglamento (UE) 2020/852 del Parlamento Europeo y del Consejo de 18 de junio de 2020 y sus actos delegados.
-                                        </label>
-                                        <input id="cond_6" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+
+                                    <div class="text-sm text-gray-700"
+                                        style="text-align: justify; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <strong>2. Estoy informado de que para dar cumplimiento al Reglamento (UE)
+                                            2021/1060 del Parlamento Europeo y del Consejo de 24 de junio de
+                                            2021,</strong> se requiere un informe favorable, único por proyecto y
+                                        emitido por entidad acreditada por la ENAC según el esquema RDE-31, que confirme
+                                        el cumplimiento del principio de «no causar un perjuicio significativo» ó DNSH
+                                        por sus siglas en inglés. El informe se presentará por la empresa al CDTI entre
+                                        la aprobación del proyecto y la firma del contrato. El informe deberá responder
+                                        a los objetivos del art. 9 y a los aspectos recogidos en el art. 17 del
+                                        Reglamento (UE) 2020/852 del Parlamento Europeo y del Consejo de 18 de junio de
+                                        2020 y sus actos delegados.
                                     </div>
-                                    
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_7" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>3. Materias excluidas:</strong><br><br>
-                                            Estoy informado de las materias excluidas de la cofinanciación FEDER recogidas en el Artículo 7 del REGLAMENTO (UE) 2021/1058 DEL PARLAMENTO EUROPEO Y DEL CONSEJO de 24 de junio de 2021.
-                                        </label>
-                                        <input id="cond_7" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+
+                                    <div class="text-sm text-gray-700"
+                                        style="text-align: justify; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <strong>3. Materias excluidas:</strong><br><br>
+                                        Estoy informado de las materias excluidas de la cofinanciación FEDER recogidas
+                                        en el Artículo 7 del REGLAMENTO (UE) 2021/1058 DEL PARLAMENTO EUROPEO Y DEL
+                                        CONSEJO de 24 de junio de 2021.
                                     </div>
-                                    
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_8" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>4. Declaro que:</strong><br><br>
-                                            A) Toda la información que figura en esta solicitud es veraz.<br><br>
-                                            B) Me comprometo a informar de todas las modificaciones sustanciales previas a la aprobación del proyecto. Si cualquiera de las anteriores condiciones se viese incumplida, se podría suspender la evaluación del proyecto.
-                                        </label>
-                                        <input id="cond_8" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+
+                                    <div class="text-sm text-gray-700"
+                                        style="text-align: justify; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb;">
+                                        <strong>4. Declaro que:</strong><br><br>
+                                        A) Toda la información que figura en esta solicitud es veraz.<br><br>
+                                        B) Me comprometo a informar de todas las modificaciones sustanciales previas a
+                                        la aprobación del proyecto. Si cualquiera de las anteriores condiciones se viese
+                                        incumplida, se podría suspender la evaluación del proyecto.
                                     </div>
-                                    
-                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
-                                        <label for="cond_9" class="block text-sm text-gray-700" style="text-align: justify; flex: 1; cursor: pointer;">
-                                            <strong>5. Estoy informado/a de las condiciones de la CCAA:</strong><br><br>
-                                            En el proceso de evaluación de la propuesta, el CDTI podrá pedir un informe de valoración al organismo competente de la Comunidad Autónoma en donde se vaya a realizar el proyecto. Acepto que se envíe la documentación de la propuesta a dicho organismo para la realización de dicho informe de valoración.
-                                        </label>
-                                        <input id="cond_9" type="checkbox" class="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500" style="min-width: 1.25rem; margin-top: 0.125rem; flex-shrink: 0;">
+
+                                    <div class="text-sm text-gray-700" style="text-align: justify;">
+                                        <strong>5. Estoy informado/a de las condiciones de la CCAA:</strong><br><br>
+                                        En el proceso de evaluación de la propuesta, el CDTI podrá pedir un informe de
+                                        valoración al organismo competente de la Comunidad Autónoma en donde se vaya a
+                                        realizar el proyecto. Acepto que se envíe la documentación de la propuesta a
+                                        dicho organismo para la realización de dicho informe de valoración.
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div id="form-message" class="hidden h-4"></div>
 
                         <div id="form-navigation">
@@ -695,52 +1342,72 @@
         </div>
 
         <div id="admin-view" class="hidden space-y-6">
-            <div class="flex justify-between items-center border-b pb-2">
-                <h2 class="text-2xl font-bold text-blue-800">Panel de Administración</h2>
-                <button onclick="logout()" style="padding: 0.5rem 1rem; background-color: #ef4444; color: white; border-radius: 0.375rem; border: none; font-size: 0.875rem; cursor: pointer; font-weight: 600;">
+            <div class="page-header">
+                <h2 style="margin:0; font-size: 1.75rem; font-weight: 400;">Panel de Administración</h2>
+                <button onclick="logout()" class="btn-primary" style="background-color: var(--md-sys-color-error);">
+                    <span class="material-symbols-outlined">logout</span>
                     Cerrar Sesión
                 </button>
             </div>
 
             <!-- Gestión de Usuarios -->
-            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-                <h3 class="text-xl font-bold text-blue-800 mb-4">Gestión de Usuarios</h3>
-                
+            <div class="form-section">
+                <h3
+                    style="color: var(--md-sys-color-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-symbols-outlined">group</span>
+                    Gestión de Usuarios
+                </h3>
+
                 <!-- Formulario para crear nuevo usuario -->
-                <div class="mb-6 p-4 bg-blue-50 rounded-lg">
-                    <h4 class="font-semibold text-blue-900 mb-3">Crear Nuevo Usuario</h4>
-                    <div class="flex gap-3 items-end">
-                        <div class="flex-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">ID Cliente / Nombre</label>
-                            <input type="text" id="new-user-id" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="ej: empresa-abc">
+                <div
+                    style="background-color: var(--md-sys-color-secondary-container); padding: 1.5rem; border-radius: var(--md-sys-shape-corner-medium); margin-bottom: 2rem;">
+                    <h4
+                        style="margin-top: 0; margin-bottom: 1rem; color: var(--md-sys-color-on-secondary-container); font-weight: 600;">
+                        Crear Nuevo Usuario</h4>
+                    <div class="form-grid md:grid-cols-3" style="align-items: end;">
+                        <div>
+                            <label for="new-user-id">ID Cliente / Nombre</label>
+                            <input type="text" id="new-user-id" class="input-default" placeholder="ej: empresa-abc">
                         </div>
-                        <div class="flex-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
-                            <input type="text" id="new-user-password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contraseña para el cliente">
+                        <div>
+                            <label for="new-user-password">Contraseña</label>
+                            <input type="text" id="new-user-password" class="input-default"
+                                placeholder="Contraseña para el cliente">
                         </div>
-                        <button onclick="createNewUser()" class="bg-green-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-green-700 transition-colors duration-200">
+                        <button onclick="createNewUser()" class="btn-primary"
+                            style="width: 100%; background-color: var(--success);">
+                            <span class="material-symbols-outlined">person_add</span>
                             Crear Usuario
                         </button>
                     </div>
-                    <p class="text-xs text-gray-600 mt-2">El ID será único para cada cliente. La contraseña se enviará al cliente para que pueda acceder.</p>
+                    <p
+                        style="font-size: 0.75rem; color: var(--md-sys-color-on-secondary-container); margin-top: 0.75rem; opacity: 0.8;">
+                        <span class="material-symbols-outlined"
+                            style="font-size: 1rem; vertical-align: text-bottom;">info</span>
+                        El ID será único para cada cliente. La contraseña se enviará al cliente para que pueda acceder.
+                    </p>
                 </div>
 
                 <!-- Lista de usuarios existentes -->
                 <div>
-                    <h4 class="font-semibold text-gray-900 mb-3">Usuarios Existentes</h4>
-                    <div class="overflow-x-auto rounded-lg border border-gray-200">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
+                    <h4 style="margin-bottom: 1rem; font-weight: 500;">Usuarios Existentes</h4>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
                                 <tr>
-                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">ID Cliente</th>
-                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Contraseña</th>
-                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Estado</th>
-                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Creado</th>
-                                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Acciones</th>
+                                    <th>ID Cliente</th>
+                                    <th>Contraseña</th>
+                                    <th>Estado</th>
+                                    <th>Creado</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody id="users-table-body" class="bg-white divide-y divide-gray-100">
-                                <tr><td colspan="5" class="text-center py-4 text-gray-500">Cargando usuarios...</td></tr>
+                            <tbody id="users-table-body">
+                                <tr>
+                                    <td colspan="5"
+                                        style="text-align: center; padding: 2rem; color: var(--md-sys-color-on-surface-variant);">
+                                        Cargando usuarios...</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -748,38 +1415,49 @@
             </div>
 
             <!-- Datos Recopilados -->
-            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-                <h3 class="text-xl font-bold text-blue-800 mb-4">Datos Recopilados (Tiempo Real)</h3>
+            <div class="form-section">
+                <h3
+                    style="color: var(--md-sys-color-primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-symbols-outlined">monitoring</span>
+                    Datos Recopilados (Tiempo Real)
+                </h3>
 
-            <div class="flex justify-between items-center mb-4">
-                <p class="text-sm text-gray-500">
-                    <span class="font-semibold text-gray-700">ID de la Aplicación (Compartir):</span>
-                    <span id="app-id-display" class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-xs select-all"></span>
+                <div class="flex justify-between items-center mb-4" style="flex-wrap: wrap; gap: 1rem;">
+                    <p style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant); margin: 0;">
+                        <span style="font-weight: 500;">ID de la Aplicación:</span>
+                        <span id="app-id-display"
+                            style="background-color: var(--md-sys-color-surface-variant); padding: 4px 8px; border-radius: 4px; font-family: monospace; margin-left: 0.5rem;"></span>
+                    </p>
+                    <button onclick="exportToCSV()" class="btn-primary" style="background-color: var(--success);">
+                        <span class="material-symbols-outlined">download</span>
+                        Exportar a Excel
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Últ. Guardado</th>
+                                <th>ID Cliente</th>
+                                <th>Nombre (Inst.)</th>
+                                <th>Email (Inst.)</th>
+                                <th>Teléfono (Inst.)</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table-body">
+                            <tr>
+                                <td colspan="6"
+                                    style="text-align: center; padding: 2rem; color: var(--md-sys-color-on-surface-variant);">
+                                    Cargando datos...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p id="data-loading-status"
+                    style="text-align: center; font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant); margin-top: 1rem;">
                 </p>
-                <button onclick="exportToCSV()" class="bg-green-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-green-700 transition-colors duration-200 flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    Exportar a CSV (Excel)
-                </button>
-            </div>
-
-            <div class="overflow-x-auto rounded-lg border border-gray-200">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-blue-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Últ. Guardado</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">ID Cliente</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Nombre (Inst.)</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Email (Inst.)</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Teléfono (Inst.)</th>
-                            <th class="px-6 py-3 text-left text-xs font-semibold text-blue-700 uppercase tracking-wider">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="data-table-body" class="bg-white divide-y divide-gray-100">
-                        <tr><td colspan="6" class="text-center py-4 text-gray-500">Cargando datos...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p id="data-loading-status" class="text-center text-sm text-gray-500"></p>
             </div>
         </div>
     </div>
@@ -788,16 +1466,17 @@
         <div class="modal-box">
             <h3 id="modal-title" class="modal-title"></h3>
             <p id="modal-content" class="modal-content"></p>
-            <input type="password" id="modal-input" class="hidden modal-input mb-4" placeholder="Clave de Administrador">
+            <input type="password" id="modal-input" class="hidden modal-input mb-4"
+                placeholder="Clave de Administrador">
             <div class="modal-actions">
                 <button id="modal-cancel-btn" class="hidden" style="background-color: #6b7280;">Cancelar</button>
                 <button id="modal-confirm-btn" class="">Aceptar</button>
             </div>
         </div>
     </div>
-    
+
     <footer class="site-footer">
-      <span>© DEINCOTEC · Consultoría I+D+i</span>
+        <span>© DEINCOTEC · Consultoría I+D+i</span>
     </footer>
 
     <!-- Pop-up de Información -->
@@ -805,10 +1484,12 @@
         <div class="info-popup">
             <div class="info-popup-header">
                 <h4>
-                    <span class="info-icon">ℹ</span>
+                    <span class="material-symbols-outlined info-icon">info</span>
                     <span id="info-popup-title">Información</span>
                 </h4>
-                <button class="info-popup-close" onclick="closeInfoPopup()">×</button>
+                <button class="info-popup-close" onclick="closeInfoPopup()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
             </div>
             <div id="info-popup-content" class="info-popup-content">
                 <!-- El contenido se insertará dinámicamente -->
@@ -816,8 +1497,222 @@
         </div>
     </div>
 
-    <!-- SheetJS library for Excel export -->
-    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    <!-- Scripts - Cargar en orden de dependencias -->
+    <!-- 1. Módulos de infraestructura (sin dependencias) -->
+    <script type="module" src="error-handler.js"></script>
+    <script type="module" src="state-manager.js"></script>
+    <script type="module" src="nif-validator.js"></script>
+
+    <!-- 2. Validación (depende de nif-validator) -->
+    <script type="module" src="validation.js"></script>
+
+    <!-- 3. Servicios (dependen de state y error) -->
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="firestore-service.js"></script>
+    <script type="module" src="ui-manager.js"></script>
+
+    <!-- 4. Main app (orquesta todos los módulos) -->
     <script type="module" src="main.js"></script>
+    
+    <!-- Debug script -->
+    <script>
+        // Verificar que las funciones globales estén disponibles después de cargar
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                console.log('🔍 Verificando funciones globales...');
+                console.log('promptAdminKey disponible:', typeof window.promptAdminKey);
+                console.log('handleGoogleLogin disponible:', typeof window.handleGoogleLogin);
+                console.log('handleAdminLogin disponible:', typeof window.handleAdminLogin);
+            }, 2000);
+        });
+        
+        // ========================================
+        // Funcionalidad: Seleccionar todos - OTRAS DECLARACIONES
+        // ========================================
+        function setupSelectAllOtrasDeclaraciones() {
+            const selectAllCheckbox = document.getElementById('decl_select_all_otras');
+            
+            if (!selectAllCheckbox) {
+                console.log('⏳ Checkbox "Seleccionar todos" no encontrado aún...');
+                return false;
+            }
+
+            // Lista de IDs de los checkboxes de "Otras Declaraciones"
+            const checkboxIds = [
+                'decl_cumple_requisitos',
+                'decl_no_inicio_previo',
+                'decl_cumple_normativa',
+                'decl_sujeto_control',
+                'decl_representante_agrupacion',
+                'decl_respeta_dnsh',
+                'decl_no_deudas',
+                'decl_autoriza_cesion_datos'
+            ];
+            
+            const checkboxes = checkboxIds.map(id => document.getElementById(id)).filter(el => el !== null);
+            
+            if (checkboxes.length === 0) {
+                console.log('⚠️ No se encontraron los checkboxes individuales');
+                return false;
+            }
+
+            console.log(`✅ Configurando "Seleccionar todos" con ${checkboxes.length} checkboxes`);
+
+            // Evento click en "Seleccionar todos"
+            selectAllCheckbox.onclick = function() {
+                const isChecked = this.checked;
+                console.log('🖱️ Click en Seleccionar todos:', isChecked);
+                
+                checkboxes.forEach(cb => {
+                    cb.checked = isChecked;
+                });
+                
+                // Trigger autosave si existe
+                if (window.debouncedSave) {
+                    window.debouncedSave();
+                }
+            };
+            
+            // Sincronizar cuando cambian los individuales
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', function() {
+                    const allChecked = checkboxes.every(c => c.checked);
+                    const someChecked = checkboxes.some(c => c.checked);
+                    selectAllCheckbox.checked = allChecked;
+                    selectAllCheckbox.indeterminate = someChecked && !allChecked;
+                });
+            });
+            
+            console.log('✓ "Seleccionar todos" OTRAS DECLARACIONES configurado correctamente');
+            return true;
+        }
+        
+        // ========================================
+        // Funcionalidad: Seleccionar todos - CUMPLIMIENTO FEDER
+        // ========================================
+        function setupSelectAllFeder() {
+            const selectAllCheckbox = document.getElementById('decl_select_all_feder');
+            
+            if (!selectAllCheckbox) {
+                return false;
+            }
+
+            const checkboxIds = [
+                'decl_feder_personal_ca',
+                'decl_feder_conoce_condiciones',
+                'decl_feder_capacidad',
+                'decl_feder_cumple_reglamento',
+                'decl_feder_publicidad',
+                'decl_feder_licencia_ue',
+                'decl_feder_conoce_minoracion',
+                'decl_feder_operacion_no_concluida',
+                'decl_feder_conservar_docs',
+                'decl_feder_registros_contables',
+                'decl_feder_conoce_antifraude',
+                'decl_feder_informado_medidas',
+                'decl_feder_difundir_comunicado',
+                'decl_feder_durabilidad',
+                'decl_feder_indicadores',
+                'decl_feder_comprobacion',
+                'decl_feder_cooperacion',
+                'decl_feder_analisis_riesgos',
+                'decl_feder_lista_operaciones',
+                'decl_feder_accesibilidad',
+                'decl_feder_autoriza_facilitar'
+            ];
+            
+            const checkboxes = checkboxIds.map(id => document.getElementById(id)).filter(el => el !== null);
+            
+            if (checkboxes.length === 0) {
+                return false;
+            }
+
+            console.log(`✅ Configurando "Seleccionar todos" FEDER con ${checkboxes.length} checkboxes`);
+
+            selectAllCheckbox.onclick = function() {
+                const isChecked = this.checked;
+                checkboxes.forEach(cb => { cb.checked = isChecked; });
+                if (window.debouncedSave) { window.debouncedSave(); }
+            };
+            
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', function() {
+                    const allChecked = checkboxes.every(c => c.checked);
+                    const someChecked = checkboxes.some(c => c.checked);
+                    selectAllCheckbox.checked = allChecked;
+                    selectAllCheckbox.indeterminate = someChecked && !allChecked;
+                });
+            });
+            
+            console.log('✓ "Seleccionar todos" CUMPLIMIENTO FEDER configurado correctamente');
+            return true;
+        }
+        
+        // ========================================
+        // Funcionalidad: Seleccionar todos - LISTA COMPROBACIÓN PROYECTO
+        // ========================================
+        function setupSelectAllProyecto() {
+            const selectAllCheckbox = document.getElementById('decl_select_all_proyecto');
+            
+            if (!selectAllCheckbox) {
+                return false;
+            }
+
+            const checkboxIds = [
+                'decl_proy_autorizaciones',
+                'decl_proy_normas_ambientales',
+                'decl_proy_desarrollo_sostenible',
+                'decl_proy_dimension_genero',
+                'decl_proy_impacto_genero',
+                'decl_proy_eliminar_desigualdades',
+                'decl_proy_lucha_discriminacion',
+                'decl_proy_ayuda_reembolsable'
+            ];
+            
+            const checkboxes = checkboxIds.map(id => document.getElementById(id)).filter(el => el !== null);
+            
+            if (checkboxes.length === 0) {
+                return false;
+            }
+
+            console.log(`✅ Configurando "Seleccionar todos" PROYECTO con ${checkboxes.length} checkboxes`);
+
+            selectAllCheckbox.onclick = function() {
+                const isChecked = this.checked;
+                checkboxes.forEach(cb => { cb.checked = isChecked; });
+                if (window.debouncedSave) { window.debouncedSave(); }
+            };
+            
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', function() {
+                    const allChecked = checkboxes.every(c => c.checked);
+                    const someChecked = checkboxes.some(c => c.checked);
+                    selectAllCheckbox.checked = allChecked;
+                    selectAllCheckbox.indeterminate = someChecked && !allChecked;
+                });
+            });
+            
+            console.log('✓ "Seleccionar todos" LISTA COMPROBACIÓN PROYECTO configurado correctamente');
+            return true;
+        }
+        
+        // Intentar configurar periódicamente hasta que funcione
+        let attempts = 0;
+        const maxAttempts = 20;
+        const intervalId = setInterval(() => {
+            attempts++;
+            const otrasOk = setupSelectAllOtrasDeclaraciones();
+            const federOk = setupSelectAllFeder();
+            const proyectoOk = setupSelectAllProyecto();
+            
+            if ((otrasOk && federOk && proyectoOk) || attempts >= maxAttempts) {
+                clearInterval(intervalId);
+                if (attempts >= maxAttempts) {
+                    console.log('⚠️ Algunos "Seleccionar todos" no se configuraron después de', maxAttempts, 'intentos');
+                }
+            }
+        }, 500);
+    </script>
 </body>
+
 </html>
